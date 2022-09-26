@@ -1,0 +1,27 @@
+nginx
+www
+
+# IDE - VSCode
+.vscode
+
+# Versioning and metadata
+.git
+.gitignore
+.dockerignore
+.angular
+
+# Build dependencies
+dist
+node_modules
+coverage
+
+# Environment (contains sensitive data)
+*.env
+
+# Files not required for production
+.editorconfig
+Dockerfile
+README.md
+LICENSE
+tslint.json
+nodemon.json
