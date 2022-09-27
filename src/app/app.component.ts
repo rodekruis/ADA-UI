@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public sideMenu = 'ADA';
-  public name = 'Automated Damage Assessment';
+  public sideMenu = $localize`ADA`;
+  public name = $localize`Automated Damage Assessment`;
 
   constructor() {}
 }
