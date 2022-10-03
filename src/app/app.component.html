@@ -1,13 +1,28 @@
 <ion-app>
-  <ion-split-pane contentId="main-content" when="(min-width: 40px)">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content class="ion-text-center">
-        <h4>{{ sideMenu }}</h4>
-      </ion-content>
-    </ion-menu>
+  <ion-header collapse="fade" class="ion-padding-horizontal">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-icon name="apps" slot="icon-only"></ion-icon>
+      </ion-buttons>
+      <ion-title>{{ title }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-    <ion-content id="main-content" class="ion-text-center">
-      <h4>{{ name }}</h4>
-    </ion-content>
-  </ion-split-pane>
+  <ion-content>
+    <ion-split-pane
+      class="ion-content-scroll-host"
+      contentId="main-content"
+      when="(min-width: 40px)"
+    >
+      <ion-menu contentId="main-content" type="overlay">
+        <ion-content class="ion-text-center">
+          <h4>{{ summary }}</h4>
+        </ion-content>
+      </ion-menu>
+
+      <ion-content id="main-content" class="ion-text-center">
+        <h4>{{ map }}</h4>
+      </ion-content>
+    </ion-split-pane>
+  </ion-content>
 </ion-app>
