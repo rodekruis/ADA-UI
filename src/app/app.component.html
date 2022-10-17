@@ -1,5 +1,5 @@
-<ion-app>
-  <ion-header collapse="fade" class="ion-padding-horizontal">
+<ion-app class="no-alert">
+  <ion-header collapse="fade" class="ion-no-border ion-padding-horizontal">
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-icon name="apps" slot="icon-only"></ion-icon>
@@ -16,6 +16,7 @@
     >
       <ion-menu contentId="main-content" type="overlay">
         <ion-content>
+          <app-calendar></app-calendar>
           <app-summary></app-summary>
         </ion-content>
       </ion-menu>

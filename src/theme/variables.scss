@@ -490,6 +490,14 @@
   ion-button {
     text-transform: none;
   }
+
+  ion-title {
+    font-weight: bold;
+  }
+
+  .md {
+    --ion-text-color: var(--ion-color-ibf-primary);
+  }
 }
 
 .ion-color-ibf-no-alert-primary {
