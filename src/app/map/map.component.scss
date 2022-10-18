@@ -1,3 +1,20 @@
+ion-menu-toggle {
+  cursor: pointer;
+  background-color: #fff;
+  height: 100%;
+  width: 32px;
+  font-size: 16px;
+  padding: 8px;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  bottom: 17px;
+  z-index: 99999;
+  text-orientation: mixed;
+  transform: scale(-1, -1);
+  writing-mode: vertical-rl;
+}
+
 .map {
   height: 100%;
 }
