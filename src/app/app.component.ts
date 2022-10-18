@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public title = $localize`ADA PORTAL`;
-  public summary = $localize`Summary Component`;
 
   constructor() {}
 }

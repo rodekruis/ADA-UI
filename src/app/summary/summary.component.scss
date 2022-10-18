@@ -1,0 +1,13 @@
+.chat {
+  background-color: #e6e9f0;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin: 16px;
+  line-height: 1.4;
+}
+
+li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -1,0 +1,28 @@
+<div>
+  <div class="chat" i18n>
+    Welcome to the
+    <ion-text class="text-bold">Automated Damage Assessment (ADA)</ion-text>
+    portal. Here you will find all the events for which a damage assessment has
+    been conducted.
+  </div>
+  <ion-buttons class="ion-justify-content-between ion-margin">
+    <ion-button shape="round" fill="solid" i18n>About ADA</ion-button>
+    <ion-button shape="round" fill="solid" i18n>User Guide</ion-button>
+    <ion-button shape="round" fill="solid" i18n>Disclaimer</ion-button>
+  </ion-buttons>
+  <div class="chat">
+    <ion-text i18n>Disaster events are listed in order of occurrence.</ion-text>
+    <br />
+    <ion-text color="danger" i18n>Recent disaster events are in red.</ion-text>
+    <br />
+    <br />
+    <div class="ion-margin-vertical text-bold" *ngIf="events.length < 1" i18n>
+      No disaster events to show.
+    </div>
+    <ul *ngIf="events.length > 0" class="ion-no-margin ion-padding-start">
+      <li *ngFor="let event of events" class="ion-margin-vertical text-bold">
+        {{ event.name }} - {{ event.country }} - {{ event.date }}
+      </li>
+    </ul>
+  </div>
+</div>
