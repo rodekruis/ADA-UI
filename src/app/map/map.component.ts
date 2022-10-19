@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewChecked } from '@angular/core';
 import { latLng, tileLayer, Map } from 'leaflet';
 
 const LEAFLET_MAP_URL_TEMPLATE =
@@ -11,7 +11,7 @@ const LEAFLET_MAP_ATTRIBUTION =
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-export class MapComponent {
+export class MapComponent implements AfterViewChecked {
   public map: Map;
 
   leafletOptions = {
@@ -27,13 +27,12 @@ export class MapComponent {
 
   constructor() {}
 
-  onMapReady(map: Map) {
-    this.map = map;
-    this.triggerWindowResize();
+  ngAfterViewChecked(): void {
+    // Trigger a resize to fill the container-element:
+    window.dispatchEvent(new UIEvent('resize'));
   }
 
-  private triggerWindowResize = () => {
-    // Trigger a resize to fill the container-element:
-    window.setTimeout(() => window.dispatchEvent(new UIEvent('resize')), 200);
-  };
+  onMapReady(map: Map) {
+    this.map = map;
+  }
 }
