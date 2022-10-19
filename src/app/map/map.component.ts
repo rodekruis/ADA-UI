@@ -21,8 +21,8 @@ export class MapComponent implements AfterViewChecked {
         attribution: LEAFLET_MAP_ATTRIBUTION,
       }),
     ],
-    zoom: 16,
-    center: latLng(40.6333389, 14.6028963),
+    zoom: 2,
+    center: latLng(0, 0),
   };
 
   constructor() {}
