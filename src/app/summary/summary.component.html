@@ -21,8 +21,15 @@
       No disaster events to show.
     </div>
     <ul *ngIf="events.length > 0" class="ion-no-margin ion-padding-start">
-      <li *ngFor="let event of events" class="ion-margin-vertical text-bold">
-        {{ event.name }} - {{ event.country }} - {{ event.date }}
+      <li
+        *ngFor="let event of events"
+        class="ion-margin-vertical text-bold"
+        [ngClass]="{ recent: event.isRecent }"
+      >
+        <ion-text>
+          {{ event.type }} {{ event.name }} -
+          {{ event.startDate | date: "mediumDate" }}<br />{{ event.country }}
+        </ion-text>
       </li>
     </ul>
   </div>

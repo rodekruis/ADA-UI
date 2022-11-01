@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked } from '@angular/core';
+import { Component, AfterViewChecked, Input } from '@angular/core';
 import { latLng, tileLayer, Map } from 'leaflet';
 
 const LEAFLET_MAP_URL_TEMPLATE =
@@ -12,6 +12,8 @@ const LEAFLET_MAP_ATTRIBUTION =
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements AfterViewChecked {
+  @Input() events = [];
+
   public map: Map;
 
   leafletOptions = {
@@ -22,7 +24,13 @@ export class MapComponent implements AfterViewChecked {
       }),
     ],
     zoom: 2,
+    minZoom: 2,
     center: latLng(0, 0),
+    maxBounds: [
+      [-90, -180],
+      [90, 180],
+    ],
+    noWrap: true,
   };
 
   constructor() {}
