@@ -1,0 +1,15 @@
+:host {
+  cursor: default;
+  overflow: auto;
+  height: 100%;
+  border-left: 1px solid var(--ion-color-ibf-primary);
+}
+
+ion-item {
+  --min-height: 32px;
+}
+
+ion-thumbnail {
+  height: 32px;
+  width: 32px;
+}

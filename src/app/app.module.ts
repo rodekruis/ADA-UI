@@ -4,6 +4,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { IonicModule } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
+import { LayerComponent } from './layer/layer.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SummaryComponent } from './summary/summary.component';
 
@@ -11,6 +12,7 @@ import { SummaryComponent } from './summary/summary.component';
   declarations: [
     AppComponent,
     MapComponent,
+    LayerComponent,
     CalendarComponent,
     SummaryComponent,
   ],

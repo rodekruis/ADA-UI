@@ -1,0 +1,15 @@
+<ion-list lines="full">
+  <ion-item *ngFor="let layer of layers" button>
+    <ion-thumbnail slot="start">
+      <img [alt]="layer.label" [src]="layer.image" />
+    </ion-thumbnail>
+    <ion-label>{{ layer.label }}</ion-label>
+    <ion-icon
+      name="information-circle"
+      slot="end"
+      color="ibf-primary"
+      size="large"
+      class="ion-margin-start ion-no-margin"
+    ></ion-icon>
+  </ion-item>
+</ion-list>

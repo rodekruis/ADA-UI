@@ -11,3 +11,11 @@ li:hover {
   text-decoration: underline;
   cursor: pointer;
 }
+
+ion-buttons {
+  flex-wrap: wrap;
+}
+
+ion-button {
+  margin: 4px;
+}
