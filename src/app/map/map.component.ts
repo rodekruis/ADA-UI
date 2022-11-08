@@ -1,5 +1,12 @@
 import { Component, AfterViewChecked, Input } from '@angular/core';
-import { latLng, tileLayer, Map } from 'leaflet';
+import {
+  latLng,
+  latLngBounds,
+  Map,
+  MarkerClusterGroup,
+  tileLayer,
+} from 'leaflet';
+import { createEventMarker, markerClusterIconCreateFunction } from '../utils';
 
 const LEAFLET_MAP_URL_TEMPLATE =
   'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
@@ -26,10 +33,10 @@ export class MapComponent implements AfterViewChecked {
     zoom: 2,
     minZoom: 2,
     center: latLng(0, 0),
-    maxBounds: [
+    maxBounds: latLngBounds([
       [-90, -180],
       [90, 180],
-    ],
+    ]),
     noWrap: true,
   };
 
@@ -42,5 +49,23 @@ export class MapComponent implements AfterViewChecked {
 
   onMapReady(map: Map) {
     this.map = map;
+
+    this.loadEvents();
   }
+
+  loadEvents = () => {
+    const markerClusterGroupOptions = {
+      iconCreateFunction: markerClusterIconCreateFunction,
+    };
+
+    const markerClusterGroup = new MarkerClusterGroup(
+      markerClusterGroupOptions
+    );
+
+    this.events.forEach((event) =>
+      markerClusterGroup.addLayer(createEventMarker(event))
+    );
+
+    this.map.addLayer(markerClusterGroup);
+  };
 }
