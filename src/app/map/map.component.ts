@@ -6,7 +6,10 @@ import {
   MarkerClusterGroup,
   tileLayer,
 } from 'leaflet';
-import { createEventMarker, markerClusterIconCreateFunction } from '../utils';
+import {
+  createEventMarker,
+  markerClusterIconCreateFunction,
+} from './map.utils';
 
 const LEAFLET_MAP_URL_TEMPLATE =
   'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';

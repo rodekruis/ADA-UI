@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { isRecent } from './utils';
+import { isRecent } from './event.utils';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -17,7 +17,7 @@ export class AppComponent {
       name: 'ANA',
       type: 'Storm',
       country: 'Mozambique',
-      geometry: { type: 'Point', coordinates: [-18.4214294, 26.7694166] },
+      geometry: { type: 'Point', coordinates: [-25.9704569, 32.5727348] },
       startDate: '2022-01-24T00:00:00.000Z',
       endDate: null,
       access: 'Public',
@@ -30,7 +30,7 @@ export class AppComponent {
       name: 'Nyiragongo',
       type: 'Eruption',
       country: 'Democratic Republic of Congo',
-      geometry: { type: 'Point', coordinates: [-0.6851186, 5.5534151] },
+      geometry: { type: 'Point', coordinates: [-1.5220377, 29.2406804] },
       startDate: '2021-05-22T00:00:00.000Z',
       endDate: '2023-12-31T00:00:00.000Z',
       access: 'Private',
@@ -43,7 +43,7 @@ export class AppComponent {
       name: 'Beirut',
       type: 'Explosion',
       country: 'Lebanon',
-      geometry: { type: 'Point', coordinates: [33.8684808, 34.726183] },
+      geometry: { type: 'Point', coordinates: [33.8908586, 35.4945584] },
       startDate: '2020-08-04T00:00:00.000Z',
       endDate: '2020-08-04T00:00:00.000Z',
       access: 'Private',
@@ -56,7 +56,7 @@ export class AppComponent {
       name: 'Mangut',
       type: 'Typhoon',
       country: 'Philippines',
-      geometry: { type: 'Point', coordinates: [11.5563095, 113.5767003] },
+      geometry: { type: 'Point', coordinates: [14.6152545, 121.0052082] },
       startDate: '2018-09-15T00:00:00.000Z',
       endDate: '2018-10-15T00:00:00.000Z',
       access: 'Public',
@@ -69,10 +69,10 @@ export class AppComponent {
       name: 'Irma',
       type: 'Hurricane',
       country: 'Sint-Maarten',
-      geometry: { type: 'Point', coordinates: [52.7551415, 4.7154208] },
+      geometry: { type: 'Point', coordinates: [18.0291075, -63.0591] },
       startDate: '2021-12-31T00:00:00.000Z',
       endDate: '2021-12-31T00:00:00.000Z',
-      access: 'Public',
+      access: 'Private',
     },
   ]
     .sort((a, b) => {
