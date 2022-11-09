@@ -1,5 +1,13 @@
 import { formatDate } from '@angular/common';
-import { divIcon, latLng, marker, Marker, MarkerCluster, point } from 'leaflet';
+import {
+  divIcon,
+  latLng,
+  marker,
+  Marker,
+  MarkerCluster,
+  Point,
+  point,
+} from 'leaflet';
 
 const MARKER_CLUSTER_SIZE_WEIGHT = 20;
 
@@ -79,6 +87,7 @@ export const createEventMarker = (event) =>
     }),
   }).bindPopup(createEventMarkerPopup(event), {
     className: 'event-marker-popup' + (event.isRecent ? ' recent' : ''),
+    autoPanPadding: new Point(64, 128),
   });
 
 export default { markerClusterIconCreateFunction, createEventMarker };
