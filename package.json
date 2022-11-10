@@ -24,7 +24,7 @@
     "@asymmetrik/ngx-leaflet-markercluster": "^14.0.1",
     "@ionic/angular": "^6.1.9",
     "ionicons": "^6.0.3",
-    "leaflet": "^1.8.0",
+    "leaflet": "^1.9.2",
     "leaflet.markercluster": "^1.5.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
