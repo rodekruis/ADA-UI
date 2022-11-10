@@ -32,3 +32,16 @@ ion-menu-toggle {
   height: 100%;
   margin-right: 32px;
 }
+
+ion-buttons {
+  position: absolute;
+  top: 1em;
+  left: 4em;
+  z-index: 1000;
+
+  ion-button {
+    --border-color: var(--ion-color-ibf-primary);
+    --border-style: solid;
+    --border-width: 1px;
+  }
+}
