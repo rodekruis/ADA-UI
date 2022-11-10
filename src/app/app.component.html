@@ -23,12 +23,12 @@
       <ion-menu contentId="main-content" type="overlay">
         <ion-content>
           <app-calendar></app-calendar>
-          <app-summary></app-summary>
+          <app-summary [events]="events"></app-summary>
         </ion-content>
       </ion-menu>
 
       <ion-content id="main-content" class="ion-text-center">
-        <app-map></app-map>
+        <app-map [events]="events"></app-map>
       </ion-content>
     </ion-split-pane>
   </ion-content>

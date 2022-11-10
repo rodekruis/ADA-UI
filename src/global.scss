@@ -24,3 +24,121 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+// https://github.com/Leaflet/Leaflet/issues/8210#issuecomment-1144588041
+.leaflet-control {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.event-marker {
+  background-color: var(--ion-color-ibf-primary);
+  mask-image: url("./assets/marker.svg");
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
+.event-cluster {
+  border-radius: 50%;
+  background-color: var(--ion-color-ibf-primary);
+  color: var(--ion-color-ibf-primary-contrast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7 !important;
+}
+
+.event-marker,
+.event-cluster {
+  &.recent {
+    background-color: var(--ion-color-danger);
+    color: var(--ion-color-danger-contrast);
+  }
+}
+
+.event-marker-popup {
+  .leaflet-popup-content-wrapper {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    border: 1px solid var(--ion-color-ibf-primary);
+
+    .leaflet-popup-content {
+      margin: 0;
+      width: 320px;
+
+      header,
+      footer,
+      .content {
+        padding: 8px;
+      }
+
+      header,
+      footer {
+        background-color: var(--ion-color-ibf-primary);
+        color: var(--ion-color-ibf-primary-contrast);
+
+        ion-icon {
+          vertical-align: bottom;
+          margin-left: 4px;
+        }
+      }
+
+      header {
+        .title {
+          font-size: 1rem;
+        }
+
+        .subtitle {
+          margin-top: 4px;
+        }
+      }
+
+      .content {
+        font-size: 14px;
+
+        ion-item {
+          ion-note {
+            display: flex;
+            align-items: center;
+
+            ion-icon {
+              margin-right: 4px;
+            }
+          }
+        }
+
+        ion-button {
+          margin: 8px 16px 0;
+        }
+      }
+    }
+  }
+
+  &.recent {
+    .leaflet-popup-content-wrapper {
+      border-color: var(--ion-color-danger);
+
+      .leaflet-popup-content {
+        header,
+        footer {
+          background-color: var(--ion-color-danger);
+        }
+      }
+    }
+  }
+
+  a.leaflet-popup-close-button {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+    line-height: 32px;
+    font-weight: bold;
+
+    &,
+    &:hover,
+    &:focus {
+      color: var(--ion-color-ibf-primary-contrast);
+    }
+  }
+}
