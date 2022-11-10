@@ -87,7 +87,7 @@ export const createEventMarker = (event) =>
     }),
   }).bindPopup(createEventMarkerPopup(event), {
     className: 'event-marker-popup' + (event.isRecent ? ' recent' : ''),
-    autoPanPadding: new Point(64, 128),
+    autoPanPadding: new Point(64, 160),
   });
 
 export default { markerClusterIconCreateFunction, createEventMarker };
