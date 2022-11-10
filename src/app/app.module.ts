@@ -8,6 +8,7 @@ import { MapComponent } from './map/map.component';
 import { LayerComponent } from './layer/layer.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { SummaryComponent } from './summary/summary.component';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { SummaryComponent } from './summary/summary.component';
     LayerComponent,
     CalendarComponent,
     SummaryComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,

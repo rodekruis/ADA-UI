@@ -6,9 +6,15 @@
     been conducted.
   </div>
   <ion-buttons class="ion-justify-content-evenly">
-    <ion-button shape="round" fill="solid" i18n>About ADA</ion-button>
-    <ion-button shape="round" fill="solid" i18n>User Guide</ion-button>
-    <ion-button shape="round" fill="solid" i18n>Disclaimer</ion-button>
+    <ion-button shape="round" fill="solid" (click)="openPopup()" i18n
+      >About ADA</ion-button
+    >
+    <ion-button shape="round" fill="solid" (click)="openPopup()" i18n
+      >User Guide</ion-button
+    >
+    <ion-button shape="round" fill="solid" (click)="openPopup()" i18n
+      >Disclaimer</ion-button
+    >
   </ion-buttons>
   <div class="chat">
     <ion-text i18n>Disaster events are listed in order of occurrence.</ion-text
