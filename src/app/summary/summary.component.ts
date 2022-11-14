@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { PopupComponent } from '../popup/popup.component';
@@ -10,19 +11,23 @@ import { PopupComponent } from '../popup/popup.component';
 export class SummaryComponent {
   @Input() events = [];
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private httpClient: HttpClient
+  ) {}
 
-  async openPopup() {
+  openPopup(title: string, contentPath: string) {
+    this.httpClient
+      .get(contentPath, { responseType: 'text' })
+      .subscribe((content) => this.showPopup(title, content));
+  }
+
+  async showPopup(title: string, content: string) {
     const modal = await this.modalCtrl.create({
       component: PopupComponent,
+      componentProps: { title, content },
       showBackdrop: false,
     });
     modal.present();
-
-    const { data, role } = await modal.onWillDismiss();
-
-    if (role === 'confirm') {
-      // this.message = `Hello, ${data}!`;
-    }
   }
 }

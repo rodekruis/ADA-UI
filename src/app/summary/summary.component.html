@@ -6,13 +6,25 @@
     been conducted.
   </div>
   <ion-buttons class="ion-justify-content-evenly">
-    <ion-button shape="round" fill="solid" (click)="openPopup()" i18n
+    <ion-button
+      shape="round"
+      fill="solid"
+      (click)="openPopup('About ADA', 'assets/markdown/about.md')"
+      i18n
       >About ADA</ion-button
     >
-    <ion-button shape="round" fill="solid" (click)="openPopup()" i18n
+    <ion-button
+      shape="round"
+      fill="solid"
+      (click)="openPopup('User Guide', 'assets/markdown/guide.md')"
+      i18n
       >User Guide</ion-button
     >
-    <ion-button shape="round" fill="solid" (click)="openPopup()" i18n
+    <ion-button
+      shape="round"
+      fill="solid"
+      (click)="openPopup('Disclaimer', 'assets/markdown/disclaimer.md')"
+      i18n
       >Disclaimer</ion-button
     >
   </ion-buttons>

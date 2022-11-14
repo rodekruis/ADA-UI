@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -6,12 +6,8 @@ import { ModalController } from '@ionic/angular';
   templateUrl: './popup.component.html',
 })
 export class PopupComponent {
-  title = 'Title';
-  content = 'Content';
+  @Input() title = 'Title';
+  @Input() content = 'Content';
 
-  constructor(private modalCtrl: ModalController) {}
-
-  close() {
-    return this.modalCtrl.dismiss(null, 'close');
-  }
+  constructor(public modalCtrl: ModalController) {}
 }

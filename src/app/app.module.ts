@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 import { IonicModule } from '@ionic/angular';
+import { HttpClientModule } from '@angular/common/http';
+import { MarkdownModule } from 'ngx-markdown';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { LayerComponent } from './layer/layer.component';
@@ -24,6 +26,8 @@ import { PopupComponent } from './popup/popup.component';
     IonicModule.forRoot(),
     LeafletModule,
     LeafletMarkerClusterModule,
+    HttpClientModule,
+    MarkdownModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })
