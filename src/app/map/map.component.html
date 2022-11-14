@@ -15,22 +15,27 @@
       [leafletOptions]="leafletOptions"
       (leafletMapReady)="onMapReady($event)"
     ></div>
-    <ion-buttons>
-      <ion-button fill="solid" color="ibf-primary" shape="round">
-        Admin 1
-      </ion-button>
-      <ion-button fill="solid" color="ibf-white" shape="round">
-        Admin 2
-      </ion-button>
-      <ion-button fill="solid" color="ibf-white" shape="round">
-        Admin 3
-      </ion-button>
-      <ion-button fill="solid" color="ibf-white" shape="round">
-        Admin 4
-      </ion-button>
-      <ion-button fill="solid" color="ibf-white" shape="round">
-        Admin 5
-      </ion-button>
-    </ion-buttons>
+    <ion-segment
+      value="admin-1"
+      mode="ios"
+      color="ibf-primary"
+      scrollable="true"
+    >
+      <ion-segment-button value="admin-1">
+        <ion-label>Admin 1</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="admin-2">
+        <ion-label>Admin 2</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="admin-3">
+        <ion-label>Admin 3</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="admin-4">
+        <ion-label>Admin 4</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="admin-5">
+        <ion-label>Admin 5</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-content>
 </ion-split-pane>
