@@ -26,7 +26,7 @@ export class SummaryComponent {
     const modal = await this.modalCtrl.create({
       component: PopupComponent,
       componentProps: { title, content },
-      showBackdrop: false,
+      showBackdrop: true,
     });
     modal.present();
   }
