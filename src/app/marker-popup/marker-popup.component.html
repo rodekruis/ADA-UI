@@ -1,0 +1,53 @@
+<div class="marker-popup-wrapper" [ngClass]="{ recent: event.recent }">
+  <ion-header class="ion-no-border">
+    <ion-toolbar class="font-montserrat">
+      <div class="title text-bold">{{ event.type }} {{ event.name }}</div>
+      <div class="subtitle">{{ startDate }}</div>
+      <ion-buttons slot="end">
+        <ion-button class="close-button">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="content ion-padding">
+    <div *ngIf="restricted">
+      Enter the access code to view the damage assessment.
+      <ion-item>
+        <ion-input
+          type="password"
+          placeholder="Enter the access code"
+        ></ion-input>
+        <ion-note slot="error">
+          <ion-icon name="warning-outline"></ion-icon> Incorrect Code
+        </ion-note>
+      </ion-item>
+    </div>
+    <div *ngIf="!restricted">
+      Click the "View Event" button to view the damage assessment.
+    </div>
+    <ion-button
+      expand="block"
+      fill="solid"
+      shape="round"
+      color="ibf-primary"
+      [disabled]="restricted"
+      [routerLink]="['/event', event.id]"
+    >
+      View Event
+    </ion-button>
+  </div>
+
+  <ion-footer class="ion-no-border">
+    <ion-toolbar>
+      <ion-text slot="end">
+        Access: <b>{{ restricted ? "Restricted" : event.access }}</b>
+        <ion-icon
+          [name]="restricted ? 'eye-off' : 'eye'"
+          size="small"
+        ></ion-icon>
+      </ion-text>
+    </ion-toolbar>
+  </ion-footer>
+</div>
