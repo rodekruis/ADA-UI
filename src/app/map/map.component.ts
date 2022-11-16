@@ -1,9 +1,6 @@
 import { Component, AfterViewChecked, Input, OnChanges } from '@angular/core';
-import { Map, Marker, MarkerClusterGroup } from 'leaflet';
-import {
-  createEventMarker,
-  markerClusterIconCreateFunction,
-} from './map.utils';
+import { Map, MarkerClusterGroup } from 'leaflet';
+import { createMarker, iconCreateFunction } from './map.utils';
 import { Event } from '../event/event.type';
 import { leafletOptions } from './map.config';
 
@@ -51,14 +48,12 @@ export class MapComponent implements AfterViewChecked, OnChanges {
   };
 
   loadEvents = () => {
-    const markerClusterGroupOptions = {
-      iconCreateFunction: markerClusterIconCreateFunction,
-    };
+    const markerClusterGroupOptions = { iconCreateFunction };
 
     this.markerClusterGroup = new MarkerClusterGroup(markerClusterGroupOptions);
 
     this.events.forEach((event: Event) => {
-      event.marker = createEventMarker(event);
+      event.marker = createMarker(event);
       this.markerClusterGroup.addLayer(event.marker);
     });
 
