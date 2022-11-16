@@ -28,7 +28,7 @@
       >Disclaimer</ion-button
     >
   </ion-buttons>
-  <div class="chat">
+  <div class="chat" [ngClass]="{ 'ion-hide': hideEvents }">
     <ion-text i18n>Disaster events are listed in order of occurrence.</ion-text
     >&nbsp;<ion-text color="danger" i18n
       >Recent disaster events are in red.</ion-text
@@ -42,7 +42,10 @@
       <li
         *ngFor="let event of events"
         class="ion-margin-vertical text-bold"
-        [ngClass]="{ recent: event.isRecent }"
+        [ngClass]="{ recent: event.recent }"
+        [routerLink]="['/event', event.id]"
+        [queryParams]="{ preview: true }"
+        routerLinkActive="active"
       >
         <ion-text>
           {{ event.type }} {{ event.name }} -
@@ -50,5 +53,8 @@
         </ion-text>
       </li>
     </ul>
+  </div>
+  <div class="chat" [ngClass]="{ 'ion-hide': !hideEvents }">
+    <ion-text i18n>Event Statistics</ion-text>
   </div>
 </div>

@@ -8,6 +8,7 @@ import {
   Point,
   point,
 } from 'leaflet';
+import { Event, EventAccess } from '../event/event.type';
 
 const MARKER_CLUSTER_SIZE_WEIGHT = 20;
 
@@ -30,10 +31,10 @@ export const markerClusterIconCreateFunction = (cluster: MarkerCluster) =>
   });
 
 const createEventMarkerPopupHeader = (
-  event
+  event: Event
 ) => `<ion-header class="ion-no-border">
 <ion-toolbar color="${
-  event.isRecent ? 'danger' : 'ibf-primary'
+  event.recent ? 'danger' : 'ibf-primary'
 }" class="font-montserrat">
   <div class="title text-bold">
     ${event.type} ${event.name}
@@ -50,22 +51,24 @@ const createEventMarkerPopupHeader = (
 </ion-header>`;
 
 const createEventMarkerPopupFooter = (
-  event
+  event: Event
 ) => `<ion-footer class="ion-no-border">
-<ion-toolbar color="${event.isRecent ? 'danger' : 'ibf-primary'}">
+<ion-toolbar color="${event.recent ? 'danger' : 'ibf-primary'}">
   <ion-text slot="end">
-    Access: <b>${event.access === 'Private' ? 'Restricted' : event.access}</b>
+    Access: <b>${
+      event.access === EventAccess.private ? 'Restricted' : event.access
+    }</b>
     <ion-icon name="${
-      event.access === 'Private' ? 'eye-off' : 'eye'
+      event.access === EventAccess.private ? 'eye-off' : 'eye'
     }" size="small"></ion-icon>
   </ion-text>
 </ion-toolbar>
 </ion-footer>`;
 
 const createEventMarkerPopupContent = (
-  event
+  event: Event
 ) => `<div class="content ion-padding">${
-  event.access === 'Private'
+  event.access === EventAccess.private
     ? '<div>Enter the access code to view the damage assessment. \
   <ion-item> \
     <ion-input type="password" placeholder="Enter the access code"></ion-input> \
@@ -79,11 +82,12 @@ const createEventMarkerPopupContent = (
   fill="solid"
   shape="round"
   color="ibf-primary"
-  ${event.access === 'Private' ? 'disabled="true"' : 'disabled="false"'}
+  disabled="${event.access === EventAccess.private}"
+  href="/event/${event.id}"
   >View Event</ion-button>
 </div>`;
 
-const createEventMarkerPopup = (event) => `<article>
+const createEventMarkerPopup = (event: Event) => `<article>
 ${createEventMarkerPopupHeader(event)}
 ${createEventMarkerPopupContent(event)}
 ${createEventMarkerPopupFooter(event)}
@@ -98,15 +102,15 @@ const onPopupOpen = (popupOpenEvent) =>
       popupOpenEvent.target.closePopup();
     });
 
-export const createEventMarker = (event) =>
-  marker(latLng(event.geometry.coordinates), {
+export const createEventMarker = (event: Event) =>
+  marker(latLng.apply(this, event.geometry.coordinates), {
     icon: divIcon({
-      className: 'event-marker' + (event.isRecent ? ' recent' : ''),
+      className: 'event-marker' + (event.recent ? ' recent' : ''),
       iconSize: point(25, 41),
     }),
   })
     .bindPopup(createEventMarkerPopup(event), {
-      className: 'event-marker-popup' + (event.isRecent ? ' recent' : ''),
+      className: 'event-marker-popup' + (event.recent ? ' recent' : ''),
       autoPanPadding: new Point(64, 256),
       closeButton: false,
     })

@@ -4,7 +4,11 @@
   </ion-menu>
 
   <ion-content id="map" class="map-container">
-    <ion-menu-toggle class="text-bold font-montserrat" menu="map">
+    <ion-menu-toggle
+      class="text-bold font-montserrat"
+      menu="map"
+      [ngClass]="{ 'ion-hide': !eventView }"
+    >
       <ion-text>^&nbsp;&nbsp;^&nbsp;&nbsp;^</ion-text>
       &nbsp;&nbsp;&nbsp;&nbsp;MAP LAYERS&nbsp;&nbsp;&nbsp;&nbsp;
       <ion-text>^&nbsp;&nbsp;^&nbsp;&nbsp;^</ion-text>
@@ -16,6 +20,7 @@
       (leafletMapReady)="onMapReady($event)"
     ></div>
     <ion-segment
+      [ngClass]="{ 'ion-hide': !eventView }"
       value="admin-1"
       mode="ios"
       color="ibf-primary"

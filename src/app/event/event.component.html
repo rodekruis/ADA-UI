@@ -1,0 +1,28 @@
+<ion-app class="no-alert">
+  <app-header [event]="preview ? null : event"></app-header>
+  <ion-content>
+    <ion-split-pane
+      class="ion-content-scroll-host"
+      contentId="main-content"
+      when="(min-width: 40px)"
+    >
+      <ion-menu contentId="main-content" type="overlay">
+        <ion-content>
+          <app-calendar></app-calendar>
+          <app-summary
+            [events]="events"
+            [event]="preview ? null : event"
+          ></app-summary>
+        </ion-content>
+      </ion-menu>
+
+      <ion-content id="main-content" class="ion-text-center">
+        <app-map
+          [events]="events"
+          [event]="event"
+          [preview]="preview"
+        ></app-map>
+      </ion-content>
+    </ion-split-pane>
+  </ion-content>
+</ion-app>

@@ -31,6 +31,10 @@ ion-menu-toggle {
 .map {
   height: 100%;
   margin-right: 32px;
+
+  .ion-hide + & {
+    margin-right: 0;
+  }
 }
 
 ion-segment {
