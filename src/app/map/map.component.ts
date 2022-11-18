@@ -45,6 +45,10 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     if (!this.eventView && this.event && this.event.marker) {
       this.openEventPopup();
     }
+
+    if (this.leafletMap) {
+      this.toggleMarkerClusterGroup();
+    }
   };
 
   loadEvents = () => {
@@ -68,5 +72,17 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     this.markerClusterGroup.zoomToShowLayer(this.event.marker, () => {
       this.event.marker.openPopup();
     });
+  };
+
+  toggleMarkerClusterGroup = () => {
+    if (this.eventView) {
+      if (this.leafletMap.hasLayer(this.markerClusterGroup)) {
+        this.leafletMap.removeLayer(this.markerClusterGroup);
+      }
+    } else {
+      if (!this.leafletMap.hasLayer(this.markerClusterGroup)) {
+        this.leafletMap.addLayer(this.markerClusterGroup);
+      }
+    }
   };
 }
