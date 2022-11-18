@@ -1,4 +1,10 @@
-import { Component, AfterViewChecked, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  AfterViewChecked,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Map, MarkerClusterGroup } from 'leaflet';
 import { createMarker, iconCreateFunction } from './map.utils';
 import { Event } from '../event/event.type';
@@ -28,14 +34,22 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     window.dispatchEvent(new UIEvent('resize'));
   }
 
-  ngOnChanges() {
-    this.onEventChange();
+  ngOnChanges(changes: SimpleChanges) {
+    if (!this.leafletMap) {
+      return;
+    }
+
+    if ('events' in changes) {
+      this.loadEvents();
+    }
+
+    if ('event' in changes) {
+      this.onEventChange();
+    }
   }
 
   onMapReady = (leafletMapReady: Map) => {
     this.leafletMap = leafletMapReady;
-
-    this.loadEvents();
   };
 
   onEventChange = () => {

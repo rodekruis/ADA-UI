@@ -4,6 +4,7 @@ import { filter, map } from 'rxjs/operators';
 import { Event, EventType, EventAccess } from './event.type';
 import { isRecent } from './event.utils';
 import { rootRoute } from '../app.router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-event',
@@ -11,130 +12,25 @@ import { rootRoute } from '../app.router';
   styleUrls: ['./event.component.scss'],
 })
 export class EventComponent implements OnInit {
-  public events: Event[];
+  public events: Event[] = [];
   public event: Event;
   public preview = false;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    this.events = [
-      {
-        id: '13de0f11-e3bf-4d93-bd56-9300194452e9',
-        createdAt: '2022-10-31T14:45:59.173Z',
-        updatedAt: '2022-10-31T14:45:59.173Z',
-        version: 1,
-        name: 'ANA',
-        type: EventType.storm,
-        country: 'Mozambique',
-        geometry: {
-          type: 'Point',
-          coordinates: [-25.9704569, 32.5727348],
-        } as GeoJSON.Point,
-        startDate: '2022-01-24T00:00:00.000Z',
-        endDate: null,
-        access: EventAccess.public,
-        peopleAffected: 123456,
-        buildingsDamaged: 123456,
-        buildingsDamagedPercentage: 0.12,
-        adminLevelLabels: 'Provinces,Districts,Postos',
-      },
-      {
-        id: '13de0f11-e3bf-4d93-bd56-9300194452e8',
-        createdAt: '2022-10-31T14:45:59.173Z',
-        updatedAt: '2022-10-31T14:45:59.173Z',
-        version: 1,
-        name: 'Nyiragongo',
-        type: EventType.eruption,
-        country: 'Democratic Republic of Congo',
-        geometry: {
-          type: 'Point',
-          coordinates: [-1.5220377, 29.2406804],
-        } as GeoJSON.Point,
-        startDate: '2021-05-22T00:00:00.000Z',
-        endDate: '2023-12-31T00:00:00.000Z',
-        access: EventAccess.private,
-        peopleAffected: 234561,
-        buildingsDamaged: 234561,
-        buildingsDamagedPercentage: 0.23,
-        adminLevelLabels: 'Departments,Districts',
-      },
-      {
-        id: '13de0f11-e3bf-4d93-bd56-9300194452e7',
-        createdAt: '2022-10-31T14:45:59.173Z',
-        updatedAt: '2022-10-31T14:45:59.173Z',
-        version: 1,
-        name: 'Beirut',
-        type: EventType.explosion,
-        country: 'Lebanon',
-        geometry: {
-          type: 'Point',
-          coordinates: [33.8908586, 35.4945584],
-        } as GeoJSON.Point,
-        startDate: '2020-08-04T00:00:00.000Z',
-        endDate: '2020-08-04T00:00:00.000Z',
-        access: EventAccess.private,
-        peopleAffected: 345612,
-        buildingsDamaged: 345612,
-        buildingsDamagedPercentage: 0.34,
-        adminLevelLabels: 'Governorates,Cazas,Municipalities',
-      },
-      {
-        id: '13de0f11-e3bf-4d93-bd56-9300194452e6',
-        createdAt: '2022-10-31T14:45:59.173Z',
-        updatedAt: '2022-10-31T14:45:59.173Z',
-        version: 1,
-        name: 'Mangut',
-        type: EventType.typhoon,
-        country: 'Philippines',
-        geometry: {
-          type: 'Point',
-          coordinates: [14.6152545, 121.0052082],
-        } as GeoJSON.Point,
-        startDate: '2018-09-15T00:00:00.000Z',
-        endDate: '2018-10-15T00:00:00.000Z',
-        access: EventAccess.public,
-        peopleAffected: 456123,
-        buildingsDamaged: 456123,
-        buildingsDamagedPercentage: 0.45,
-        adminLevelLabels: 'Regions,Provinces,Municipalities',
-      },
-      {
-        id: '13de0f11-e3bf-4d93-bd56-9300194452e5',
-        createdAt: '2022-10-31T14:45:59.173Z',
-        updatedAt: '2022-10-31T14:45:59.173Z',
-        version: 1,
-        name: 'Irma',
-        type: EventType.hurricane,
-        country: 'Sint-Maarten',
-        geometry: {
-          type: 'Point',
-          coordinates: [18.0291075, -63.0591],
-        } as GeoJSON.Point,
-        startDate: '2021-12-31T00:00:00.000Z',
-        endDate: '2021-12-31T00:00:00.000Z',
-        access: EventAccess.private,
-        peopleAffected: 561234,
-        buildingsDamaged: 561234,
-        buildingsDamagedPercentage: 0.56,
-        adminLevelLabels: 'Districts',
-      },
-    ]
-      .sort((a: Event, b: Event) => {
-        const aStartDate = new Date(a.startDate) as any;
-        const bStartDate = new Date(b.startDate) as any;
-        return bStartDate - aStartDate;
-      })
-      .map((a: Event) => ({ ...a, recent: isRecent(a.startDate) }));
-  }
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private apiService: ApiService
+  ) {}
 
   ngOnInit() {
-    this.onRouteChange(rootRoute(this.activatedRoute));
-
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
         map(() => rootRoute(this.activatedRoute))
       )
       .subscribe(this.onRouteChange);
+
+    this.getEvents();
   }
 
   onRouteChange = (route: ActivatedRoute) => {
@@ -144,5 +40,17 @@ export class EventComponent implements OnInit {
     this.event = {
       ...this.events.find((event: Event) => event.id === eventId),
     };
+  };
+
+  getEvents = () =>
+    this.apiService.getEvents().subscribe((events) => this.onGetEvents(events));
+
+  onGetEvents = (events: Event[]) => {
+    this.events = events.map((a: Event) => ({
+      ...a,
+      recent: isRecent(a.startDate),
+    }));
+
+    this.onRouteChange(rootRoute(this.activatedRoute));
   };
 }
