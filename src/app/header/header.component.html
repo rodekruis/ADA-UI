@@ -1,0 +1,19 @@
+<ion-header collapse="fade" class="ion-no-border ion-padding-horizontal">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="apps" slot="icon-only"></ion-icon>
+    </ion-buttons>
+    <ion-title class="font-montserrat text-bold">{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        fill="solid"
+        shape="round"
+        *ngIf="showWorldView"
+        [routerLink]="['/']"
+      >
+        <ion-icon slot="start" name="earth"></ion-icon>
+        World View
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

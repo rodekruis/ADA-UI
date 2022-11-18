@@ -1,74 +1,72 @@
-import { Component, AfterViewChecked, Input } from '@angular/core';
-import {
-  latLng,
-  latLngBounds,
-  Map,
-  MarkerClusterGroup,
-  tileLayer,
-} from 'leaflet';
-import {
-  createEventMarker,
-  markerClusterIconCreateFunction,
-} from './map.utils';
-
-const LEAFLET_MAP_URL_TEMPLATE =
-  'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
-const LEAFLET_MAP_ATTRIBUTION =
-  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">Carto</a>';
+import { Component, AfterViewChecked, Input, OnChanges } from '@angular/core';
+import { Map, MarkerClusterGroup } from 'leaflet';
+import { createMarker, iconCreateFunction } from './map.utils';
+import { Event } from '../event/event.type';
+import { leafletOptions } from './map.config';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements AfterViewChecked {
+export class MapComponent implements AfterViewChecked, OnChanges {
   @Input() events = [];
+  @Input() event: Event;
+  @Input() preview = false;
 
-  public map: Map;
+  public leafletMap: Map;
 
-  leafletOptions = {
-    layers: [
-      tileLayer(LEAFLET_MAP_URL_TEMPLATE, {
-        maxZoom: 18,
-        attribution: LEAFLET_MAP_ATTRIBUTION,
-      }),
-    ],
-    zoom: 2,
-    minZoom: 2,
-    center: latLng(0, 0),
-    maxBounds: latLngBounds([
-      [-90, -180],
-      [90, 180],
-    ]),
-    noWrap: true,
-  };
+  public leafletOptions = leafletOptions;
+  public eventView = false;
+
+  private markerClusterGroup: MarkerClusterGroup;
 
   constructor() {}
 
-  ngAfterViewChecked(): void {
+  ngAfterViewChecked() {
     // Trigger a resize to fill the container-element:
     window.dispatchEvent(new UIEvent('resize'));
   }
 
-  onMapReady(map: Map) {
-    this.map = map;
-
-    this.loadEvents();
+  ngOnChanges() {
+    this.onEventChange();
   }
 
+  onMapReady = (leafletMapReady: Map) => {
+    this.leafletMap = leafletMapReady;
+
+    this.loadEvents();
+  };
+
+  onEventChange = () => {
+    this.eventView =
+      !this.preview && this.event && Object.keys(this.event).length > 0;
+
+    if (!this.eventView && this.event && this.event.marker) {
+      this.openEventPopup();
+    }
+  };
+
   loadEvents = () => {
-    const markerClusterGroupOptions = {
-      iconCreateFunction: markerClusterIconCreateFunction,
-    };
+    const markerClusterGroupOptions = { iconCreateFunction };
 
-    const markerClusterGroup = new MarkerClusterGroup(
-      markerClusterGroupOptions
-    );
+    this.markerClusterGroup = new MarkerClusterGroup(markerClusterGroupOptions);
 
-    this.events.forEach((event) =>
-      markerClusterGroup.addLayer(createEventMarker(event))
-    );
+    this.events.forEach((event: Event) => {
+      event.marker = createMarker(event);
+      this.markerClusterGroup.addLayer(event.marker);
+    });
 
-    this.map.addLayer(markerClusterGroup);
+    this.leafletMap.addLayer(this.markerClusterGroup);
+
+    this.event = this.events.find((event: Event) => event.id === this.event.id);
+    this.onEventChange();
+  };
+
+  openEventPopup = () => {
+    // https://github.com/Leaflet/Leaflet.markercluster/issues/72#issuecomment-9020739
+    this.markerClusterGroup.zoomToShowLayer(this.event.marker, () => {
+      this.event.marker.openPopup();
+    });
   };
 }

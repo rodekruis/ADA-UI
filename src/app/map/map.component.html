@@ -4,7 +4,11 @@
   </ion-menu>
 
   <ion-content id="map" class="map-container">
-    <ion-menu-toggle class="text-bold font-montserrat" menu="map">
+    <ion-menu-toggle
+      class="text-bold font-montserrat"
+      menu="map"
+      [ngClass]="{ 'ion-hide': !eventView }"
+    >
       <ion-text>^&nbsp;&nbsp;^&nbsp;&nbsp;^</ion-text>
       &nbsp;&nbsp;&nbsp;&nbsp;MAP LAYERS&nbsp;&nbsp;&nbsp;&nbsp;
       <ion-text>^&nbsp;&nbsp;^&nbsp;&nbsp;^</ion-text>
@@ -16,25 +20,21 @@
       (leafletMapReady)="onMapReady($event)"
     ></div>
     <ion-segment
+      *ngIf="eventView"
       value="admin-1"
       mode="ios"
       color="ibf-primary"
       scrollable="true"
     >
-      <ion-segment-button value="admin-1">
-        <ion-label>Admin 1</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="admin-2">
-        <ion-label>Admin 2</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="admin-3">
-        <ion-label>Admin 3</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="admin-4">
-        <ion-label>Admin 4</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="admin-5">
-        <ion-label>Admin 5</ion-label>
+      <ion-segment-button
+        *ngFor="
+          let adminLevelLabel of event.adminLevelLabels.split(',');
+          let i = index
+        "
+        [value]="'admin-' + (i + 1)"
+        class="ion-padding-horizontal"
+      >
+        <ion-label>{{ adminLevelLabel }}</ion-label>
       </ion-segment-button>
     </ion-segment>
   </ion-content>

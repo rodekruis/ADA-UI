@@ -1,15 +1,20 @@
-import { formatDate } from '@angular/common';
+import { NgElement, WithProperties } from '@angular/elements';
 import {
   divIcon,
   latLng,
+  Layer,
   marker,
   Marker,
   MarkerCluster,
-  Point,
   point,
 } from 'leaflet';
-
-const MARKER_CLUSTER_SIZE_WEIGHT = 20;
+import { Event } from '../event/event.type';
+import { MarkerPopupComponent } from '../marker-popup/marker-popup.component';
+import {
+  markerIconSize,
+  markerPopupOptions,
+  MARKER_CLUSTER_SIZE_WEIGHT,
+} from './map.config';
 
 const isRecentEventInCluster = (cluster: MarkerCluster) =>
   cluster
@@ -18,76 +23,21 @@ const isRecentEventInCluster = (cluster: MarkerCluster) =>
       clusterMarker.options.icon.options.className.includes('recent')
     ) >= 0;
 
-export const markerClusterIconCreateFunction = (cluster: MarkerCluster) =>
+const getMarkerClassName = (rootClassName: string, isRecent: boolean) =>
+  rootClassName + (isRecent ? ' recent' : '');
+
+export const iconCreateFunction = (cluster: MarkerCluster) =>
   divIcon({
     html: '<b>' + cluster.getChildCount() + '</b>',
-    className:
-      'event-cluster' + (isRecentEventInCluster(cluster) ? ' recent' : ''),
+    className: getMarkerClassName(
+      'marker-cluster',
+      isRecentEventInCluster(cluster)
+    ),
     iconSize: point(
       cluster.getChildCount() * MARKER_CLUSTER_SIZE_WEIGHT,
       cluster.getChildCount() * MARKER_CLUSTER_SIZE_WEIGHT
     ),
   });
-
-const createEventMarkerPopupHeader = (
-  event
-) => `<ion-header class="ion-no-border">
-<ion-toolbar color="${
-  event.isRecent ? 'danger' : 'ibf-primary'
-}" class="font-montserrat">
-  <div class="title text-bold">
-    ${event.type} ${event.name}
-  </div>
-  <div class="subtitle">
-    ${formatDate(event.startDate, 'mediumDate', 'en-US')}
-  </div>
-  <ion-buttons slot="end">
-    <ion-button class="close-button">
-      <ion-icon slot="icon-only" name="close"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-</ion-toolbar>
-</ion-header>`;
-
-const createEventMarkerPopupFooter = (
-  event
-) => `<ion-footer class="ion-no-border">
-<ion-toolbar color="${event.isRecent ? 'danger' : 'ibf-primary'}">
-  <ion-text slot="end">
-    Access: <b>${event.access === 'Private' ? 'Restricted' : event.access}</b>
-    <ion-icon name="${
-      event.access === 'Private' ? 'eye-off' : 'eye'
-    }" size="small"></ion-icon>
-  </ion-text>
-</ion-toolbar>
-</ion-footer>`;
-
-const createEventMarkerPopupContent = (
-  event
-) => `<div class="content ion-padding">${
-  event.access === 'Private'
-    ? '<div>Enter the access code to view the damage assessment. \
-  <ion-item> \
-    <ion-input type="password" placeholder="Enter the access code"></ion-input> \
-    <ion-note slot="error"><ion-icon name="warning-outline"></ion-icon> Incorrect Code</ion-note> \
-  </ion-item> \
-</div>'
-    : '<div>Click the "View Event" button to view the damage assessment.</div>'
-}
-<ion-button
-  expand="block"
-  fill="solid"
-  shape="round"
-  color="ibf-primary"
-  ${event.access === 'Private' ? 'disabled="true"' : 'disabled="false"'}
-  >View Event</ion-button>
-</div>`;
-
-const createEventMarkerPopup = (event) => `<article>
-${createEventMarkerPopupHeader(event)}
-${createEventMarkerPopupContent(event)}
-${createEventMarkerPopupFooter(event)}
-</article>`;
 
 const onPopupOpen = (popupOpenEvent) =>
   popupOpenEvent.target
@@ -98,18 +48,27 @@ const onPopupOpen = (popupOpenEvent) =>
       popupOpenEvent.target.closePopup();
     });
 
-export const createEventMarker = (event) =>
-  marker(latLng(event.geometry.coordinates), {
+const createMarkerPopup = (event: Event) => (layer: Layer) => {
+  const markerPopupElement: NgElement & WithProperties<MarkerPopupComponent> =
+    document.createElement('marker-popup-element') as any;
+
+  markerPopupElement.addEventListener('closed', () =>
+    document.body.removeChild(markerPopupElement)
+  );
+  markerPopupElement.event = event;
+
+  document.body.appendChild(markerPopupElement);
+  return markerPopupElement;
+};
+
+export const createMarker = (event: Event) =>
+  marker(latLng.apply(this, event.geometry.coordinates), {
     icon: divIcon({
-      className: 'event-marker' + (event.isRecent ? ' recent' : ''),
-      iconSize: point(25, 41),
+      className: getMarkerClassName('marker', event.recent),
+      iconSize: markerIconSize,
     }),
   })
-    .bindPopup(createEventMarkerPopup(event), {
-      className: 'event-marker-popup' + (event.isRecent ? ' recent' : ''),
-      autoPanPadding: new Point(64, 256),
-      closeButton: false,
-    })
+    .bindPopup(createMarkerPopup(event), markerPopupOptions)
     .on('popupopen', onPopupOpen);
 
-export default { markerClusterIconCreateFunction, createEventMarker };
+export default { iconCreateFunction, createMarker };
