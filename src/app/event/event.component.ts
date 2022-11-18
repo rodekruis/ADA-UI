@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
-import { Event } from './event.type';
+import { Event, EventType, EventAccess } from './event.type';
 import { isRecent } from './event.utils';
 import { rootRoute } from '../app.router';
 
@@ -23,12 +23,19 @@ export class EventComponent implements OnInit {
         updatedAt: '2022-10-31T14:45:59.173Z',
         version: 1,
         name: 'ANA',
-        type: 'Storm',
+        type: EventType.storm,
         country: 'Mozambique',
-        geometry: { type: 'Point', coordinates: [-25.9704569, 32.5727348] },
+        geometry: {
+          type: 'Point',
+          coordinates: [-25.9704569, 32.5727348],
+        } as GeoJSON.Point,
         startDate: '2022-01-24T00:00:00.000Z',
         endDate: null,
-        access: 'Public',
+        access: EventAccess.public,
+        peopleAffected: 123456,
+        buildingsDamaged: 123456,
+        buildingsDamagedPercentage: 0.12,
+        adminLevelLabels: 'Provinces,Districts,Postos',
       },
       {
         id: '13de0f11-e3bf-4d93-bd56-9300194452e8',
@@ -36,12 +43,19 @@ export class EventComponent implements OnInit {
         updatedAt: '2022-10-31T14:45:59.173Z',
         version: 1,
         name: 'Nyiragongo',
-        type: 'Eruption',
+        type: EventType.eruption,
         country: 'Democratic Republic of Congo',
-        geometry: { type: 'Point', coordinates: [-1.5220377, 29.2406804] },
+        geometry: {
+          type: 'Point',
+          coordinates: [-1.5220377, 29.2406804],
+        } as GeoJSON.Point,
         startDate: '2021-05-22T00:00:00.000Z',
         endDate: '2023-12-31T00:00:00.000Z',
-        access: 'Private',
+        access: EventAccess.private,
+        peopleAffected: 234561,
+        buildingsDamaged: 234561,
+        buildingsDamagedPercentage: 0.23,
+        adminLevelLabels: 'Departments,Districts',
       },
       {
         id: '13de0f11-e3bf-4d93-bd56-9300194452e7',
@@ -49,12 +63,19 @@ export class EventComponent implements OnInit {
         updatedAt: '2022-10-31T14:45:59.173Z',
         version: 1,
         name: 'Beirut',
-        type: 'Explosion',
+        type: EventType.explosion,
         country: 'Lebanon',
-        geometry: { type: 'Point', coordinates: [33.8908586, 35.4945584] },
+        geometry: {
+          type: 'Point',
+          coordinates: [33.8908586, 35.4945584],
+        } as GeoJSON.Point,
         startDate: '2020-08-04T00:00:00.000Z',
         endDate: '2020-08-04T00:00:00.000Z',
-        access: 'Private',
+        access: EventAccess.private,
+        peopleAffected: 345612,
+        buildingsDamaged: 345612,
+        buildingsDamagedPercentage: 0.34,
+        adminLevelLabels: 'Governorates,Cazas,Municipalities',
       },
       {
         id: '13de0f11-e3bf-4d93-bd56-9300194452e6',
@@ -62,12 +83,19 @@ export class EventComponent implements OnInit {
         updatedAt: '2022-10-31T14:45:59.173Z',
         version: 1,
         name: 'Mangut',
-        type: 'Typhoon',
+        type: EventType.typhoon,
         country: 'Philippines',
-        geometry: { type: 'Point', coordinates: [14.6152545, 121.0052082] },
+        geometry: {
+          type: 'Point',
+          coordinates: [14.6152545, 121.0052082],
+        } as GeoJSON.Point,
         startDate: '2018-09-15T00:00:00.000Z',
         endDate: '2018-10-15T00:00:00.000Z',
-        access: 'Public',
+        access: EventAccess.public,
+        peopleAffected: 456123,
+        buildingsDamaged: 456123,
+        buildingsDamagedPercentage: 0.45,
+        adminLevelLabels: 'Regions,Provinces,Municipalities',
       },
       {
         id: '13de0f11-e3bf-4d93-bd56-9300194452e5',
@@ -75,12 +103,19 @@ export class EventComponent implements OnInit {
         updatedAt: '2022-10-31T14:45:59.173Z',
         version: 1,
         name: 'Irma',
-        type: 'Hurricane',
+        type: EventType.hurricane,
         country: 'Sint-Maarten',
-        geometry: { type: 'Point', coordinates: [18.0291075, -63.0591] },
+        geometry: {
+          type: 'Point',
+          coordinates: [18.0291075, -63.0591],
+        } as GeoJSON.Point,
         startDate: '2021-12-31T00:00:00.000Z',
         endDate: '2021-12-31T00:00:00.000Z',
-        access: 'Private',
+        access: EventAccess.private,
+        peopleAffected: 561234,
+        buildingsDamaged: 561234,
+        buildingsDamagedPercentage: 0.56,
+        adminLevelLabels: 'Districts',
       },
     ]
       .sort((a: Event, b: Event) => {

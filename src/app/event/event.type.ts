@@ -5,6 +5,7 @@ export enum EventType {
   hurricane = 'Hurricane',
   storm = 'Storm',
   explosion = 'Explosion',
+  eruption = 'Eruption',
 }
 
 export enum EventAccess {
@@ -24,6 +25,10 @@ export class Event {
   startDate: string;
   endDate: string | null;
   access: EventAccess;
+  peopleAffected?: number;
+  buildingsDamaged?: number;
+  buildingsDamagedPercentage?: number;
+  adminLevelLabels?: string;
   recent?: boolean;
   marker?: Marker;
 }

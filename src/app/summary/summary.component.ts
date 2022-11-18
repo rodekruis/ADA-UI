@@ -3,6 +3,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { PopupComponent } from '../popup/popup.component';
 import { Event } from '../event/event.type';
+import { formatNumber, formatPercentage } from '../app.utils';
 
 @Component({
   selector: 'app-summary',
@@ -14,6 +15,9 @@ export class SummaryComponent implements OnChanges {
   @Input() event: Event;
 
   public hideEvents = false;
+
+  public formatNumber = formatNumber;
+  public formatPercentage = formatPercentage;
 
   constructor(
     private modalCtrl: ModalController,

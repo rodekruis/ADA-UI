@@ -28,7 +28,7 @@
       >Disclaimer</ion-button
     >
   </ion-buttons>
-  <div class="chat" [ngClass]="{ 'ion-hide': hideEvents }">
+  <div class="chat chat-events" *ngIf="!hideEvents">
     <ion-text i18n>Disaster events are listed in order of occurrence.</ion-text
     >&nbsp;<ion-text color="danger" i18n
       >Recent disaster events are in red.</ion-text
@@ -54,7 +54,33 @@
       </li>
     </ul>
   </div>
-  <div class="chat" [ngClass]="{ 'ion-hide': !hideEvents }">
-    <ion-text i18n>Event Statistics</ion-text>
+  <div class="chat" *ngIf="hideEvents">
+    <ion-text color="danger" i18n>
+      The assessment area is outlined in red.
+    </ion-text>
+    <ion-text>
+      <h6>
+        {{ event.type }} {{ event.name }} -
+        {{ event.startDate | date: "mediumDate" }}<br />{{ event.country }}
+      </h6>
+      <ul class="ion-padding-start">
+        <li>People Affected: {{ formatNumber(event.peopleAffected) }}</li>
+        <li>
+          Damaged Buildings: {{ formatNumber(event.buildingsDamaged) }} ({{
+            formatPercentage(event.buildingsDamagedPercentage)
+          }})
+        </li>
+      </ul>
+      <p i18n>
+        <b>People Affected</b> is the product of the total number of people
+        living in the assessment area and the fraction of damaged buildings.
+      </p>
+      <p i18n>
+        <b>
+          You are viewing sensitive information ensure you exit once finished
+          with the dashboard.
+        </b>
+      </p>
+    </ion-text>
   </div>
 </div>

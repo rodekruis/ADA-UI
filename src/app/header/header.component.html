@@ -8,7 +8,7 @@
       <ion-button
         fill="solid"
         shape="round"
-        [ngClass]="{ 'ion-hide': !showWorldView }"
+        *ngIf="showWorldView"
         [routerLink]="['/']"
       >
         <ion-icon slot="start" name="earth"></ion-icon>
