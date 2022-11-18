@@ -42,12 +42,12 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     this.eventView =
       !this.preview && this.event && Object.keys(this.event).length > 0;
 
-    if (!this.eventView && this.event && this.event.marker) {
-      this.openEventPopup();
-    }
-
     if (this.leafletMap) {
       this.toggleMarkerClusterGroup();
+    }
+
+    if (!this.eventView && this.event && this.event.marker) {
+      this.openEventPopup();
     }
   };
 
