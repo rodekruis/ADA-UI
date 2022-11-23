@@ -4,6 +4,7 @@ import { ApiService } from '../api.service';
 import { PopupComponent } from '../popup/popup.component';
 import { Event } from '../event/event.type';
 import { Layer } from './layers.type';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-layer',
@@ -12,6 +13,7 @@ import { Layer } from './layers.type';
 })
 export class LayerComponent implements OnChanges {
   @Input() event: Event;
+  @Input() loading = true;
 
   public layers = [];
 
@@ -38,8 +40,10 @@ export class LayerComponent implements OnChanges {
   }
 
   getLayers = () => {
+    this.loading = true;
     this.apiService
       .getLayers(this.event.id)
+      .pipe(finalize(() => (this.loading = false)))
       .subscribe((layers) => this.onGetLayers(layers));
   };
 

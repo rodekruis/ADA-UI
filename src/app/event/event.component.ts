@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
-import { Event, EventType, EventAccess } from './event.type';
+import { filter, finalize, map } from 'rxjs/operators';
+import { Event } from './event.type';
 import { isRecent } from './event.utils';
 import { rootRoute } from '../app.router';
 import { ApiService } from '../api.service';
@@ -15,6 +15,7 @@ export class EventComponent implements OnInit {
   public events: Event[] = [];
   public event: Event;
   public preview = false;
+  public loading = true;
 
   constructor(
     private router: Router,
@@ -42,8 +43,13 @@ export class EventComponent implements OnInit {
     };
   };
 
-  getEvents = () =>
-    this.apiService.getEvents().subscribe((events) => this.onGetEvents(events));
+  getEvents = () => {
+    this.loading = true;
+    this.apiService
+      .getEvents()
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe((events) => this.onGetEvents(events));
+  };
 
   onGetEvents = (events: Event[]) => {
     this.events = events.map((a: Event) => ({

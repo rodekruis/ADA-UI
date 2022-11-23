@@ -13,6 +13,7 @@ import { formatNumber, formatPercentage } from '../app.utils';
 export class SummaryComponent implements OnChanges {
   @Input() events = [];
   @Input() event: Event;
+  @Input() loading = true;
 
   public hideEvents = false;
 

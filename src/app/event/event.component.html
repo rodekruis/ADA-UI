@@ -12,6 +12,7 @@
           <app-summary
             [events]="events"
             [event]="preview ? null : event"
+            [loading]="loading"
           ></app-summary>
         </ion-content>
       </ion-menu>
@@ -21,6 +22,7 @@
           [events]="events"
           [event]="event"
           [preview]="preview"
+          [loading]="loading"
         ></app-map>
       </ion-content>
     </ion-split-pane>

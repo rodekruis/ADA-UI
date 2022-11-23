@@ -19,6 +19,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
   @Input() events = [];
   @Input() event: Event;
   @Input() preview = false;
+  @Input() loading = true;
 
   public leafletMap: Map;
 

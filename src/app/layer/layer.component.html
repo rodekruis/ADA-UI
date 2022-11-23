@@ -1,4 +1,6 @@
-<ion-list lines="full">
+<app-loading [loading]="loading" message="Loading..."></app-loading>
+
+<ion-list lines="full" *ngIf="!loading">
   <ion-item *ngFor="let layer of layers" button>
     <ion-thumbnail slot="start">
       <img [alt]="layer.label" [src]="layer.image" />
