@@ -1,0 +1,8 @@
+<section
+  *ngIf="loading"
+  class="ion-justify-content-center ion-align-items-center"
+>
+  <ion-backdrop></ion-backdrop>
+  <ion-spinner class="ion-margin" name="crescent"></ion-spinner>
+  <ion-text class="ion-margin" *ngIf="message">{{ message }}</ion-text>
+</section>

@@ -16,6 +16,7 @@ import { PopupComponent } from './popup/popup.component';
 import { EventComponent } from './event/event.component';
 import { HeaderComponent } from './header/header.component';
 import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
     PopupComponent,
     HeaderComponent,
     MarkerPopupComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

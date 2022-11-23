@@ -1,34 +1,38 @@
-<div>
-  <div class="chat" i18n>
-    Welcome to the
-    <ion-text class="text-bold">Automated Damage Assessment (ADA)</ion-text>
-    portal. Here you will find all the events for which a damage assessment has
-    been conducted.
-  </div>
-  <ion-buttons class="ion-justify-content-evenly">
-    <ion-button
-      shape="round"
-      fill="solid"
-      (click)="openPopup('About ADA', 'assets/markdown/about.md')"
-      i18n
-      >About ADA</ion-button
-    >
-    <ion-button
-      shape="round"
-      fill="solid"
-      (click)="openPopup('User Guide', 'assets/markdown/guide.md')"
-      i18n
-      >User Guide</ion-button
-    >
-    <ion-button
-      shape="round"
-      fill="solid"
-      (click)="openPopup('Disclaimer', 'assets/markdown/disclaimer.md')"
-      i18n
-      >Disclaimer</ion-button
-    >
-  </ion-buttons>
-  <div class="chat chat-events" *ngIf="!hideEvents">
+<article class="chat" i18n>
+  Welcome to the
+  <ion-text class="text-bold">Automated Damage Assessment (ADA)</ion-text>
+  portal. Here you will find all the events for which a damage assessment has
+  been conducted.
+</article>
+
+<ion-buttons class="ion-justify-content-evenly">
+  <ion-button
+    shape="round"
+    fill="solid"
+    (click)="openPopup('About ADA', 'assets/markdown/about.md')"
+    i18n
+    >About ADA</ion-button
+  >
+  <ion-button
+    shape="round"
+    fill="solid"
+    (click)="openPopup('User Guide', 'assets/markdown/guide.md')"
+    i18n
+    >User Guide</ion-button
+  >
+  <ion-button
+    shape="round"
+    fill="solid"
+    (click)="openPopup('Disclaimer', 'assets/markdown/disclaimer.md')"
+    i18n
+    >Disclaimer</ion-button
+  >
+</ion-buttons>
+
+<app-loading [loading]="loading"></app-loading>
+
+<section *ngIf="!loading">
+  <article class="chat chat-events" *ngIf="!hideEvents">
     <ion-text i18n>Disaster events are listed in order of occurrence.</ion-text
     >&nbsp;<ion-text color="danger" i18n
       >Recent disaster events are in red.</ion-text
@@ -53,8 +57,8 @@
         </ion-text>
       </li>
     </ul>
-  </div>
-  <div class="chat" *ngIf="hideEvents">
+  </article>
+  <article class="chat" *ngIf="hideEvents">
     <ion-text color="danger" i18n>
       The assessment area is outlined in red.
     </ion-text>
@@ -82,5 +86,5 @@
         </b>
       </p>
     </ion-text>
-  </div>
-</div>
+  </article>
+</section>

@@ -1,6 +1,8 @@
+<app-loading [loading]="loading" message="Loading..."></app-loading>
+
 <ion-split-pane contentId="map" when="false">
   <ion-menu contentId="map" side="end" menuId="map" type="reveal">
-    <app-layer></app-layer>
+    <app-layer [event]="preview ? null : event" [loading]="loading"></app-layer>
   </ion-menu>
 
   <ion-content id="map" class="map-container">

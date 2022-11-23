@@ -1,4 +1,10 @@
-import { Component, AfterViewChecked, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  AfterViewChecked,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Map, MarkerClusterGroup } from 'leaflet';
 import { createMarker, iconCreateFunction } from './map.utils';
 import { Event } from '../event/event.type';
@@ -13,6 +19,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
   @Input() events = [];
   @Input() event: Event;
   @Input() preview = false;
+  @Input() loading = true;
 
   public leafletMap: Map;
 
@@ -28,19 +35,31 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     window.dispatchEvent(new UIEvent('resize'));
   }
 
-  ngOnChanges() {
-    this.onEventChange();
+  ngOnChanges(changes: SimpleChanges) {
+    if (!this.leafletMap) {
+      return;
+    }
+
+    if ('events' in changes) {
+      this.loadEvents();
+    }
+
+    if ('event' in changes) {
+      this.onEventChange();
+    }
   }
 
   onMapReady = (leafletMapReady: Map) => {
     this.leafletMap = leafletMapReady;
-
-    this.loadEvents();
   };
 
   onEventChange = () => {
     this.eventView =
       !this.preview && this.event && Object.keys(this.event).length > 0;
+
+    if (this.leafletMap) {
+      this.toggleMarkerClusterGroup();
+    }
 
     if (!this.eventView && this.event && this.event.marker) {
       this.openEventPopup();
@@ -68,5 +87,17 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     this.markerClusterGroup.zoomToShowLayer(this.event.marker, () => {
       this.event.marker.openPopup();
     });
+  };
+
+  toggleMarkerClusterGroup = () => {
+    if (this.eventView) {
+      if (this.leafletMap.hasLayer(this.markerClusterGroup)) {
+        this.leafletMap.removeLayer(this.markerClusterGroup);
+      }
+    } else {
+      if (!this.leafletMap.hasLayer(this.markerClusterGroup)) {
+        this.leafletMap.addLayer(this.markerClusterGroup);
+      }
+    }
   };
 }
