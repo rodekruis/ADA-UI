@@ -47,7 +47,7 @@
         *ngFor="let event of events"
         class="ion-margin-vertical text-bold"
         [ngClass]="{ recent: event.recent }"
-        [routerLink]="['/event', event.id]"
+        [routerLink]="['/events', event.id]"
         [queryParams]="{ preview: true }"
         routerLinkActive="active"
       >

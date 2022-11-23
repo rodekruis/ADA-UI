@@ -9,6 +9,7 @@ import { Map, MarkerClusterGroup } from 'leaflet';
 import { createMarker, iconCreateFunction } from './map.utils';
 import { Event } from '../event/event.type';
 import { leafletOptions } from './map.config';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-map',
@@ -28,7 +29,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
 
   private markerClusterGroup: MarkerClusterGroup;
 
-  constructor() {}
+  constructor(private menuCtrl: MenuController) {}
 
   ngAfterViewChecked() {
     // Trigger a resize to fill the container-element:
@@ -64,6 +65,8 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     if (!this.eventView && this.event && this.event.marker) {
       this.openEventPopup();
     }
+
+    this.menuCtrl.close();
   };
 
   loadEvents = () => {

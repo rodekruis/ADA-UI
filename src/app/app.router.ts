@@ -10,12 +10,9 @@ export const rootRoute = (route: ActivatedRoute): ActivatedRoute => {
 };
 
 const routes: Routes = [
-  {
-    path: 'event',
-    component: EventComponent,
-    children: [{ path: ':eventId', component: EventComponent }],
-  },
-  { path: '', component: EventComponent },
+  { path: '', redirectTo: 'events/', pathMatch: 'full' },
+  { path: 'events', redirectTo: 'events/', pathMatch: 'full' },
+  { path: 'events/:eventId', component: EventComponent },
 ];
 
 @NgModule({
