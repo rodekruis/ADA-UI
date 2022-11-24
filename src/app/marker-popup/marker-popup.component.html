@@ -1,4 +1,4 @@
-<div class="marker-popup-wrapper" [ngClass]="{ recent: event.recent }">
+<div class="marker-popup-wrapper">
   <ion-header class="ion-no-border">
     <ion-toolbar class="font-montserrat">
       <div class="title text-bold">{{ event.type }} {{ event.name }}</div>
@@ -12,31 +12,49 @@
   </ion-header>
 
   <div class="content ion-padding">
-    <div *ngIf="restricted">
-      Enter the access code to view the damage assessment.
-      <ion-item>
-        <ion-input
-          type="password"
-          placeholder="Enter the access code"
-        ></ion-input>
-        <ion-note slot="error">
-          <ion-icon name="warning-outline"></ion-icon> Incorrect Code
-        </ion-note>
-      </ion-item>
-    </div>
-    <div *ngIf="!restricted">
-      Click the "View Event" button to view the damage assessment.
-    </div>
-    <ion-button
-      expand="block"
-      fill="solid"
-      shape="round"
-      color="ibf-primary"
-      [disabled]="restricted"
-      [routerLink]="['/events', event.id]"
-    >
-      View Event
-    </ion-button>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div *ngIf="restricted">
+        Enter the access code to view the damage assessment.
+        <ion-item>
+          <ion-input
+            formControlName="password"
+            type="password"
+            placeholder="Enter the access code"
+          ></ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="
+              !form.pristine &&
+              !loading &&
+              form.get('password').value &&
+              form.get('password').hasError('error')
+            "
+          >
+            <ion-icon name="warning-outline"></ion-icon>
+            {{ form.get("password").getError("error") }}
+          </ion-note>
+        </ion-item>
+      </div>
+      <div *ngIf="!restricted">
+        Click the "View Event" button to view the damage assessment.
+      </div>
+      <ion-button
+        type="submit"
+        expand="block"
+        fill="solid"
+        shape="round"
+        color="ibf-primary"
+        [disabled]="form.invalid || loading"
+      >
+        <ion-text *ngIf="!loading">View Event</ion-text>
+        <ion-progress-bar
+          *ngIf="loading"
+          type="indeterminate"
+          color="light"
+          class="ion-margin-horizontal"
+        ></ion-progress-bar>
+      </ion-button>
+    </form>
   </div>
 
   <ion-footer class="ion-no-border">

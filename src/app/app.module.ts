@@ -5,6 +5,7 @@ import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluste
 import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { createCustomElement } from '@angular/elements';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MarkdownModule } from 'ngx-markdown';
 import { AppComponent } from './app.component';
 import { AppRouter } from './app.router';
@@ -39,6 +40,8 @@ import { LoadingComponent } from './loading/loading.component';
     HttpClientModule,
     MarkdownModule.forRoot(),
     AppRouter,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   bootstrap: [AppComponent],
 })
