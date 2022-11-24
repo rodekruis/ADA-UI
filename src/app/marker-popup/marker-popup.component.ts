@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { Event, EventAccess } from '../event/event.type';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
@@ -23,9 +23,7 @@ export class MarkerPopupComponent implements OnInit {
   public loading = false;
 
   public form = new FormGroup({
-    password: new FormControl({ value: '', disabled: this.loading }, [
-      Validators.required,
-    ]),
+    password: new FormControl({ value: '', disabled: this.loading }),
   });
 
   constructor(private apiService: ApiService, private route: Router) {}
