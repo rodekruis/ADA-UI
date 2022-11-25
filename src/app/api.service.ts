@@ -44,7 +44,7 @@ export class ApiService {
   getEvent = (eventId: string): Observable<Event> =>
     new Observable((subscriber) => {
       setTimeout(() => {
-        subscriber.next(events.find((event) => (event.id = eventId)));
+        subscriber.next(events.find((event) => event.id === eventId));
         subscriber.complete();
       }, TIMEOUT_MILLISECONDS);
     });

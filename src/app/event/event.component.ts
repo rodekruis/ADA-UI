@@ -3,7 +3,6 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, finalize, map } from 'rxjs/operators';
 import { Event } from './event.type';
 import { isRecent } from './event.utils';
-import { rootRoute } from '../app.router';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -17,6 +16,8 @@ export class EventComponent implements OnInit {
   public preview = false;
   public loading = true;
 
+  private eventsLoaded = false;
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -25,22 +26,35 @@ export class EventComponent implements OnInit {
 
   ngOnInit() {
     this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        map(() => rootRoute(this.activatedRoute))
-      )
-      .subscribe(this.onRouteChange);
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => this.onRouteChange(this.activatedRoute));
 
-    this.getEvents();
+    this.onRouteChange(this.activatedRoute);
   }
 
   onRouteChange = (route: ActivatedRoute) => {
     this.preview = route.snapshot.queryParamMap.get('preview') === 'true';
 
     const eventId = route.snapshot.paramMap.get('eventId');
-    this.event = {
-      ...this.events.find((event: Event) => event.id === eventId),
-    };
+
+    // if worldView and event have not been fetched
+    if ((this.preview || !eventId) && !this.eventsLoaded) {
+      this.getEvents();
+    }
+
+    // if eventView
+    if (eventId) {
+      if (this.preview) {
+        // use fetched event details for popup
+        this.event = { ...this.events.find((event) => event.id === eventId) };
+      } else {
+        // fetch event for all details
+        this.getEvent(eventId);
+      }
+    } else {
+      // clear event for worldView
+      delete this.event;
+    }
   };
 
   getEvents = () => {
@@ -56,7 +70,16 @@ export class EventComponent implements OnInit {
       ...a,
       recent: isRecent(a.startDate),
     }));
-
-    this.onRouteChange(rootRoute(this.activatedRoute));
+    this.eventsLoaded = true;
   };
+
+  getEvent = (eventId: string) => {
+    this.loading = true;
+    this.apiService
+      .getEvent(eventId)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe((event) => this.onGetEvent(event));
+  };
+
+  onGetEvent = (event: Event) => (this.event = event);
 }
