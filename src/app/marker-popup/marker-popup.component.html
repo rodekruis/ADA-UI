@@ -4,7 +4,7 @@
       <div class="title text-bold">{{ event.type }} {{ event.name }}</div>
       <div class="subtitle">{{ startDate }}</div>
       <ion-buttons slot="end">
-        <ion-button class="close-button">
+        <ion-button (click)="closePopup(['/events'])">
           <ion-icon slot="icon-only" name="close"></ion-icon>
         </ion-button>
       </ion-buttons>

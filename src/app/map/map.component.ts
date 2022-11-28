@@ -4,12 +4,14 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
+  NgZone,
 } from '@angular/core';
 import { Map, MarkerClusterGroup } from 'leaflet';
 import { createMarker, iconCreateFunction } from './map.utils';
 import { Event } from '../event/event.type';
 import { leafletOptions } from './map.config';
 import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -29,7 +31,11 @@ export class MapComponent implements AfterViewChecked, OnChanges {
 
   private markerClusterGroup: MarkerClusterGroup;
 
-  constructor(private menuCtrl: MenuController) {}
+  constructor(
+    private menuCtrl: MenuController,
+    private router: Router,
+    private ngZone: NgZone
+  ) {}
 
   ngAfterViewChecked() {
     // Trigger a resize to fill the container-element:
@@ -75,7 +81,13 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     this.markerClusterGroup = new MarkerClusterGroup(markerClusterGroupOptions);
 
     this.events.forEach((event: Event) => {
-      event.marker = createMarker(event);
+      event.marker = createMarker(event, () =>
+        this.ngZone.run(() =>
+          this.router.navigate(['/events', event.id], {
+            queryParams: { preview: true },
+          })
+        )
+      );
       this.markerClusterGroup.addLayer(event.marker);
     });
 

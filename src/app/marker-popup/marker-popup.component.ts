@@ -44,15 +44,18 @@ export class MarkerPopupComponent implements OnInit {
           .subscribe(
             (token) => {
               sessionStorage.setItem(SESSION_STORAGE_TOKEN_KEY, token);
-              this.event.marker.closePopup();
-              this.route.navigate(['/events', this.event.id]);
+              this.closePopup(['/events', this.event.id]);
             },
             (error) => this.form.get('password').setErrors({ error })
           );
       } else {
-        this.event.marker.closePopup();
-        this.route.navigate(['/events', this.event.id]);
+        this.closePopup(['/events', this.event.id]);
       }
     }
   }
+
+  closePopup = (route: any[]) => {
+    this.event.marker.closePopup();
+    this.route.navigate(route);
+  };
 }
