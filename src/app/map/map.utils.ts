@@ -23,16 +23,12 @@ const isRecentEventInCluster = (cluster: MarkerCluster) =>
       clusterMarker.options.icon.options.className.includes('recent')
     ) >= 0;
 
-const getMarkerClassName = (rootClassName: string, isRecent: boolean) =>
-  rootClassName + (isRecent ? ' recent' : '');
-
 export const iconCreateFunction = (cluster: MarkerCluster) =>
   divIcon({
     html: '<b>' + cluster.getChildCount() + '</b>',
-    className: getMarkerClassName(
-      'marker-cluster',
-      isRecentEventInCluster(cluster)
-    ),
+    className: `marker-cluster ${
+      isRecentEventInCluster(cluster) ? 'recent' : ''
+    }`,
     iconSize: point(
       cluster.getChildCount() * MARKER_CLUSTER_SIZE_WEIGHT,
       cluster.getChildCount() * MARKER_CLUSTER_SIZE_WEIGHT
@@ -64,7 +60,9 @@ const createMarkerPopup = (event: Event) => (layer: Layer) => {
 export const createMarker = (event: Event) =>
   marker(latLng.apply(this, event.geometry.coordinates), {
     icon: divIcon({
-      className: getMarkerClassName('marker', event.recent),
+      className: `marker marker-${event.type.toLowerCase()} ${
+        event.recent ? 'recent' : ''
+      }`,
       iconSize: markerIconSize,
     }),
   })

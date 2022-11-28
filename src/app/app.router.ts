@@ -1,13 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { EventComponent } from './event/event.component';
-
-export const rootRoute = (route: ActivatedRoute): ActivatedRoute => {
-  while (route.firstChild) {
-    route = route.firstChild;
-  }
-  return route;
-};
 
 const routes: Routes = [
   { path: '', redirectTo: 'events/', pathMatch: 'full' },

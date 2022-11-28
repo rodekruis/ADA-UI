@@ -58,7 +58,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     this.eventView =
       !this.preview && this.event && Object.keys(this.event).length > 0;
 
-    if (this.leafletMap) {
+    if (this.leafletMap && this.markerClusterGroup) {
       this.toggleMarkerClusterGroup();
     }
 
@@ -81,7 +81,9 @@ export class MapComponent implements AfterViewChecked, OnChanges {
 
     this.leafletMap.addLayer(this.markerClusterGroup);
 
-    this.event = this.events.find((event: Event) => event.id === this.event.id);
+    this.event = this.events.find(
+      (event) => this.event && event.id === this.event.id
+    );
     this.onEventChange();
   };
 
@@ -100,6 +102,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     } else {
       if (!this.leafletMap.hasLayer(this.markerClusterGroup)) {
         this.leafletMap.addLayer(this.markerClusterGroup);
+        this.leafletMap.setView(leafletOptions.center, leafletOptions.zoom);
       }
     }
   };
