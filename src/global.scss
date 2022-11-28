@@ -32,9 +32,91 @@
 }
 
 .marker {
-  mask-image: url("./assets/marker.svg");
-  mask-repeat: no-repeat;
-  mask-size: contain;
+  &::before {
+    display: block;
+    height: 100%;
+    content: "";
+    mask-image: url("./assets/map/marker.svg");
+    mask-repeat: no-repeat;
+    mask-size: contain;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    margin: 3.5px;
+    border-radius: 50%;
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--ion-color-ibf-white);
+  }
+}
+
+.marker {
+  &::before {
+    background-color: var(--ion-color-ibf-primary);
+    color: var(--ion-color-ibf-primary-contrast);
+  }
+
+  &.recent::before {
+    background-color: var(--ion-color-danger);
+    color: var(--ion-color-danger-contrast);
+  }
+}
+
+.marker-typhoon {
+  &::after {
+    background-image: url("/assets/map/typhoon.svg");
+  }
+
+  &.recent::after {
+    background-image: url("/assets/map/typhoon-red.svg");
+  }
+}
+
+.marker-hurricane {
+  &::after {
+    background-image: url("/assets/map/hurricane.svg");
+  }
+
+  &.recent::after {
+    background-image: url("/assets/map/hurricane-red.svg");
+  }
+}
+
+.marker-storm {
+  &::after {
+    background-image: url("/assets/map/storm.svg");
+  }
+
+  &.recent::after {
+    background-image: url("/assets/map/storm-red.svg");
+  }
+}
+
+.marker-explosion {
+  &::after {
+    background-image: url("/assets/map/explosion.svg");
+  }
+
+  &.recent::after {
+    background-image: url("/assets/map/explosion-red.svg");
+  }
+}
+
+.marker-eruption {
+  &::after {
+    background-image: url("/assets/map/eruption.svg");
+  }
+
+  &.recent::after {
+    background-image: url("/assets/map/eruption-red.svg");
+  }
 }
 
 .marker-cluster {
@@ -45,7 +127,6 @@
   opacity: 0.7 !important;
 }
 
-.marker,
 .marker-cluster {
   background-color: var(--ion-color-ibf-primary);
   color: var(--ion-color-ibf-primary-contrast);
