@@ -4,4 +4,5 @@ export class Layer {
   image: string;
   information: string;
   geojson?: GeoJSON.FeatureCollection;
+  active?: boolean;
 }

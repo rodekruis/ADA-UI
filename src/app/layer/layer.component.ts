@@ -30,7 +30,9 @@ export class LayerComponent implements OnChanges {
     this.getLayers();
   }
 
-  async openPopup(title: string, content: string) {
+  async openPopup(title: string, content: string, event: MouseEvent) {
+    event.stopPropagation();
+
     const modal = await this.modalCtrl.create({
       component: PopupComponent,
       componentProps: { title, content },
@@ -49,5 +51,9 @@ export class LayerComponent implements OnChanges {
 
   onGetLayers = (layers: Layer[]) => {
     this.layers = layers;
+  };
+
+  toggleLayer = (layer: Layer) => {
+    layer.active = !layer.active;
   };
 }
