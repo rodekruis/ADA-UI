@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, finalize, map } from 'rxjs/operators';
+import { filter, finalize } from 'rxjs/operators';
 import { Event } from './event.type';
 import { isRecent } from './event.utils';
 import { ApiService } from '../api.service';
@@ -27,33 +27,22 @@ export class EventComponent implements OnInit {
   ngOnInit() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => this.onRouteChange(this.activatedRoute));
+      .subscribe(() => this.onRouteChange());
 
-    this.onRouteChange(this.activatedRoute);
+    this.onRouteChange();
   }
 
-  onRouteChange = (route: ActivatedRoute) => {
-    this.preview = route.snapshot.queryParamMap.get('preview') === 'true';
+  onRouteChange = () => {
+    this.preview =
+      this.activatedRoute.snapshot.queryParamMap.get('preview') === 'true';
 
-    const eventId = route.snapshot.paramMap.get('eventId');
+    const eventId = this.activatedRoute.snapshot.paramMap.get('eventId');
 
     // if worldView and event have not been fetched
     if ((this.preview || !eventId) && !this.eventsLoaded) {
       this.getEvents();
-    }
-
-    // if eventView
-    if (eventId) {
-      if (this.preview) {
-        // use fetched event details for popup
-        this.event = { ...this.events.find((event) => event.id === eventId) };
-      } else {
-        // fetch event for all details
-        this.getEvent(eventId);
-      }
     } else {
-      // clear event for worldView
-      delete this.event;
+      this.toggleEvent();
     }
   };
 
@@ -71,6 +60,7 @@ export class EventComponent implements OnInit {
       recent: isRecent(a.startDate),
     }));
     this.eventsLoaded = true;
+    this.toggleEvent();
   };
 
   getEvent = (eventId: string) => {
@@ -78,8 +68,30 @@ export class EventComponent implements OnInit {
     this.apiService
       .getEvent(eventId)
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe((event) => this.onGetEvent(event));
+      .subscribe(
+        (event) => this.onGetEvent(event),
+        () => this.onGetEventError()
+      );
   };
 
   onGetEvent = (event: Event) => (this.event = event);
+
+  onGetEventError = () => this.router.navigate(['/events']);
+
+  toggleEvent = () => {
+    const eventId = this.activatedRoute.snapshot.paramMap.get('eventId');
+    // if eventView
+    if (eventId) {
+      if (this.preview) {
+        // use fetched event details for popup
+        this.event = { ...this.events.find((event) => event.id === eventId) };
+      } else {
+        // fetch event for all details
+        this.getEvent(eventId);
+      }
+    } else {
+      // clear event for worldView
+      delete this.event;
+    }
+  };
 }

@@ -35,15 +35,6 @@ export const iconCreateFunction = (cluster: MarkerCluster) =>
     ),
   });
 
-const onPopupOpen = (popupOpenEvent) =>
-  popupOpenEvent.target
-    .getPopup()
-    .getElement()
-    .querySelector('.close-button')
-    .addEventListener('click', () => {
-      popupOpenEvent.target.closePopup();
-    });
-
 const createMarkerPopup = (event: Event) => (layer: Layer) => {
   const markerPopupElement: NgElement & WithProperties<MarkerPopupComponent> =
     document.createElement('marker-popup-element') as any;
@@ -57,7 +48,7 @@ const createMarkerPopup = (event: Event) => (layer: Layer) => {
   return markerPopupElement;
 };
 
-export const createMarker = (event: Event) =>
+export const createMarker = (event: Event, onMarkerClick: () => void) =>
   marker(latLng.apply(this, event.geometry.coordinates), {
     icon: divIcon({
       className: `marker marker-${event.type.toLowerCase()} ${
@@ -66,7 +57,7 @@ export const createMarker = (event: Event) =>
       iconSize: markerIconSize,
     }),
   })
-    .bindPopup(createMarkerPopup(event), markerPopupOptions)
-    .on('popupopen', onPopupOpen);
+    .on('click', onMarkerClick)
+    .bindPopup(createMarkerPopup(event), markerPopupOptions);
 
 export default { iconCreateFunction, createMarker };
