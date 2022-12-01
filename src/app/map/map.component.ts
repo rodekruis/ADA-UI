@@ -6,12 +6,15 @@ import {
   SimpleChanges,
   NgZone,
 } from '@angular/core';
-import { Map, MarkerClusterGroup } from 'leaflet';
-import { createMarker, iconCreateFunction } from './map.utils';
-import { Event } from '../event/event.type';
-import { leafletOptions } from './map.config';
-import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
+import { finalize } from 'rxjs/operators';
+import { geoJSON, Map, MarkerClusterGroup, FeatureGroup } from 'leaflet';
+import { createMarker, iconCreateFunction } from './map.utils';
+import { adminLayerStyle, leafletOptions } from './map.config';
+import { ApiService } from '../api.service';
+import { Event } from '../event/event.type';
+import { Layer, LayerName } from '../layer/layers.type';
 
 @Component({
   selector: 'app-map',
@@ -28,13 +31,16 @@ export class MapComponent implements AfterViewChecked, OnChanges {
 
   public leafletOptions = leafletOptions;
   public eventView = false;
+  public adminDisabled = {};
 
   private markerClusterGroup: MarkerClusterGroup;
+  private adminLayer: FeatureGroup;
 
   constructor(
     private menuCtrl: MenuController,
     private router: Router,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private apiService: ApiService
   ) {}
 
   ngAfterViewChecked() {
@@ -61,6 +67,8 @@ export class MapComponent implements AfterViewChecked, OnChanges {
   };
 
   onEventChange = () => {
+    this.adminDisabled = {};
+
     this.eventView =
       !this.preview && this.event && Object.keys(this.event).length > 0;
 
@@ -73,6 +81,13 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     }
 
     this.menuCtrl.close();
+
+    if (this.eventView) {
+      this.onAdminChange({ detail: { value: LayerName.admin1 } });
+    } else if (this.adminLayer) {
+      this.leafletMap.removeLayer(this.adminLayer);
+      delete this.adminLayer;
+    }
   };
 
   loadEvents = () => {
@@ -118,4 +133,34 @@ export class MapComponent implements AfterViewChecked, OnChanges {
       }
     }
   };
+
+  onAdminChange = (adminChangeEvent: any) => {
+    this.loading = true;
+    this.apiService
+      .getLayer(this.event.id, adminChangeEvent.detail.value)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe(
+        (adminLayer) => this.onGetAdminLayer(adminLayer),
+        () => this.onGetAdminLayerError(adminChangeEvent.detail.value)
+      );
+  };
+
+  onGetAdminLayer = (adminLayer: Layer) => {
+    let isInitialLoad = true;
+
+    if (this.adminLayer) {
+      this.leafletMap.removeLayer(this.adminLayer);
+      isInitialLoad = false;
+    }
+
+    this.adminLayer = geoJSON(adminLayer.geojson, { style: adminLayerStyle });
+    this.leafletMap.addLayer(this.adminLayer);
+
+    if (isInitialLoad && adminLayer.name === LayerName.admin1) {
+      this.leafletMap.fitBounds(this.adminLayer.getBounds());
+    }
+  };
+
+  onGetAdminLayerError = (layerName: LayerName) =>
+    (this.adminDisabled[layerName] = true);
 }

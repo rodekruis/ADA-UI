@@ -10,7 +10,7 @@ export enum EventType {
 
 export enum EventAccess {
   public = 'Public',
-  private = 'Private',
+  restricted = 'Restricted',
 }
 
 export class Event {

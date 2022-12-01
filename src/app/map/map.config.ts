@@ -1,4 +1,12 @@
-import { tileLayer, latLng, latLngBounds, Point, point } from 'leaflet';
+import {
+  tileLayer,
+  latLng,
+  latLngBounds,
+  Point,
+  point,
+  icon,
+  Marker,
+} from 'leaflet';
 
 const LEAFLET_MAP_URL_TEMPLATE =
   'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
@@ -30,3 +38,10 @@ export const markerPopupOptions = {
 };
 
 export const markerIconSize = point(25, 41);
+
+export const adminLayerStyle = { color: '#969696', weight: 1, fillOpacity: 0 };
+
+Marker.prototype.options.icon = icon({
+  iconUrl: 'assets/map/marker.svg',
+  iconSize: markerIconSize,
+});

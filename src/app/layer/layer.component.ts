@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { ApiService } from '../api.service';
 import { PopupComponent } from '../popup/popup.component';
 import { Event } from '../event/event.type';
-import { Layer } from './layers.type';
+import { Layer, LayerName, layerIcon } from './layers.type';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -16,6 +16,7 @@ export class LayerComponent implements OnChanges {
   @Input() loading = true;
 
   public layers = [];
+  public layerIcon = layerIcon;
 
   constructor(
     private modalCtrl: ModalController,
@@ -50,7 +51,16 @@ export class LayerComponent implements OnChanges {
   };
 
   onGetLayers = (layers: Layer[]) => {
-    this.layers = layers;
+    this.layers = layers.filter(
+      (layer) =>
+        [
+          LayerName.admin1,
+          LayerName.admin2,
+          LayerName.admin3,
+          LayerName.admin4,
+          LayerName.admin5,
+        ].indexOf(layer.name) < 0
+    );
   };
 
   toggleLayer = (layer: Layer) => {
