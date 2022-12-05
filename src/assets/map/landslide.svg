@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="landslide.svg"
+   id="svg6"
+   version="1.1"
+   viewBox="0 0 48 48">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     inkscape:current-layer="svg6"
+     inkscape:window-maximized="1"
+     inkscape:window-y="-9"
+     inkscape:window-x="-9"
+     inkscape:cy="24"
+     inkscape:cx="24"
+     inkscape:zoom="18.791667"
+     showgrid="false"
+     id="namedview8"
+     inkscape:window-height="1721"
+     inkscape:window-width="3200"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <g
+     style="fill:#011e41;fill-opacity:1"
+     id="g4"
+     data-name="Layer 2"
+     fill="#418fde">
+    <path
+       id="path2"
+       style="fill:#011e41;fill-opacity:1"
+       d="M47.61 19.706a4.233 4.233 0 0 0-2.396-2.39 4.648 4.648 0 0 0-3.47.01 1.37 1.37 0 0 0-.577 1.923 1.472 1.472 0 0 0 1.705.733 2.274 2.274 0 0 1 1.196.107 1.406 1.406 0 0 1 .771.764 2.235 2.235 0 0 1-1.249 2.892 3.21 3.21 0 0 1-2.477.01 3.097 3.097 0 0 1-1.692-1.72L32.854 7.856a1.5 1.5 0 1 0-2.709 1.288l6.536 14.108a6.017 6.017 0 0 0 3.287 3.276 6.184 6.184 0 0 0 2.365.472 6.274 6.274 0 0 0 2.41-.486 5.239 5.239 0 0 0 2.868-6.808zM21.05 7.33a2.245 2.245 0 0 0-4.1 0L.196 44.84A2.246 2.246 0 0 0 2.256 48h33.488a2.25 2.25 0 0 0 2.06-3.17zM37.142 9.514A1 1 0 0 0 38 10h5a1 1 0 0 0 .857-.486l2-4a1 1 0 0 0 0-1.028l-2-4A1 1 0 0 0 43 0h-5a1 1 0 0 0-.857.486l-2 4a1 1 0 0 0 0 1.028z" />
+  </g>
+</svg>
