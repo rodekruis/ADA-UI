@@ -8,6 +8,7 @@ import {
   MarkerCluster,
   point,
 } from 'leaflet';
+import kebabCase from 'lodash.kebabcase';
 import { Event } from '../event/event.type';
 import { MarkerPopupComponent } from '../marker-popup/marker-popup.component';
 import {
@@ -51,7 +52,7 @@ const createMarkerPopup = (event: Event) => (layer: Layer) => {
 export const createMarker = (event: Event, onMarkerClick: () => void) =>
   marker(latLng.apply(this, event.geometry.coordinates), {
     icon: divIcon({
-      className: `marker marker-${event.type.toLowerCase()} ${
+      className: `marker marker-${kebabCase(event.type)} ${
         event.recent ? 'recent' : ''
       }`,
       iconSize: markerIconSize,
