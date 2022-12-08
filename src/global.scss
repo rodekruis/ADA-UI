@@ -69,53 +69,18 @@
   }
 }
 
-.marker-typhoon {
-  &::after {
-    background-image: url("/assets/map/typhoon.svg");
-  }
+$event-types: "conflict", "earthquake", "eruption", "fire", "flood",
+  "heavy-rain", "landslide", "tropical-cyclone", "tsunami";
 
-  &.recent::after {
-    background-image: url("/assets/map/typhoon-red.svg");
-  }
-}
+@each $event-type in $event-types {
+  .marker-#{$event-type} {
+    &::after {
+      background-image: url("/assets/map/#{$event-type}.svg");
+    }
 
-.marker-hurricane {
-  &::after {
-    background-image: url("/assets/map/hurricane.svg");
-  }
-
-  &.recent::after {
-    background-image: url("/assets/map/hurricane-red.svg");
-  }
-}
-
-.marker-storm {
-  &::after {
-    background-image: url("/assets/map/storm.svg");
-  }
-
-  &.recent::after {
-    background-image: url("/assets/map/storm-red.svg");
-  }
-}
-
-.marker-explosion {
-  &::after {
-    background-image: url("/assets/map/explosion.svg");
-  }
-
-  &.recent::after {
-    background-image: url("/assets/map/explosion-red.svg");
-  }
-}
-
-.marker-eruption {
-  &::after {
-    background-image: url("/assets/map/eruption.svg");
-  }
-
-  &.recent::after {
-    background-image: url("/assets/map/eruption-red.svg");
+    &.recent::after {
+      background-image: url("/assets/map/#{$event-type}-red.svg");
+    }
   }
 }
 
