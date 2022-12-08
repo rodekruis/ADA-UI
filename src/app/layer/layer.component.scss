@@ -7,6 +7,12 @@
 
 ion-item {
   --min-height: 32px;
+
+  &.active {
+    --color: var(--ion-color-ibf-primary-contrast);
+    --background: var(--ion-color-ibf-primary);
+    --border-color: var(--ion-color-ibf-primary-contrast);
+  }
 }
 
 ion-thumbnail {

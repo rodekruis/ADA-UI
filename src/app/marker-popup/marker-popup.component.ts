@@ -1,11 +1,11 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
-import { Event, EventAccess } from '../event/event.type';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { SESSION_STORAGE_TOKEN_KEY } from '../app.config';
+import { ApiService } from '../api.service';
+import { Event, EventAccess } from '../event/event.type';
 
 @Component({
   selector: 'app-marker-popup',
@@ -30,7 +30,7 @@ export class MarkerPopupComponent implements OnInit {
 
   ngOnInit() {
     this.recent = this.event.recent;
-    this.restricted = this.event.access === EventAccess.private;
+    this.restricted = this.event.access === EventAccess.restricted;
     this.startDate = formatDate(this.event.startDate, 'mediumDate', 'en');
   }
 
@@ -42,11 +42,17 @@ export class MarkerPopupComponent implements OnInit {
           .getEventToken(this.event.id, this.form.get('password').value)
           .pipe(finalize(() => (this.loading = false)))
           .subscribe(
-            (token) => {
-              sessionStorage.setItem(SESSION_STORAGE_TOKEN_KEY, token);
+            (response) => {
+              sessionStorage.setItem(
+                SESSION_STORAGE_TOKEN_KEY,
+                response.message
+              );
               this.closePopup(['/events', this.event.id]);
             },
-            (error) => this.form.get('password').setErrors({ error })
+            (response) =>
+              this.form
+                .get('password')
+                .setErrors({ error: response.error.message })
           );
       } else {
         this.closePopup(['/events', this.event.id]);

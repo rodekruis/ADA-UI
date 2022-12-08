@@ -16,6 +16,7 @@
     display: inline-block;
     padding-left: 0.4em;
     vertical-align: top;
+    text-decoration: underline;
   }
 
   &:hover,
@@ -43,8 +44,31 @@
   }
 }
 
+.chat-event-details {
+  .key-estimate-list {
+    border: 1px dashed var(--ion-color-danger);
+    background: transparent;
+    border-radius: 8px;
+  }
+
+  .key-estimate-item {
+    --background: transparent;
+    font-size: 14px;
+
+    ion-icon {
+      margin: 0 4px;
+    }
+  }
+
+  .popover-content {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
 ion-buttons {
   flex-wrap: wrap;
+  margin-top: 4px;
 }
 
 ion-button {
