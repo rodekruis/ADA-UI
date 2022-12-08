@@ -22,11 +22,10 @@ export class ApiService {
 
   getHeaders = () => {
     const headers = new HttpHeaders();
-    headers.set(
+    return headers.set(
       'Authorization',
       `Bearer ${sessionStorage.getItem(SESSION_STORAGE_TOKEN_KEY)}`
     );
-    return headers;
   };
 
   getEvents = (): Observable<Event[]> =>
