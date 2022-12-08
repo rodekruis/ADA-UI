@@ -33,6 +33,7 @@
       mode="ios"
       color="ibf-primary"
       scrollable="true"
+      (ionChange)="onAdminChange($event)"
     >
       <ion-segment-button
         *ngFor="
@@ -41,6 +42,7 @@
         "
         [value]="'admin-' + (i + 1)"
         class="ion-padding-horizontal"
+        [disabled]="adminDisabled['admin-' + (i + 1)]"
       >
         <ion-label>{{ adminLevelLabel }}</ion-label>
       </ion-segment-button>

@@ -1,18 +1,26 @@
 <app-loading [loading]="loading" message="Loading..."></app-loading>
 
 <ion-list lines="full" *ngIf="!loading">
-  <ion-item *ngFor="let layer of layers" button>
+  <ion-item
+    button
+    *ngFor="let layer of layers"
+    [ngClass]="{ active: layer.active }"
+    (click)="toggleLayer(layer)"
+  >
     <ion-thumbnail slot="start">
-      <img [alt]="layer.label" [src]="layer.image" />
+      <img [alt]="layer.label" [src]="layerIcon[layer.name]" />
     </ion-thumbnail>
     <ion-label>{{ layer.label }}</ion-label>
     <ion-icon
       name="information-circle"
       slot="end"
-      color="ibf-primary"
+      [color]="layer.active ? 'ibf-white' : 'ibf-primary'"
       size="large"
       class="ion-margin-start ion-no-margin"
-      (click)="openPopup(layer.label, layer.information)"
+      (click)="openPopup(layer.label, layer.information, $event)"
     ></ion-icon>
   </ion-item>
+  <div class="ion-margin-vertical" *ngIf="layers.length < 1">
+    <ion-text color="danger">Map Layers Unavailable</ion-text>
+  </div>
 </ion-list>
