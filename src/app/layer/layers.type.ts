@@ -1,23 +1,22 @@
 export const layerIcon = {
-  'buildings-damage-none':
+  buildingsDamageNone:
     'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'buildings-damage-light':
+  buildingsDamageLight:
     'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'buildings-damage-moderate':
+  buildingsDamageModerate:
     'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'buildings-damage-heavy':
+  buildingsDamageHeavy:
     'https://ionicframework.com/docs/img/demos/thumbnail.svg',
   buildings: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'assessment-area': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'people-affected': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'population-density':
-    'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'wealth-index': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'damage-admin-1': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'damage-admin-2': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'damage-admin-3': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'damage-admin-4': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-  'damage-admin-5': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+  assessmentArea: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+  peopleAffected: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+  populationDensity: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+  wealthIndex: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+  damageAdmin1: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+  damageAdmin2: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+  damageAdmin3: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+  damageAdmin4: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+  damageAdmin5: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
 };
 
 export enum LayerName {
