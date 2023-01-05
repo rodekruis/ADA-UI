@@ -1,6 +1,5 @@
 services:
   ada-ui:
-    image: rodekruis/ada-ui
     build: .
     restart: on-failure:5
     env_file: .env
