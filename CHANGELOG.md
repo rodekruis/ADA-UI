@@ -1,4 +1,13 @@
-# 0.1.0 (2023-01-04)
+## [0.1.1](https://github.com/rodekruis/ADA-UI/compare/v0.1.0...v0.1.1) (2023-01-05)
+
+
+### Bug Fixes
+
+* remove image name from local image ([adb231c](https://github.com/rodekruis/ADA-UI/commit/adb231c6ff736e9e136f226e8cfd7d5315e80198))
+
+
+
+# [0.1.0](https://github.com/rodekruis/ADA-UI/compare/dd0d5d833264cd2464ab77e71208191e6427e451...v0.1.0) (2023-01-04)
 
 
 ### Bug Fixes
