@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/rodekruis/ADA-UI/compare/v0.1.1...v0.1.2) (2023-01-05)
+
+
+### Bug Fixes
+
+* add production flag to build ([782e608](https://github.com/rodekruis/ADA-UI/commit/782e608b218cae03682811b4716c215efb57fc12))
+
+
+
 ## [0.1.1](https://github.com/rodekruis/ADA-UI/compare/v0.1.0...v0.1.1) (2023-01-05)
 
 
