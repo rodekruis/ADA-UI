@@ -1,51 +1,54 @@
 <app-loading [loading]="loading" message="Loading..."></app-loading>
 
 <ion-split-pane contentId="map-content" when="false">
-  <ion-menu
-    contentId="map-content"
-    side="end"
-    menuId="map-menu"
-    type="reveal"
-    maxEdgeStart="0"
-  >
-    <app-layer [event]="preview ? null : event" [loading]="loading"></app-layer>
-  </ion-menu>
+    <ion-menu
+        contentId="map-content"
+        side="end"
+        menuId="map-menu"
+        type="reveal"
+        maxEdgeStart="0"
+    >
+        <app-layer
+            [event]="preview ? null : event"
+            [loading]="loading"
+        ></app-layer>
+    </ion-menu>
 
-  <ion-content id="map-content" class="map-container">
-    <ion-menu-toggle
-      class="text-bold font-montserrat"
-      menu="map-menu"
-      [ngClass]="{ 'ion-hide': !eventView }"
-    >
-      <ion-text>^&nbsp;&nbsp;^&nbsp;&nbsp;^</ion-text>
-      &nbsp;&nbsp;&nbsp;&nbsp;MAP LAYERS&nbsp;&nbsp;&nbsp;&nbsp;
-      <ion-text>^&nbsp;&nbsp;^&nbsp;&nbsp;^</ion-text>
-    </ion-menu-toggle>
-    <div
-      class="map"
-      leaflet
-      [leafletOptions]="leafletOptions"
-      (leafletMapReady)="onMapReady($event)"
-    ></div>
-    <ion-segment
-      *ngIf="eventView"
-      value="admin-1"
-      mode="ios"
-      color="ibf-primary"
-      scrollable="true"
-      (ionChange)="onAdminChange($event)"
-    >
-      <ion-segment-button
-        *ngFor="
-          let adminLevelLabel of event.adminLevelLabels.split(',');
-          let i = index
-        "
-        [value]="'admin-' + (i + 1)"
-        class="ion-padding-horizontal"
-        [disabled]="adminDisabled['admin-' + (i + 1)]"
-      >
-        <ion-label>{{ adminLevelLabel }}</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-content>
+    <ion-content id="map-content" class="map-container">
+        <ion-menu-toggle
+            class="text-bold font-montserrat"
+            menu="map-menu"
+            [ngClass]="{ 'ion-hide': !eventView }"
+        >
+            <ion-text>^&nbsp;&nbsp;^&nbsp;&nbsp;^</ion-text>
+            &nbsp;&nbsp;&nbsp;&nbsp;MAP LAYERS&nbsp;&nbsp;&nbsp;&nbsp;
+            <ion-text>^&nbsp;&nbsp;^&nbsp;&nbsp;^</ion-text>
+        </ion-menu-toggle>
+        <div
+            class="map"
+            leaflet
+            [leafletOptions]="leafletOptions"
+            (leafletMapReady)="onMapReady($event)"
+        ></div>
+        <ion-segment
+            *ngIf="eventView"
+            value="admin-1"
+            mode="ios"
+            color="ibf-primary"
+            scrollable="true"
+            (ionChange)="onAdminChange($event)"
+        >
+            <ion-segment-button
+                *ngFor="
+                    let adminLevelLabel of event.adminLevelLabels.split(',');
+                    let i = index
+                "
+                [value]="'admin-' + (i + 1)"
+                class="ion-padding-horizontal"
+                [disabled]="adminDisabled['admin-' + (i + 1)]"
+            >
+                <ion-label>{{ adminLevelLabel }}</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-content>
 </ion-split-pane>

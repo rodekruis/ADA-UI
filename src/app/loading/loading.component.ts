@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-loading',
-  templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss'],
+    selector: 'app-loading',
+    templateUrl: './loading.component.html',
+    styleUrls: ['./loading.component.scss'],
 })
 export class LoadingComponent {
-  @Input() loading = true;
-  @Input() message = '';
+    @Input() loading = true;
+    @Input() message = '';
 
-  constructor() {}
+    constructor() {}
 }

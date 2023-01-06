@@ -1,21 +1,21 @@
 :host {
-  cursor: default;
-  overflow: auto;
-  height: 100%;
-  border-left: 1px solid var(--ion-color-ibf-primary);
+    cursor: default;
+    overflow: auto;
+    height: 100%;
+    border-left: 1px solid var(--ion-color-ibf-primary);
 }
 
 ion-item {
-  --min-height: 32px;
+    --min-height: 32px;
 
-  &.active {
-    --color: var(--ion-color-ibf-primary-contrast);
-    --background: var(--ion-color-ibf-primary);
-    --border-color: var(--ion-color-ibf-primary-contrast);
-  }
+    &.active {
+        --color: var(--ion-color-ibf-primary-contrast);
+        --background: var(--ion-color-ibf-primary);
+        --border-color: var(--ion-color-ibf-primary-contrast);
+    }
 }
 
 ion-thumbnail {
-  height: 32px;
-  width: 32px;
+    height: 32px;
+    width: 32px;
 }

@@ -1,171 +1,186 @@
 <article class="chat">
-  <ion-text i18n>
-    Welcome to the
-    <ion-text class="text-bold">Automated Damage Assessment (ADA)</ion-text>
-    portal. Here you will find all the events for which a damage assessment has
-    been conducted.
-  </ion-text>
+    <ion-text i18n>
+        Welcome to the
+        <ion-text class="text-bold">Automated Damage Assessment (ADA)</ion-text>
+        portal. Here you will find all the events for which a damage assessment
+        has been conducted.
+    </ion-text>
 
-  <ion-buttons class="ion-justify-content-evenly">
-    <ion-button
-      shape="round"
-      fill="solid"
-      (click)="openPopup('About ADA', 'assets/markdown/about.md')"
-      i18n
-      >About ADA</ion-button
-    >
-    <ion-button
-      shape="round"
-      fill="solid"
-      (click)="openPopup('User Guide', 'assets/markdown/guide.md')"
-      i18n
-      >User Guide</ion-button
-    >
-    <ion-button
-      shape="round"
-      fill="solid"
-      (click)="openPopup('Disclaimer', 'assets/markdown/disclaimer.md')"
-      i18n
-      >Disclaimer</ion-button
-    >
-  </ion-buttons>
+    <ion-buttons class="ion-justify-content-evenly">
+        <ion-button
+            shape="round"
+            fill="solid"
+            (click)="openPopup('About ADA', 'assets/markdown/about.md')"
+            i18n
+            >About ADA</ion-button
+        >
+        <ion-button
+            shape="round"
+            fill="solid"
+            (click)="openPopup('User Guide', 'assets/markdown/guide.md')"
+            i18n
+            >User Guide</ion-button
+        >
+        <ion-button
+            shape="round"
+            fill="solid"
+            (click)="openPopup('Disclaimer', 'assets/markdown/disclaimer.md')"
+            i18n
+            >Disclaimer</ion-button
+        >
+    </ion-buttons>
 </article>
 
 <app-loading [loading]="loading"></app-loading>
 
 <section *ngIf="!loading">
-  <article class="chat chat-events" *ngIf="!hideEvents">
-    <ion-text i18n>Disaster events are listed in order of occurrence.</ion-text
-    >&nbsp;<ion-text color="danger" i18n
-      >Recent disaster events are in red.</ion-text
-    >
-    <br />
-    <br />
-    <div class="ion-margin-vertical text-bold" *ngIf="events.length < 1" i18n>
-      No disaster events to show.
-    </div>
-    <ul *ngIf="events.length > 0" class="ion-no-margin ion-padding-start">
-      <li
-        *ngFor="let event of events"
-        class="ion-margin-vertical text-bold"
-        [ngClass]="{ recent: event.recent }"
-        [routerLink]="['/events', event.id]"
-        [queryParams]="{ preview: true }"
-        routerLinkActive="active"
-      >
+    <article class="chat chat-events" *ngIf="!hideEvents">
+        <ion-text i18n
+            >Disaster events are listed in order of occurrence.</ion-text
+        >&nbsp;<ion-text color="danger" i18n
+            >Recent disaster events are in red.</ion-text
+        >
+        <br />
+        <br />
+        <div
+            class="ion-margin-vertical text-bold"
+            *ngIf="events.length < 1"
+            i18n
+        >
+            No disaster events to show.
+        </div>
+        <ul *ngIf="events.length > 0" class="ion-no-margin ion-padding-start">
+            <li
+                *ngFor="let event of events"
+                class="ion-margin-vertical text-bold"
+                [ngClass]="{ recent: event.recent }"
+                [routerLink]="['/events', event.id]"
+                [queryParams]="{ preview: true }"
+                routerLinkActive="active"
+            >
+                <ion-text>
+                    {{ event.type }} {{ event.name }} -
+                    {{ event.startDate | date : "mediumDate" }}<br />{{
+                        event.country
+                    }}
+                </ion-text>
+            </li>
+        </ul>
+    </article>
+    <article class="chat chat-event-details" *ngIf="hideEvents">
         <ion-text>
-          {{ event.type }} {{ event.name }} -
-          {{ event.startDate | date : "mediumDate" }}<br />{{ event.country }}
+            You are viewing
+            <ion-text class="text-bold"
+                >{{ event.type }} {{ event.name }}</ion-text
+            >
+            that occurred on
+            <ion-text class="text-bold">{{
+                event.startDate | date : "mediumDate"
+            }}</ion-text>
+            in <ion-text class="text-bold">{{ event.country }}</ion-text
+            >.
         </ion-text>
-      </li>
-    </ul>
-  </article>
-  <article class="chat chat-event-details" *ngIf="hideEvents">
-    <ion-text>
-      You are viewing
-      <ion-text class="text-bold">{{ event.type }} {{ event.name }}</ion-text>
-      that occurred on
-      <ion-text class="text-bold">{{
-        event.startDate | date : "mediumDate"
-      }}</ion-text>
-      in <ion-text class="text-bold">{{ event.country }}</ion-text
-      >.
-    </ion-text>
-    <p>
-      <ion-text color="danger" i18n>
-        The assessment area is outlined in red.
-      </ion-text>
-    </p>
-    <ion-list lines="none" class="key-estimate-list">
-      <ion-item id="people-affected" class="key-estimate-item text-bold">
-        <ion-icon
-          slot="start"
-          name="information-circle-outline"
-          color="ibf-primary"
-          size="small"
-        ></ion-icon>
-        <ion-label>
-          People Affected: {{ formatNumber(event.peopleAffected) }}
-        </ion-label>
-      </ion-item>
-      <ion-item id="damaged-buildings" class="key-estimate-item text-bold">
-        <ion-icon
-          slot="start"
-          name="information-circle-outline"
-          color="ibf-primary"
-          size="small"
-        ></ion-icon>
-        <ion-label>
-          Damaged Buildings: {{ formatNumber(event.buildingsDamaged) }}
-        </ion-label>
-      </ion-item>
-      <ion-item
-        id="damaged-buildings-percentage"
-        class="key-estimate-item text-bold"
-      >
-        <ion-icon
-          slot="start"
-          name="information-circle-outline"
-          color="ibf-primary"
-          size="small"
-        ></ion-icon>
-        <ion-label>
-          Damaged Buildings (%):
-          {{ formatPercentage(event.buildingsDamagedPercentage) }}
-        </ion-label>
-      </ion-item>
-    </ion-list>
-    <ion-popover
-      trigger="people-affected"
-      triggerAction="hover"
-      showBackdrop="false"
-      mode="ios"
-      size="cover"
-      dismissOnSelect="true"
-    >
-      <ng-template>
-        <ion-content class="ion-padding popover-content" i18n>
-          <ion-text class="text-bold">People Affected</ion-text> is the product
-          of the total number of people living in the assessment area and the
-          fraction of damaged buildings.
-        </ion-content>
-      </ng-template>
-    </ion-popover>
-    <ion-popover
-      trigger="damaged-buildings"
-      triggerAction="hover"
-      showBackdrop="false"
-      mode="ios"
-      size="cover"
-      dismissOnSelect="true"
-    >
-      <ng-template>
-        <ion-content class="ion-padding popover-content" i18n>
-          <ion-text class="text-bold">Damaged Buildings</ion-text> is the total
-          number of buildings with light, moderate and heavy damage in the
-          assessment area.
-        </ion-content>
-      </ng-template>
-    </ion-popover>
-    <ion-popover
-      trigger="damaged-buildings-percentage"
-      triggerAction="hover"
-      showBackdrop="false"
-      mode="ios"
-      size="cover"
-      dismissOnSelect="true"
-    >
-      <ng-template>
-        <ion-content class="ion-padding popover-content" i18n>
-          <ion-text class="text-bold">Damaged Buildings in Percentage</ion-text>
-          is the fraction of damaged buildings out of all buildings in the
-          assessment area.
-        </ion-content>
-      </ng-template>
-    </ion-popover>
-    <p class="text-bold" i18n>
-      You are viewing sensitive information ensure you exit once finished with
-      the dashboard.
-    </p>
-  </article>
+        <p>
+            <ion-text color="danger" i18n>
+                The assessment area is outlined in red.
+            </ion-text>
+        </p>
+        <ion-list lines="none" class="key-estimate-list">
+            <ion-item id="people-affected" class="key-estimate-item text-bold">
+                <ion-icon
+                    slot="start"
+                    name="information-circle-outline"
+                    color="ibf-primary"
+                    size="small"
+                ></ion-icon>
+                <ion-label>
+                    People Affected: {{ formatNumber(event.peopleAffected) }}
+                </ion-label>
+            </ion-item>
+            <ion-item
+                id="damaged-buildings"
+                class="key-estimate-item text-bold"
+            >
+                <ion-icon
+                    slot="start"
+                    name="information-circle-outline"
+                    color="ibf-primary"
+                    size="small"
+                ></ion-icon>
+                <ion-label>
+                    Damaged Buildings:
+                    {{ formatNumber(event.buildingsDamaged) }}
+                </ion-label>
+            </ion-item>
+            <ion-item
+                id="damaged-buildings-percentage"
+                class="key-estimate-item text-bold"
+            >
+                <ion-icon
+                    slot="start"
+                    name="information-circle-outline"
+                    color="ibf-primary"
+                    size="small"
+                ></ion-icon>
+                <ion-label>
+                    Damaged Buildings (%):
+                    {{ formatPercentage(event.buildingsDamagedPercentage) }}
+                </ion-label>
+            </ion-item>
+        </ion-list>
+        <ion-popover
+            trigger="people-affected"
+            triggerAction="hover"
+            showBackdrop="false"
+            mode="ios"
+            size="cover"
+            dismissOnSelect="true"
+        >
+            <ng-template>
+                <ion-content class="ion-padding popover-content" i18n>
+                    <ion-text class="text-bold">People Affected</ion-text> is
+                    the product of the total number of people living in the
+                    assessment area and the fraction of damaged buildings.
+                </ion-content>
+            </ng-template>
+        </ion-popover>
+        <ion-popover
+            trigger="damaged-buildings"
+            triggerAction="hover"
+            showBackdrop="false"
+            mode="ios"
+            size="cover"
+            dismissOnSelect="true"
+        >
+            <ng-template>
+                <ion-content class="ion-padding popover-content" i18n>
+                    <ion-text class="text-bold">Damaged Buildings</ion-text> is
+                    the total number of buildings with light, moderate and heavy
+                    damage in the assessment area.
+                </ion-content>
+            </ng-template>
+        </ion-popover>
+        <ion-popover
+            trigger="damaged-buildings-percentage"
+            triggerAction="hover"
+            showBackdrop="false"
+            mode="ios"
+            size="cover"
+            dismissOnSelect="true"
+        >
+            <ng-template>
+                <ion-content class="ion-padding popover-content" i18n>
+                    <ion-text class="text-bold"
+                        >Damaged Buildings in Percentage</ion-text
+                    >
+                    is the fraction of damaged buildings out of all buildings in
+                    the assessment area.
+                </ion-content>
+            </ng-template>
+        </ion-popover>
+        <p class="text-bold" i18n>
+            You are viewing sensitive information ensure you exit once finished
+            with the dashboard.
+        </p>
+    </article>
 </section>

@@ -7,28 +7,32 @@ import { ApiService } from '../api.service';
 import { Event } from '../event/event.type';
 
 describe('MarkerPopupComponent', () => {
-  let component: MarkerPopupComponent;
-  let fixture: ComponentFixture<MarkerPopupComponent>;
+    let component: MarkerPopupComponent;
+    let fixture: ComponentFixture<MarkerPopupComponent>;
 
-  beforeEach(() => {
-    const apiServiceSpy = jasmine.createSpyObj<ApiService>(['getEventToken']);
-    apiServiceSpy.getEventToken.and.returnValue(of({ message: 'test_token' }));
+    beforeEach(() => {
+        const apiServiceSpy = jasmine.createSpyObj<ApiService>([
+            'getEventToken',
+        ]);
+        apiServiceSpy.getEventToken.and.returnValue(
+            of({ message: 'test_token' }),
+        );
 
-    TestBed.configureTestingModule({
-      declarations: [MarkerPopupComponent],
-      imports: [IonicModule.forRoot(), FormsModule, ReactiveFormsModule],
-      providers: [{ provide: ApiService, useValue: apiServiceSpy }],
-    }).compileComponents();
+        TestBed.configureTestingModule({
+            declarations: [MarkerPopupComponent],
+            imports: [IonicModule.forRoot(), FormsModule, ReactiveFormsModule],
+            providers: [{ provide: ApiService, useValue: apiServiceSpy }],
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(MarkerPopupComponent);
-    component = fixture.componentInstance;
-    const event = new Event();
-    event.startDate = new Date().toISOString();
-    component.event = event;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(MarkerPopupComponent);
+        component = fixture.componentInstance;
+        const event = new Event();
+        event.startDate = new Date().toISOString();
+        component.event = event;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

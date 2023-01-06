@@ -1,45 +1,45 @@
 ion-menu {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .map-container {
-  box-shadow: none;
+    box-shadow: none;
 }
 
 ion-menu-toggle {
-  cursor: pointer;
-  background-color: #fff;
-  height: 100%;
-  width: 32px;
-  font-size: 16px;
-  padding: 8px;
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: 99999;
-  text-orientation: mixed;
-  transform: scale(-1, -1);
-  writing-mode: vertical-rl;
+    cursor: pointer;
+    background-color: #fff;
+    height: 100%;
+    width: 32px;
+    font-size: 16px;
+    padding: 8px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    text-orientation: mixed;
+    transform: scale(-1, -1);
+    writing-mode: vertical-rl;
 }
 
 .menu-content-open ion-menu-toggle ion-text {
-  transform: scale(-1, -1);
-  display: inline-block;
+    transform: scale(-1, -1);
+    display: inline-block;
 }
 
 .map {
-  height: 100%;
-  margin-right: 32px;
+    height: 100%;
+    margin-right: 32px;
 
-  .ion-hide + & {
-    margin-right: 0;
-  }
+    .ion-hide + & {
+        margin-right: 0;
+    }
 }
 
 ion-segment {
-  position: absolute;
-  top: 1em;
-  left: 4em;
-  z-index: 1000;
+    position: absolute;
+    top: 1em;
+    left: 4em;
+    z-index: 1000;
 }

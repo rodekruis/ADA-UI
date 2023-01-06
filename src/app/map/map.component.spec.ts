@@ -9,30 +9,30 @@ import { ApiService } from '../api.service';
 import { Layer } from '../layer/layers.type';
 
 describe('MapComponent', () => {
-  let component: MapComponent;
-  let fixture: ComponentFixture<MapComponent>;
+    let component: MapComponent;
+    let fixture: ComponentFixture<MapComponent>;
 
-  beforeEach(() => {
-    const apiServiceSpy = jasmine.createSpyObj<ApiService>(['getLayer']);
-    apiServiceSpy.getLayer.and.returnValue(of(new Layer()));
+    beforeEach(() => {
+        const apiServiceSpy = jasmine.createSpyObj<ApiService>(['getLayer']);
+        apiServiceSpy.getLayer.and.returnValue(of(new Layer()));
 
-    TestBed.configureTestingModule({
-      declarations: [MapComponent],
-      imports: [
-        IonicModule.forRoot(),
-        LeafletModule,
-        LeafletMarkerClusterModule,
-      ],
-      providers: [{ provide: ApiService, useValue: apiServiceSpy }],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
+        TestBed.configureTestingModule({
+            declarations: [MapComponent],
+            imports: [
+                IonicModule.forRoot(),
+                LeafletModule,
+                LeafletMarkerClusterModule,
+            ],
+            providers: [{ provide: ApiService, useValue: apiServiceSpy }],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(MapComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(MapComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
