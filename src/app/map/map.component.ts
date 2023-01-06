@@ -1,10 +1,10 @@
 import {
-  Component,
-  AfterViewChecked,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  NgZone,
+    Component,
+    AfterViewChecked,
+    Input,
+    OnChanges,
+    SimpleChanges,
+    NgZone,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
@@ -17,150 +17,157 @@ import { Event } from '../event/event.type';
 import { Layer, LayerName } from '../layer/layers.type';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss'],
+    selector: 'app-map',
+    templateUrl: './map.component.html',
+    styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements AfterViewChecked, OnChanges {
-  @Input() events = [];
-  @Input() event: Event;
-  @Input() preview = false;
-  @Input() loading = true;
+    @Input() events = [];
+    @Input() event: Event;
+    @Input() preview = false;
+    @Input() loading = true;
 
-  public leafletMap: Map;
+    public leafletMap: Map;
 
-  public leafletOptions = leafletOptions;
-  public eventView = false;
-  public adminDisabled = {};
+    public leafletOptions = leafletOptions;
+    public eventView = false;
+    public adminDisabled = {};
 
-  private markerClusterGroup: MarkerClusterGroup;
-  private adminLayer: FeatureGroup;
+    private markerClusterGroup: MarkerClusterGroup;
+    private adminLayer: FeatureGroup;
 
-  constructor(
-    private menuCtrl: MenuController,
-    private router: Router,
-    private ngZone: NgZone,
-    private apiService: ApiService
-  ) {}
+    constructor(
+        private menuCtrl: MenuController,
+        private router: Router,
+        private ngZone: NgZone,
+        private apiService: ApiService,
+    ) {}
 
-  ngAfterViewChecked() {
-    // Trigger a resize to fill the container-element:
-    window.dispatchEvent(new UIEvent('resize'));
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (!this.leafletMap) {
-      return;
+    ngAfterViewChecked() {
+        // Trigger a resize to fill the container-element:
+        window.dispatchEvent(new UIEvent('resize'));
     }
 
-    if ('events' in changes) {
-      this.loadEvents();
+    ngOnChanges(changes: SimpleChanges) {
+        if (!this.leafletMap) {
+            return;
+        }
+
+        if ('events' in changes) {
+            this.loadEvents();
+        }
+
+        if ('event' in changes) {
+            this.onEventChange();
+        }
     }
 
-    if ('event' in changes) {
-      this.onEventChange();
-    }
-  }
+    onMapReady = (leafletMapReady: Map) => {
+        this.leafletMap = leafletMapReady;
+    };
 
-  onMapReady = (leafletMapReady: Map) => {
-    this.leafletMap = leafletMapReady;
-  };
+    onEventChange = () => {
+        this.adminDisabled = {};
 
-  onEventChange = () => {
-    this.adminDisabled = {};
+        this.eventView =
+            !this.preview && this.event && Object.keys(this.event).length > 0;
 
-    this.eventView =
-      !this.preview && this.event && Object.keys(this.event).length > 0;
+        if (this.leafletMap && this.markerClusterGroup) {
+            this.toggleMarkerClusterGroup();
+        }
 
-    if (this.leafletMap && this.markerClusterGroup) {
-      this.toggleMarkerClusterGroup();
-    }
+        if (!this.eventView && this.event && this.event.marker) {
+            this.openEventPopup();
+        }
 
-    if (!this.eventView && this.event && this.event.marker) {
-      this.openEventPopup();
-    }
+        this.menuCtrl.close();
 
-    this.menuCtrl.close();
+        if (this.eventView) {
+            this.onAdminChange({ detail: { value: LayerName.admin1 } });
+        } else if (this.adminLayer) {
+            this.leafletMap.removeLayer(this.adminLayer);
+            delete this.adminLayer;
+        }
+    };
 
-    if (this.eventView) {
-      this.onAdminChange({ detail: { value: LayerName.admin1 } });
-    } else if (this.adminLayer) {
-      this.leafletMap.removeLayer(this.adminLayer);
-      delete this.adminLayer;
-    }
-  };
+    loadEvents = () => {
+        const markerClusterGroupOptions = { iconCreateFunction };
 
-  loadEvents = () => {
-    const markerClusterGroupOptions = { iconCreateFunction };
+        this.markerClusterGroup = new MarkerClusterGroup(
+            markerClusterGroupOptions,
+        );
 
-    this.markerClusterGroup = new MarkerClusterGroup(markerClusterGroupOptions);
+        this.events.forEach((event: Event) => {
+            event.marker = createMarker(event, () =>
+                this.ngZone.run(() =>
+                    this.router.navigate(['/events', event.id], {
+                        queryParams: { preview: true },
+                    }),
+                ),
+            );
+            this.markerClusterGroup.addLayer(event.marker);
+        });
 
-    this.events.forEach((event: Event) => {
-      event.marker = createMarker(event, () =>
-        this.ngZone.run(() =>
-          this.router.navigate(['/events', event.id], {
-            queryParams: { preview: true },
-          })
-        )
-      );
-      this.markerClusterGroup.addLayer(event.marker);
-    });
-
-    this.leafletMap.addLayer(this.markerClusterGroup);
-
-    this.event = this.events.find(
-      (event) => this.event && event.id === this.event.id
-    );
-    this.onEventChange();
-  };
-
-  openEventPopup = () => {
-    // https://github.com/Leaflet/Leaflet.markercluster/issues/72#issuecomment-9020739
-    this.markerClusterGroup.zoomToShowLayer(this.event.marker, () => {
-      this.event.marker.openPopup();
-    });
-  };
-
-  toggleMarkerClusterGroup = () => {
-    if (this.eventView) {
-      if (this.leafletMap.hasLayer(this.markerClusterGroup)) {
-        this.leafletMap.removeLayer(this.markerClusterGroup);
-      }
-    } else {
-      if (!this.leafletMap.hasLayer(this.markerClusterGroup)) {
         this.leafletMap.addLayer(this.markerClusterGroup);
-        this.leafletMap.setView(leafletOptions.center, leafletOptions.zoom);
-      }
-    }
-  };
 
-  onAdminChange = (adminChangeEvent: any) => {
-    this.loading = true;
-    this.apiService
-      .getLayer(this.event.id, adminChangeEvent.detail.value)
-      .pipe(finalize(() => (this.loading = false)))
-      .subscribe(
-        (adminLayer) => this.onGetAdminLayer(adminLayer),
-        () => this.onGetAdminLayerError(adminChangeEvent.detail.value)
-      );
-  };
+        this.event = this.events.find(
+            (event) => this.event && event.id === this.event.id,
+        );
+        this.onEventChange();
+    };
 
-  onGetAdminLayer = (adminLayer: Layer) => {
-    let isInitialLoad = true;
+    openEventPopup = () => {
+        // https://github.com/Leaflet/Leaflet.markercluster/issues/72#issuecomment-9020739
+        this.markerClusterGroup.zoomToShowLayer(this.event.marker, () => {
+            this.event.marker.openPopup();
+        });
+    };
 
-    if (this.adminLayer) {
-      this.leafletMap.removeLayer(this.adminLayer);
-      isInitialLoad = false;
-    }
+    toggleMarkerClusterGroup = () => {
+        if (this.eventView) {
+            if (this.leafletMap.hasLayer(this.markerClusterGroup)) {
+                this.leafletMap.removeLayer(this.markerClusterGroup);
+            }
+        } else {
+            if (!this.leafletMap.hasLayer(this.markerClusterGroup)) {
+                this.leafletMap.addLayer(this.markerClusterGroup);
+                this.leafletMap.setView(
+                    leafletOptions.center,
+                    leafletOptions.zoom,
+                );
+            }
+        }
+    };
 
-    this.adminLayer = geoJSON(adminLayer.geojson, { style: adminLayerStyle });
-    this.leafletMap.addLayer(this.adminLayer);
+    onAdminChange = (adminChangeEvent: any) => {
+        this.loading = true;
+        this.apiService
+            .getLayer(this.event.id, adminChangeEvent.detail.value)
+            .pipe(finalize(() => (this.loading = false)))
+            .subscribe(
+                (adminLayer) => this.onGetAdminLayer(adminLayer),
+                () => this.onGetAdminLayerError(adminChangeEvent.detail.value),
+            );
+    };
 
-    if (isInitialLoad && adminLayer.name === LayerName.admin1) {
-      this.leafletMap.fitBounds(this.adminLayer.getBounds());
-    }
-  };
+    onGetAdminLayer = (adminLayer: Layer) => {
+        let isInitialLoad = true;
 
-  onGetAdminLayerError = (layerName: LayerName) =>
-    (this.adminDisabled[layerName] = true);
+        if (this.adminLayer) {
+            this.leafletMap.removeLayer(this.adminLayer);
+            isInitialLoad = false;
+        }
+
+        this.adminLayer = geoJSON(adminLayer.geojson, {
+            style: adminLayerStyle,
+        });
+        this.leafletMap.addLayer(this.adminLayer);
+
+        if (isInitialLoad && adminLayer.name === LayerName.admin1) {
+            this.leafletMap.fitBounds(this.adminLayer.getBounds());
+        }
+    };
+
+    onGetAdminLayerError = (layerName: LayerName) =>
+        (this.adminDisabled[layerName] = true);
 }

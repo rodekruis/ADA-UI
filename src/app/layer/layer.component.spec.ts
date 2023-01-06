@@ -6,26 +6,26 @@ import { LayerComponent } from './layer.component';
 import { ApiService } from '../api.service';
 
 describe('LayerComponent', () => {
-  let component: LayerComponent;
-  let fixture: ComponentFixture<LayerComponent>;
+    let component: LayerComponent;
+    let fixture: ComponentFixture<LayerComponent>;
 
-  beforeEach(() => {
-    const apiServiceSpy = jasmine.createSpyObj<ApiService>(['getLayers']);
-    apiServiceSpy.getLayers.and.returnValue(of([]));
+    beforeEach(() => {
+        const apiServiceSpy = jasmine.createSpyObj<ApiService>(['getLayers']);
+        apiServiceSpy.getLayers.and.returnValue(of([]));
 
-    TestBed.configureTestingModule({
-      declarations: [LayerComponent],
-      imports: [IonicModule.forRoot()],
-      providers: [{ provide: ApiService, useValue: apiServiceSpy }],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
+        TestBed.configureTestingModule({
+            declarations: [LayerComponent],
+            imports: [IonicModule.forRoot()],
+            providers: [{ provide: ApiService, useValue: apiServiceSpy }],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(LayerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(LayerComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

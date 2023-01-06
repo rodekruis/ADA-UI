@@ -21,37 +21,37 @@ import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    EventComponent,
-    MapComponent,
-    LayerComponent,
-    CalendarComponent,
-    SummaryComponent,
-    PopupComponent,
-    HeaderComponent,
-    MarkerPopupComponent,
-    LoadingComponent,
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    LeafletModule,
-    LeafletMarkerClusterModule,
-    HttpClientModule,
-    MarkdownModule.forRoot(),
-    AppRouter,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxLiquidCacheModule.forRoot(),
-  ],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        EventComponent,
+        MapComponent,
+        LayerComponent,
+        CalendarComponent,
+        SummaryComponent,
+        PopupComponent,
+        HeaderComponent,
+        MarkerPopupComponent,
+        LoadingComponent,
+    ],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(),
+        LeafletModule,
+        LeafletMarkerClusterModule,
+        HttpClientModule,
+        MarkdownModule.forRoot(),
+        AppRouter,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxLiquidCacheModule.forRoot(),
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(injector: Injector) {
-    customElements.define(
-      'marker-popup-element',
-      createCustomElement(MarkerPopupComponent, { injector })
-    );
-  }
+    constructor(injector: Injector) {
+        customElements.define(
+            'marker-popup-element',
+            createCustomElement(MarkerPopupComponent, { injector }),
+        );
+    }
 }

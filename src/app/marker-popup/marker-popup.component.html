@@ -1,72 +1,72 @@
 <div class="marker-popup-wrapper">
-  <ion-header class="ion-no-border">
-    <ion-toolbar class="font-montserrat">
-      <div class="title text-bold">{{ event.type }} {{ event.name }}</div>
-      <div class="subtitle">{{ startDate }}</div>
-      <ion-buttons slot="end">
-        <ion-button (click)="closePopup(['/events'])">
-          <ion-icon slot="icon-only" name="close"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+    <ion-header class="ion-no-border">
+        <ion-toolbar class="font-montserrat">
+            <div class="title text-bold">{{ event.type }} {{ event.name }}</div>
+            <div class="subtitle">{{ startDate }}</div>
+            <ion-buttons slot="end">
+                <ion-button (click)="closePopup(['/events'])">
+                    <ion-icon slot="icon-only" name="close"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
 
-  <div class="content ion-padding">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div *ngIf="restricted">
-        Enter the access code to view the damage assessment.
-        <ion-item>
-          <ion-input
-            formControlName="password"
-            type="password"
-            placeholder="Enter the access code"
-            required="true"
-          ></ion-input>
-          <ion-note
-            slot="error"
-            *ngIf="
-              !form.pristine &&
-              !loading &&
-              form.get('password').value &&
-              form.get('password').hasError('error')
-            "
-          >
-            <ion-icon name="warning-outline"></ion-icon>
-            {{ form.get("password").getError("error") }}
-          </ion-note>
-        </ion-item>
-      </div>
-      <div *ngIf="!restricted">
-        Click the "View Event" button to view the damage assessment.
-      </div>
-      <ion-button
-        type="submit"
-        expand="block"
-        fill="solid"
-        shape="round"
-        color="ibf-primary"
-        [disabled]="form.invalid || loading"
-      >
-        <ion-text *ngIf="!loading">View Event</ion-text>
-        <ion-progress-bar
-          *ngIf="loading"
-          type="indeterminate"
-          color="light"
-          class="ion-margin-horizontal"
-        ></ion-progress-bar>
-      </ion-button>
-    </form>
-  </div>
+    <div class="content ion-padding">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div *ngIf="restricted">
+                Enter the access code to view the damage assessment.
+                <ion-item>
+                    <ion-input
+                        formControlName="password"
+                        type="password"
+                        placeholder="Enter the access code"
+                        required="true"
+                    ></ion-input>
+                    <ion-note
+                        slot="error"
+                        *ngIf="
+                            !form.pristine &&
+                            !loading &&
+                            form.get('password').value &&
+                            form.get('password').hasError('error')
+                        "
+                    >
+                        <ion-icon name="warning-outline"></ion-icon>
+                        {{ form.get("password").getError("error") }}
+                    </ion-note>
+                </ion-item>
+            </div>
+            <div *ngIf="!restricted">
+                Click the "View Event" button to view the damage assessment.
+            </div>
+            <ion-button
+                type="submit"
+                expand="block"
+                fill="solid"
+                shape="round"
+                color="ibf-primary"
+                [disabled]="form.invalid || loading"
+            >
+                <ion-text *ngIf="!loading">View Event</ion-text>
+                <ion-progress-bar
+                    *ngIf="loading"
+                    type="indeterminate"
+                    color="light"
+                    class="ion-margin-horizontal"
+                ></ion-progress-bar>
+            </ion-button>
+        </form>
+    </div>
 
-  <ion-footer class="ion-no-border">
-    <ion-toolbar>
-      <ion-text slot="end">
-        Access: <b>{{ event.access }}</b>
-        <ion-icon
-          [name]="restricted ? 'eye-off' : 'eye'"
-          size="small"
-        ></ion-icon>
-      </ion-text>
-    </ion-toolbar>
-  </ion-footer>
+    <ion-footer class="ion-no-border">
+        <ion-toolbar>
+            <ion-text slot="end">
+                Access: <b>{{ event.access }}</b>
+                <ion-icon
+                    [name]="restricted ? 'eye-off' : 'eye'"
+                    size="small"
+                ></ion-icon>
+            </ion-text>
+        </ion-toolbar>
+    </ion-footer>
 </div>

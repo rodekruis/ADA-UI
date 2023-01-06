@@ -3,21 +3,21 @@ import { IonicModule } from '@ionic/angular';
 import { CalendarComponent } from './calendar.component';
 
 describe('CalendarComponent', () => {
-  let component: CalendarComponent;
-  let fixture: ComponentFixture<CalendarComponent>;
+    let component: CalendarComponent;
+    let fixture: ComponentFixture<CalendarComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [CalendarComponent],
-      imports: [IonicModule.forRoot()],
-    }).compileComponents();
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [CalendarComponent],
+            imports: [IonicModule.forRoot()],
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(CalendarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(CalendarComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
