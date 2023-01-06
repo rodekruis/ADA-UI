@@ -32,11 +32,11 @@
         ></div>
         <ion-segment
             *ngIf="eventView"
-            value="admin-1"
             mode="ios"
             color="ibf-primary"
             scrollable="true"
-            (ionChange)="onAdminChange($event)"
+            [(ngModel)]="adminSelected"
+            (ngModelChange)="onAdminChange(adminSelected)"
         >
             <ion-segment-button
                 *ngFor="
