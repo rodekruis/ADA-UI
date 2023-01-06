@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/rodekruis/ADA-UI/compare/v0.1.2...v0.1.3) (2023-01-06)
+
+
+### Bug Fixes
+
+* replace ionChange with ngModelChange for ion-segment ([66a826f](https://github.com/rodekruis/ADA-UI/commit/66a826f6b3c602c1b97db9681681e09bb784bb12))
+
+
+
 ## [0.1.2](https://github.com/rodekruis/ADA-UI/compare/v0.1.1...v0.1.2) (2023-01-05)
 
 
