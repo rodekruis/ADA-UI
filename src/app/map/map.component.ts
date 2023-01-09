@@ -32,7 +32,6 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     public leafletOptions = leafletOptions;
     public eventView = false;
     public adminDisabled = {};
-    public adminSelected = LayerName.admin1;
 
     private markerClusterGroup: MarkerClusterGroup;
     private adminLayer: FeatureGroup;
@@ -84,7 +83,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         this.menuCtrl.close();
 
         if (this.eventView) {
-            this.onAdminChange(LayerName.admin1);
+            this.onAdminChange({ detail: { value: LayerName.admin1 } });
         } else if (this.adminLayer) {
             this.leafletMap.removeLayer(this.adminLayer);
             delete this.adminLayer;
@@ -140,14 +139,14 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         }
     };
 
-    onAdminChange = (adminSelected: LayerName) => {
+    onAdminChange = (adminChangeEvent: any) => {
         this.loading = true;
         this.apiService
-            .getLayer(this.event.id, adminSelected)
+            .getLayer(this.event.id, adminChangeEvent.detail.value)
             .pipe(finalize(() => (this.loading = false)))
             .subscribe(
                 (adminLayer) => this.onGetAdminLayer(adminLayer),
-                () => this.onGetAdminLayerError(adminSelected),
+                () => this.onGetAdminLayerError(adminChangeEvent.detail.value),
             );
     };
 
