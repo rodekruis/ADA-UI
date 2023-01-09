@@ -1,3 +1,17 @@
+## [0.1.4](https://github.com/rodekruis/ADA-UI/compare/v0.1.3...v0.1.4) (2023-01-09)
+
+
+### Bug Fixes
+
+* set optimization of scripts to false to get around liquid cache interpolation error ([facc52c](https://github.com/rodekruis/ADA-UI/commit/facc52c7a60f35b97f320052ace5c9935ef68838))
+
+
+### Reverts
+
+* Revert "fix: replace ionChange with ngModelChange for ion-segment" ([c3bf9d7](https://github.com/rodekruis/ADA-UI/commit/c3bf9d7334a6f4cdf7c6d70dd338f53be348f299))
+
+
+
 ## [0.1.3](https://github.com/rodekruis/ADA-UI/compare/v0.1.2...v0.1.3) (2023-01-06)
 
 
