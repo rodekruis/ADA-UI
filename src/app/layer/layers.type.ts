@@ -1,23 +1,44 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 export const layerIcon = {
-    buildingsDamageNone:
+    'buildings-damage-none':
         'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    buildingsDamageLight:
+    'buildings-damage-light':
         'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    buildingsDamageModerate:
+    'buildings-damage-moderate':
         'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    buildingsDamageHeavy:
+    'buildings-damage-heavy':
         'https://ionicframework.com/docs/img/demos/thumbnail.svg',
     buildings: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    assessmentArea: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    peopleAffected: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    populationDensity:
+    'assessment-area':
         'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    wealthIndex: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    damageAdmin1: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    damageAdmin2: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    damageAdmin3: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    damageAdmin4: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    damageAdmin5: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+    'people-affected':
+        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+    'population-density':
+        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+    'wealth-index': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+    'damage-admin-1': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+    'damage-admin-2': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+    'damage-admin-3': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+    'damage-admin-4': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+    'damage-admin-5': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+};
+
+export const layerLabel = {
+    'buildings-damage-none': 'No Building Damage',
+    'buildings-damage-light': 'Light Building Damage',
+    'buildings-damage-moderate': 'Moderate Building Damage',
+    'buildings-damage-heavy': 'Heavy Building Damage',
+    buildings: 'Buildings',
+    'assessment-area': 'Assessment Area',
+    'people-affected': 'People Affected',
+    'population-density': 'Population Density',
+    'wealth-index': 'Wealth Index',
+    'damage-admin-1': 'Damage Admin 1',
+    'damage-admin-2': 'Damage Admin 2',
+    'damage-admin-3': 'Damage Admin 3',
+    'damage-admin-4': 'Damage Admin 4',
+    'damage-admin-5': 'Damage Admin 5',
 };
 
 export enum LayerName {
@@ -42,7 +63,16 @@ export enum LayerName {
     damageAdmin5 = 'damage-admin-5',
 }
 
+export const adminLayerNames = [
+    LayerName.admin1,
+    LayerName.admin2,
+    LayerName.admin3,
+    LayerName.admin4,
+    LayerName.admin5,
+];
+
 export class Layer {
+    icon: string;
     label: string;
     name: LayerName;
     image: string;

@@ -11,6 +11,7 @@
         <app-layer
             [event]="preview ? null : event"
             [loading]="loading"
+            (toggleLayerEventEmitter)="onLayerToggle($event)"
         ></app-layer>
     </ion-menu>
 

@@ -1,6 +1,6 @@
 <app-loading [loading]="loading" message="Loading..."></app-loading>
 
-<ion-list lines="full" *ngIf="!loading">
+<ion-list lines="full" *ngIf="!debouncedLoading">
     <ion-item
         button
         *ngFor="let layer of layers"
@@ -8,7 +8,7 @@
         (click)="toggleLayer(layer)"
     >
         <ion-thumbnail slot="start">
-            <img [alt]="layer.label" [src]="layerIcon[layer.name]" />
+            <img [alt]="layer.label" [src]="layer.icon" />
         </ion-thumbnail>
         <ion-label>{{ layer.label }}</ion-label>
         <ion-icon
