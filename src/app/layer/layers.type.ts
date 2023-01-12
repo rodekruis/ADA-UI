@@ -41,6 +41,32 @@ export const layerLabel = {
     'damage-admin-5': 'Damage Admin 5',
 };
 
+export const layerStyle = {
+    'admin-1': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'admin-2': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'admin-3': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'admin-4': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'admin-5': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'buildings-damage-none': { color: '#2ad062', weight: 1, fillOpacity: 0.4 },
+    'buildings-damage-light': { color: '#faff03', weight: 1, fillOpacity: 0.4 },
+    'buildings-damage-moderate': {
+        color: '#ffb30f',
+        weight: 1,
+        fillOpacity: 0.4,
+    },
+    'buildings-damage-heavy': { color: '#f5333f', weight: 1, fillOpacity: 0.4 },
+    buildings: { color: '#969696', weight: 1, fillOpacity: 0.4 },
+    'assessment-area': { color: '#f5333f', weight: 1, fillOpacity: 0 },
+    'people-affected': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'population-density': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'wealth-index': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'damage-admin-1': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'damage-admin-2': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'damage-admin-3': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'damage-admin-4': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'damage-admin-5': { color: '#969696', weight: 1, fillOpacity: 0 },
+};
+
 export enum LayerName {
     admin1 = 'admin-1',
     admin2 = 'admin-2',

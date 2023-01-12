@@ -11,10 +11,10 @@ import { MenuController, ToastController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
 import { geoJSON, Map, MarkerClusterGroup, FeatureGroup } from 'leaflet';
 import { createMarker, iconCreateFunction } from './map.utils';
-import { adminLayerStyle, layerStyle, leafletOptions } from './map.config';
+import { leafletOptions } from './map.config';
 import { ApiService } from '../api.service';
 import { Event } from '../event/event.type';
-import { Layer, LayerName } from '../layer/layers.type';
+import { Layer, LayerName, layerStyle } from '../layer/layers.type';
 import { TOAST_OPTIONS, TOAST_DELAY } from '../app.config';
 
 @Component({
@@ -164,7 +164,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         }
 
         this.adminLayer = geoJSON(adminLayer.geojson, {
-            style: adminLayerStyle,
+            style: layerStyle[adminLayer.name],
         });
         this.leafletMap.addLayer(this.adminLayer);
 
@@ -190,7 +190,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
             this.layers[layer.name] = null;
         } else {
             this.layers[layer.name] = geoJSON(layer.geojson, {
-                style: layerStyle,
+                style: layerStyle[layer.name],
             });
             this.leafletMap.addLayer(this.layers[layer.name]);
         }
