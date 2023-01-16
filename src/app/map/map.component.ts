@@ -12,6 +12,7 @@ import { finalize } from 'rxjs/operators';
 import { geoJSON, Map, MarkerClusterGroup, FeatureGroup } from 'leaflet';
 import { createMarker, iconCreateFunction } from './map.utils';
 import { leafletOptions } from './map.config';
+import { LegendService } from './legend.service';
 import { ApiService } from '../api.service';
 import { Event } from '../event/event.type';
 import { Layer, LayerName, layerStyle } from '../layer/layers.type';
@@ -44,6 +45,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         private router: Router,
         private ngZone: NgZone,
         private apiService: ApiService,
+        private legendService: LegendService,
     ) {}
 
     ngAfterViewChecked() {
@@ -67,6 +69,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
 
     onMapReady = (leafletMapReady: Map) => {
         this.leafletMap = leafletMapReady;
+        this.legendService.setLeafletMap(this.leafletMap);
     };
 
     onEventChange = () => {
@@ -188,11 +191,13 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         if (this.layers[layer.name]) {
             this.leafletMap.removeLayer(this.layers[layer.name]);
             this.layers[layer.name] = null;
+            this.legendService.hideLegend(layer.name);
         } else {
             this.layers[layer.name] = geoJSON(layer.geojson, {
                 style: layerStyle[layer.name],
             });
             this.leafletMap.addLayer(this.layers[layer.name]);
+            this.legendService.showLegend(layer.name);
         }
     };
 

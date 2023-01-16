@@ -1,5 +1,22 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
+import ColorScale from 'color-scales';
+
+/*
+    HDX Dataset Deep Dive: Data for Good at Meta’s Relative Wealth Index
+
+    Range: -10 and +10 (Effective: -2 and +2)
+    https://youtu.be/MImFR0_NSxQ
+
+    #542788 RWI -1.0 / #FFFFFF RWI +0.0 / #B35806 RWI +1.0
+    http://www.povertymaps.net/assets/key-color.svg
+*/
+const wealthIndexColorScale = new ColorScale(-1, +1, [
+    '#542788',
+    '#FFFFFF',
+    '#B35806',
+]);
+
 export const layerIcon = {
     'buildings-damage-none':
         'https://ionicframework.com/docs/img/demos/thumbnail.svg',
@@ -59,7 +76,13 @@ export const layerStyle = {
     'assessment-area': { color: '#f5333f', weight: 1, fillOpacity: 0 },
     'people-affected': { color: '#969696', weight: 1, fillOpacity: 0 },
     'population-density': { color: '#969696', weight: 1, fillOpacity: 0 },
-    'wealth-index': { color: '#969696', weight: 1, fillOpacity: 0 },
+    'wealth-index': (geojson: GeoJSON.Feature) => ({
+        color: wealthIndexColorScale
+            .getColor(geojson.properties.rwi)
+            .toHexString(),
+        weight: 0,
+        fillOpacity: 0.5,
+    }),
     'damage-admin-1': { color: '#969696', weight: 1, fillOpacity: 0 },
     'damage-admin-2': { color: '#969696', weight: 1, fillOpacity: 0 },
     'damage-admin-3': { color: '#969696', weight: 1, fillOpacity: 0 },

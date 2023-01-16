@@ -27,6 +27,7 @@
     "@asymmetrik/ngx-leaflet": "^14.0.1",
     "@asymmetrik/ngx-leaflet-markercluster": "^14.0.1",
     "@ionic/angular": "^6.1.9",
+    "color-scales": "^3.0.2",
     "ionicons": "^6.0.3",
     "leaflet": "^1.9.2",
     "leaflet.markercluster": "^1.5.3",
