@@ -43,3 +43,5 @@ Marker.prototype.options.icon = icon({
     iconUrl: 'assets/map/marker.svg',
     iconSize: markerIconSize,
 });
+
+export const layerErrorMessageDelimiter = '<br />';

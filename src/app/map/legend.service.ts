@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Map, Control } from 'leaflet';
-import { LayerName } from '../layer/layers.type';
-import {
-    buildingsLayerNames,
-    controlOptions,
-    onAddControl,
-} from './legend.utils';
+import { AdminLevelFill } from '../admin-level/admin-level.type';
+import { LayerName, buildingsLayerNames } from '../layer/layers.type';
+import { controlOptions, onAddControl } from './legend.utils';
 
 @Injectable({ providedIn: 'root' })
 export class LegendService {
     private controls = {};
     private showBuildingControl = {};
+    private adminLegendControl: Control;
     private leafletMap: Map;
 
     setLeafletMap = (leafletMap: Map) => (this.leafletMap = leafletMap);
@@ -56,6 +54,24 @@ export class LegendService {
         );
         if (filteredBuildingLayerNames.length) {
             this.showLegend(filteredBuildingLayerNames[0]);
+        }
+    };
+
+    showAdminLegend = (adminLevelFill: AdminLevelFill) => {
+        this.hideAdminLegend();
+        this.adminLegendControl = new Control(controlOptions);
+        this.adminLegendControl.onAdd = onAddControl(
+            LayerName.admin1,
+            {},
+            adminLevelFill,
+        );
+        this.leafletMap.addControl(this.adminLegendControl);
+    };
+
+    hideAdminLegend = () => {
+        if (this.adminLegendControl) {
+            this.leafletMap.removeControl(this.adminLegendControl);
+            delete this.adminLegendControl;
         }
     };
 }

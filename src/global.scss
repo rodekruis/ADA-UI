@@ -137,3 +137,11 @@ ion-modal {
 ion-toast {
     --width: 600px;
 }
+
+.leaflet-admin-area-pane {
+    z-index: 390;
+}
+
+.leaflet-assessment-area-pane {
+    z-index: 410;
+}

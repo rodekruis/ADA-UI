@@ -9,14 +9,25 @@ import {
 import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
-import { geoJSON, Map, MarkerClusterGroup, FeatureGroup } from 'leaflet';
-import { createMarker, iconCreateFunction } from './map.utils';
-import { leafletOptions } from './map.config';
+import { geoJSON, MarkerClusterGroup } from 'leaflet';
+import {
+    createAdminPopup,
+    createMarker,
+    iconCreateFunction,
+    LeafletPane,
+} from './map.utils';
+import { leafletOptions, layerErrorMessageDelimiter } from './map.config';
 import { LegendService } from './legend.service';
 import { ApiService } from '../api.service';
 import { Event } from '../event/event.type';
-import { Layer, LayerName, layerStyle } from '../layer/layers.type';
+import {
+    adminLayerStyle,
+    Layer,
+    LayerName,
+    getLayerStyle,
+} from '../layer/layers.type';
 import { TOAST_OPTIONS, TOAST_DELAY } from '../app.config';
+import { AdminLevelFill } from '../admin-level/admin-level.type';
 
 @Component({
     selector: 'app-map',
@@ -29,15 +40,16 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     @Input() preview = false;
     @Input() loading = true;
 
-    public leafletMap: Map;
+    public leafletMap: L.Map;
 
     public leafletOptions = leafletOptions;
     public eventView = false;
     public adminDisabled = {};
 
     private markerClusterGroup: MarkerClusterGroup;
-    private adminLayer: FeatureGroup;
+    private adminLayer: L.GeoJSON;
     private layers: Layer[] = [];
+    private adminLevelFill: AdminLevelFill;
 
     constructor(
         private menuCtrl: MenuController,
@@ -67,9 +79,11 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         }
     }
 
-    onMapReady = (leafletMapReady: Map) => {
+    onMapReady = (leafletMapReady: L.Map) => {
         this.leafletMap = leafletMapReady;
         this.legendService.setLeafletMap(this.leafletMap);
+        this.leafletMap.createPane(LeafletPane.adminArea);
+        this.leafletMap.createPane(LeafletPane.assessmentArea);
     };
 
     onEventChange = () => {
@@ -89,7 +103,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         this.menuCtrl.close();
 
         if (this.eventView) {
-            this.onAdminChange({ detail: { value: LayerName.admin1 } });
+            this.onAdminChange(LayerName.admin1);
         } else if (this.adminLayer) {
             this.leafletMap.removeLayer(this.adminLayer);
             delete this.adminLayer;
@@ -145,15 +159,14 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         }
     };
 
-    onAdminChange = (adminChangeEvent: any) => {
+    onAdminChange = (adminLayerName: LayerName) => {
         this.loading = true;
         this.apiService
-            .getLayer(this.event.id, adminChangeEvent.detail.value)
+            .getLayer(this.event.id, adminLayerName)
             .pipe(finalize(() => (this.loading = false)))
             .subscribe(
                 (adminLayer) => this.onGetAdminLayer(adminLayer),
-                (error) =>
-                    this.onGetLayerError(adminChangeEvent.detail.value, error),
+                (error) => this.onGetLayerError(adminLayerName, error),
             );
     };
 
@@ -167,8 +180,22 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         }
 
         this.adminLayer = geoJSON(adminLayer.geojson, {
-            style: layerStyle[adminLayer.name],
+            style: adminLayerStyle(this.adminLevelFill),
+            pane: LeafletPane.adminArea,
+            onEachFeature: (feature, element) => {
+                feature.properties[AdminLevelFill.buildingDamage] = Math.floor(
+                    Math.random() * 10000,
+                );
+                feature.properties[AdminLevelFill.peopleAffected] = Math.floor(
+                    Math.random() * 1000000,
+                );
+                element.bindPopup(createAdminPopup(feature.properties));
+                element.on('click', (leafletMouseEvent: L.LeafletMouseEvent) =>
+                    element.openPopup(leafletMouseEvent.latlng),
+                );
+            },
         });
+        this.onAdminFillChange(this.adminLevelFill);
         this.leafletMap.addLayer(this.adminLayer);
 
         if (isInitialLoad && adminLayer.name === LayerName.admin1) {
@@ -194,7 +221,11 @@ export class MapComponent implements AfterViewChecked, OnChanges {
             this.legendService.hideLegend(layer.name);
         } else {
             this.layers[layer.name] = geoJSON(layer.geojson, {
-                style: layerStyle[layer.name],
+                style: getLayerStyle(layer.name),
+                pane:
+                    layer.name === LayerName.assessmentArea
+                        ? LeafletPane.assessmentArea
+                        : LeafletPane.overlay,
             });
             this.leafletMap.addLayer(this.layers[layer.name]);
             this.legendService.showLegend(layer.name);
@@ -204,7 +235,9 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     onGetLayerError = async (layerName: LayerName, error: any) => {
         this.adminDisabled[layerName] = true;
 
-        const message = `${error.error.message.join('<br/>')}: ${layerName}`;
+        const message = `${error.error.message.join(
+            layerErrorMessageDelimiter,
+        )}: ${layerName}`;
 
         const toast = await this.toastController.create({
             ...TOAST_OPTIONS,
@@ -214,5 +247,15 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         await new Promise((resolve) => {
             setTimeout(() => resolve(toast.present()), TOAST_DELAY);
         });
+    };
+
+    onAdminFillChange = (adminLevelFill: AdminLevelFill) => {
+        this.adminLevelFill = adminLevelFill;
+        this.adminLayer.setStyle(adminLayerStyle(this.adminLevelFill));
+        if (adminLevelFill) {
+            this.legendService.showAdminLegend(this.adminLevelFill);
+        } else {
+            this.legendService.hideAdminLegend();
+        }
     };
 }
