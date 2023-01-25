@@ -72,7 +72,7 @@ export const createMarker = (event: Event, onMarkerClick: () => void) =>
 export const createAdminPopup = (
     properties: GeoJSON.GeoJsonProperties,
 ) => `<div class="ion-padding line-height-1-8">
-    <ion-label class="text-bold">${properties.shapeName}</ion-label><br />
+    <ion-label class="text-bold">${properties.name}</ion-label><br />
     <ion-label>People Affected: ${formatNumber(
         properties[AdminLevelFill.peopleAffected],
     )}</ion-label><br />
@@ -81,8 +81,20 @@ export const createAdminPopup = (
     )}</ion-label>
     </div>`;
 
+export const getAdminLayerMaximum = (
+    geojson: GeoJSON.FeatureCollection,
+    property: string,
+) =>
+    Math.max(
+        1,
+        ...geojson.features.map(
+            (feature) => feature.properties[property] as number,
+        ),
+    );
+
 export default {
     iconCreateFunction,
     createMarker,
     createAdminPopup,
+    getAdminLayerMaximum,
 };

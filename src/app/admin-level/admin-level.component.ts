@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { LayerName } from '../layer/layers.type';
-import { AdminLevelFill } from './admin-level.type';
+import { LayerName } from '../layer/layer.type';
+import { AdminLevelFill, adminLevelFillLabel } from './admin-level.type';
 
 @Component({
     selector: 'app-admin-level',
@@ -16,6 +16,7 @@ export class AdminLevelComponent {
 
     public adminLayerNames = LayerName;
     public adminLevelFill = AdminLevelFill;
+    public adminLevelFillLabel = adminLevelFillLabel;
     public adminLevelFillValue: AdminLevelFill;
 
     constructor() {}

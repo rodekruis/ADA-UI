@@ -7,7 +7,7 @@ import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluste
 import { MapComponent } from './map.component';
 import { LegendService } from './legend.service';
 import { ApiService } from '../api.service';
-import { Layer } from '../layer/layers.type';
+import { Layer } from '../layer/layer.type';
 
 describe('MapComponent', () => {
     let component: MapComponent;

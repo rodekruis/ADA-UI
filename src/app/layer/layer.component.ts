@@ -18,7 +18,7 @@ import {
     layerIcon,
     layerLabel,
     adminLayerNames,
-} from './layers.type';
+} from './layer.type';
 import { LOADING_DEBOUNCE_WAIT } from '../app.config';
 
 @Component({

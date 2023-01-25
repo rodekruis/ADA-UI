@@ -1,25 +1,26 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
 import { ControlOptions, DomUtil } from 'leaflet';
-import { AdminLevelFill } from '../admin-level/admin-level.type';
 import {
-    assessmentAreaLayerStyle,
+    AdminLevelFill,
+    adminLevelFillLabel,
+} from '../admin-level/admin-level.type';
+import { formatNumber } from '../app.utils';
+import {
     buildingsLayerNames,
     layerLabel,
     LayerName,
-} from '../layer/layers.type';
+} from '../layer/layer.type';
+import { assessmentAreaLayerStyle } from './layer.style';
 
 export const controlOptions: ControlOptions = { position: 'bottomright' };
-
-interface ShowBuildingControl {
-    [key: string]: boolean;
-}
 
 export const onAddControl =
     (
         layerName: LayerName,
         showBuildingControl: ShowBuildingControl = {},
         adminLevelFill: AdminLevelFill = null,
+        maximum: number = 0,
     ) =>
     () => {
         const div = DomUtil.create('div', 'legend');
@@ -27,6 +28,7 @@ export const onAddControl =
             layerName,
             showBuildingControl,
             adminLevelFill,
+            maximum,
         );
         return div;
     };
@@ -35,13 +37,10 @@ const getLayerLegend = (
     layerName: LayerName,
     showBuildingControl: ShowBuildingControl,
     adminLevelFill: AdminLevelFill,
+    maximum: number,
 ) => {
     if (layerName === LayerName.admin1) {
-        if (adminLevelFill === AdminLevelFill.peopleAffected) {
-            return peopleAffectedLegend;
-        } else if (adminLevelFill === AdminLevelFill.buildingDamage) {
-            return buildingDamageLegend;
-        }
+        return getGradedLegend(maximum, adminLevelFillLabel[adminLevelFill]);
     }
     if (layerName === LayerName.wealthIndex) {
         return wealthIndexLegend;
@@ -63,45 +62,39 @@ const getLegendEntry = (color: string, label: string) =>
 
 const legendEntryDelimiter = '<br />';
 
-// Admin Level : People Affected
+// Admin Level Fill
 
-const peopleAffectedLegendProperties = [
-    { color: '#9696961a', label: '0 - 10K' },
-    { color: '#9696964d', label: '10K - 100K' },
-    { color: '#96969680', label: '100K - 500K' },
-    { color: '#969696b3', label: '500K - 1M' },
-    { color: '#969696e6', label: '1M+' },
-];
+const hexCodeAlphaSuffixes = ['1a', '4d', '80', 'b3', 'e6'];
 
-const peopleAffectedLegend = [
-    'People Affected',
-    ...peopleAffectedLegendProperties.map((peopleAffectedLegendEntry) =>
-        getLegendEntry(
-            peopleAffectedLegendEntry.color,
-            peopleAffectedLegendEntry.label,
-        ),
-    ),
-].join(legendEntryDelimiter);
+const getGradedLegendEntryLabel = (
+    maximum: number,
+    index: number,
+    lastIndex: boolean,
+) => {
+    const start = formatNumber((maximum * index) / 5);
+    const end = formatNumber((maximum * (index + 1)) / 5);
+    return lastIndex ? `${start}+` : `${start} - ${end}`;
+};
 
-// Admin Level : Building Damage
-
-const buildingDamageLegendProperties = [
-    { color: '#9696961a', label: '0 - 100' },
-    { color: '#9696964d', label: '101 - 1K' },
-    { color: '#96969680', label: '1K - 5K' },
-    { color: '#969696b3', label: '5K - 10K' },
-    { color: '#969696e6', label: '10K+' },
-];
-
-const buildingDamageLegend = [
-    'Building Damage',
-    ...buildingDamageLegendProperties.map((buildingDamageLegendEntry) =>
-        getLegendEntry(
-            buildingDamageLegendEntry.color,
-            buildingDamageLegendEntry.label,
-        ),
-    ),
-].join(legendEntryDelimiter);
+const getGradedLegend = (
+    maximum: number = 0,
+    title: string = 'Legend',
+    color: string = '#969696',
+) =>
+    [
+        title,
+        ...(maximum > 0
+            ? hexCodeAlphaSuffixes.map((hexCodeAlphaSuffix, index) => {
+                  const colorWithAlpha = `${color}${hexCodeAlphaSuffix}`;
+                  const label = getGradedLegendEntryLabel(
+                      maximum,
+                      index,
+                      hexCodeAlphaSuffixes.length - 1 === index,
+                  );
+                  return getLegendEntry(colorWithAlpha, label);
+              })
+            : [getLegendEntry('#9696961a', 'No Data')]),
+    ].join(legendEntryDelimiter);
 
 // Wealth Index
 
@@ -142,6 +135,10 @@ const populationDensityLegend = [
 ].join(legendEntryDelimiter);
 
 // Buildings
+
+interface ShowBuildingControl {
+    [key: string]: boolean;
+}
 
 const buildingsLegendProperties = {
     buildings: { color: '#969696', label: 'All Buildings' },

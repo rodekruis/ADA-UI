@@ -13,6 +13,7 @@ import { geoJSON, MarkerClusterGroup } from 'leaflet';
 import {
     createAdminPopup,
     createMarker,
+    getAdminLayerMaximum,
     iconCreateFunction,
     LeafletPane,
 } from './map.utils';
@@ -20,12 +21,8 @@ import { leafletOptions, layerErrorMessageDelimiter } from './map.config';
 import { LegendService } from './legend.service';
 import { ApiService } from '../api.service';
 import { Event } from '../event/event.type';
-import {
-    adminLayerStyle,
-    Layer,
-    LayerName,
-    getLayerStyle,
-} from '../layer/layers.type';
+import { Layer, LayerName } from '../layer/layer.type';
+import { adminLayerStyle, getLayerStyle } from './layer.style';
 import { TOAST_OPTIONS, TOAST_DELAY } from '../app.config';
 import { AdminLevelFill } from '../admin-level/admin-level.type';
 
@@ -180,15 +177,8 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         }
 
         this.adminLayer = geoJSON(adminLayer.geojson, {
-            style: adminLayerStyle(this.adminLevelFill),
             pane: LeafletPane.adminArea,
             onEachFeature: (feature, element) => {
-                feature.properties[AdminLevelFill.buildingDamage] = Math.floor(
-                    Math.random() * 10000,
-                );
-                feature.properties[AdminLevelFill.peopleAffected] = Math.floor(
-                    Math.random() * 1000000,
-                );
                 element.bindPopup(createAdminPopup(feature.properties));
                 element.on('click', (leafletMouseEvent: L.LeafletMouseEvent) =>
                     element.openPopup(leafletMouseEvent.latlng),
@@ -251,9 +241,15 @@ export class MapComponent implements AfterViewChecked, OnChanges {
 
     onAdminFillChange = (adminLevelFill: AdminLevelFill) => {
         this.adminLevelFill = adminLevelFill;
-        this.adminLayer.setStyle(adminLayerStyle(this.adminLevelFill));
+
+        const maximum = getAdminLayerMaximum(
+            this.adminLayer.toGeoJSON() as GeoJSON.FeatureCollection,
+            this.adminLevelFill,
+        );
+        this.adminLayer.setStyle(adminLayerStyle(this.adminLevelFill, maximum));
+
         if (adminLevelFill) {
-            this.legendService.showAdminLegend(this.adminLevelFill);
+            this.legendService.showAdminLegend(this.adminLevelFill, maximum);
         } else {
             this.legendService.hideAdminLegend();
         }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { LiquidCache } from 'ngx-liquid-cache';
 import { SESSION_STORAGE_TOKEN_KEY, API_ROOT_URL } from './app.config';
 import { Event } from './event/event.type';
-import { Layer, LayerName } from './layer/layers.type';
+import { Layer, LayerName } from './layer/layer.type';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
