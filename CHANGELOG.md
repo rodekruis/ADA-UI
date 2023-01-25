@@ -1,3 +1,16 @@
+# [0.2.0](https://github.com/rodekruis/ADA-UI/compare/v0.1.4...v0.2.0) (2023-01-25)
+
+
+### Features
+
+* add legend service ([044cb6b](https://github.com/rodekruis/ADA-UI/commit/044cb6b66d8a787927e1bf3f8c96440606bb4268))
+* admin levels should show population affected and building damage info ([f4ebace](https://github.com/rodekruis/ADA-UI/commit/f4ebace913e7e589d7ee0e74b63150e9c24868ba))
+* layer styles for map layers ([e7a7ec5](https://github.com/rodekruis/ADA-UI/commit/e7a7ec5b68958c56bd092781160cc03bc62e838d))
+* legend for admin level fills should be dynamic based on maximum value ([e927890](https://github.com/rodekruis/ADA-UI/commit/e9278900d36e20569dce47affd981967f88d3fa7))
+* load layer geojson in map component ([b034b96](https://github.com/rodekruis/ADA-UI/commit/b034b9604fce0148cffe6b202579832715af2ed5))
+
+
+
 ## [0.1.4](https://github.com/rodekruis/ADA-UI/compare/v0.1.3...v0.1.4) (2023-01-09)
 
 
