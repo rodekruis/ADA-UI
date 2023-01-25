@@ -39,9 +39,9 @@ export const markerPopupOptions = {
 
 export const markerIconSize = point(25, 41);
 
-export const adminLayerStyle = { color: '#969696', weight: 1, fillOpacity: 0 };
-
 Marker.prototype.options.icon = icon({
     iconUrl: 'assets/map/marker.svg',
     iconSize: markerIconSize,
 });
+
+export const layerErrorMessageDelimiter = '<br />';

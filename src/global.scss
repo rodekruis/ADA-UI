@@ -112,9 +112,36 @@ $event-types: "conflict", "earthquake", "eruption", "fire", "flood",
     }
 }
 
+.legend {
+    background-color: var(--ion-color-ibf-white);
+    padding: 2px 4px;
+    border-radius: 4px;
+    text-align: left;
+
+    i {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        margin-right: 2px;
+        vertical-align: text-bottom;
+    }
+}
+
 ion-modal {
     --border-color: var(--ion-color-ibf-primary);
     --border-width: 2px;
     --border-style: solid;
     --box-shadow: none;
+}
+
+ion-toast {
+    --width: 600px;
+}
+
+.leaflet-admin-area-pane {
+    z-index: 390;
+}
+
+.leaflet-assessment-area-pane {
+    z-index: 410;
 }

@@ -1,4 +1,4 @@
-const RECENT_WINDOW = 365; // 60
+const RECENT_WINDOW = 60;
 
 export const isRecent = (date: string | number | Date) => {
     const today = new Date();

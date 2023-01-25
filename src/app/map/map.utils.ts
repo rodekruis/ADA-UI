@@ -9,13 +9,21 @@ import {
     point,
 } from 'leaflet';
 import kebabCase from 'lodash.kebabcase';
-import { Event } from '../event/event.type';
-import { MarkerPopupComponent } from '../marker-popup/marker-popup.component';
 import {
     markerIconSize,
     markerPopupOptions,
     MARKER_CLUSTER_SIZE_WEIGHT,
 } from './map.config';
+import { formatNumber } from '../app.utils';
+import { AdminLevelFill } from '../admin-level/admin-level.type';
+import { Event } from '../event/event.type';
+import { MarkerPopupComponent } from '../marker-popup/marker-popup.component';
+
+export const enum LeafletPane {
+    overlay = 'overlayPane',
+    assessmentArea = 'assessment-area',
+    adminArea = 'admin-area',
+}
 
 const isRecentEventInCluster = (cluster: MarkerCluster) =>
     cluster
@@ -61,4 +69,32 @@ export const createMarker = (event: Event, onMarkerClick: () => void) =>
         .on('click', onMarkerClick)
         .bindPopup(createMarkerPopup(event), markerPopupOptions);
 
-export default { iconCreateFunction, createMarker };
+export const createAdminPopup = (
+    properties: GeoJSON.GeoJsonProperties,
+) => `<div class="ion-padding line-height-1-8">
+    <ion-label class="text-bold">${properties.name}</ion-label><br />
+    <ion-label>People Affected: ${formatNumber(
+        properties[AdminLevelFill.peopleAffected],
+    )}</ion-label><br />
+    <ion-label>Building Damage: ${formatNumber(
+        properties[AdminLevelFill.buildingDamage],
+    )}</ion-label>
+    </div>`;
+
+export const getAdminLayerMaximum = (
+    geojson: GeoJSON.FeatureCollection,
+    property: string,
+) =>
+    Math.max(
+        1,
+        ...geojson.features.map(
+            (feature) => feature.properties[property] as number,
+        ),
+    );
+
+export default {
+    iconCreateFunction,
+    createMarker,
+    createAdminPopup,
+    getAdminLayerMaximum,
+};

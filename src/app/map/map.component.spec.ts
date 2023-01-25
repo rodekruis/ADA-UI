@@ -5,14 +5,18 @@ import { of } from 'rxjs';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 import { MapComponent } from './map.component';
+import { LegendService } from './legend.service';
 import { ApiService } from '../api.service';
-import { Layer } from '../layer/layers.type';
+import { Layer } from '../layer/layer.type';
 
 describe('MapComponent', () => {
     let component: MapComponent;
     let fixture: ComponentFixture<MapComponent>;
 
     beforeEach(() => {
+        const legendServiceSpy = jasmine.createSpyObj<LegendService>([
+            'setLeafletMap',
+        ]);
         const apiServiceSpy = jasmine.createSpyObj<ApiService>(['getLayer']);
         apiServiceSpy.getLayer.and.returnValue(of(new Layer()));
 
@@ -23,7 +27,10 @@ describe('MapComponent', () => {
                 LeafletModule,
                 LeafletMarkerClusterModule,
             ],
-            providers: [{ provide: ApiService, useValue: apiServiceSpy }],
+            providers: [
+                { provide: ApiService, useValue: apiServiceSpy },
+                { provide: LegendService, useValue: legendServiceSpy },
+            ],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
         }).compileComponents();
 

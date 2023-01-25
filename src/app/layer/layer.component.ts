@@ -1,10 +1,25 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+    SimpleChanges,
+} from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { finalize } from 'rxjs/operators';
+import debounce from 'lodash.debounce';
 import { ApiService } from '../api.service';
 import { PopupComponent } from '../popup/popup.component';
 import { Event } from '../event/event.type';
-import { Layer, LayerName, layerIcon } from './layers.type';
-import { finalize } from 'rxjs/operators';
+import {
+    Layer,
+    LayerName,
+    layerIcon,
+    layerLabel,
+    adminLayerNames,
+} from './layer.type';
+import { LOADING_DEBOUNCE_WAIT } from '../app.config';
 
 @Component({
     selector: 'app-layer',
@@ -14,21 +29,33 @@ import { finalize } from 'rxjs/operators';
 export class LayerComponent implements OnChanges {
     @Input() event: Event;
     @Input() loading = true;
+    @Output() toggleLayerEventEmitter = new EventEmitter<LayerName>();
 
     public layers = [];
-    public layerIcon = layerIcon;
+    public debouncedLoading = this.loading;
+
+    private setLoading = debounce(
+        (loading) => (this.debouncedLoading = loading),
+        LOADING_DEBOUNCE_WAIT,
+    );
 
     constructor(
         private modalCtrl: ModalController,
         private apiService: ApiService,
     ) {}
 
-    ngOnChanges() {
-        if (!(this.event && this.event.id)) {
-            return;
+    ngOnChanges(changes: SimpleChanges) {
+        if ('event' in changes) {
+            if (!(this.event && this.event.id)) {
+                return;
+            }
+
+            this.getLayers();
         }
 
-        this.getLayers();
+        if ('loading' in changes) {
+            this.setLoading(changes.loading.currentValue);
+        }
     }
 
     async openPopup(title: string, content: string, event: MouseEvent) {
@@ -51,19 +78,25 @@ export class LayerComponent implements OnChanges {
     };
 
     onGetLayers = (layers: Layer[]) => {
-        this.layers = layers.filter(
-            (layer) =>
-                [
-                    LayerName.admin1,
-                    LayerName.admin2,
-                    LayerName.admin3,
-                    LayerName.admin4,
-                    LayerName.admin5,
-                ].indexOf(layer.name) < 0,
-        );
+        this.layers = layers
+            .filter((layer) => adminLayerNames.indexOf(layer.name) < 0)
+            .map((layer) => this.fillLayer(layer));
     };
 
     toggleLayer = (layer: Layer) => {
         layer.active = !layer.active;
+        this.toggleLayerEventEmitter.emit(layer.name);
+    };
+
+    fillLayer = (layer: Layer) => {
+        const cachedLayer = this.layers.find(
+            (_layer) => _layer.name === layer.name,
+        );
+        return {
+            icon: layerIcon[layer.name],
+            label: layerLabel[layer.name],
+            active: cachedLayer && cachedLayer.active,
+            ...layer,
+        };
     };
 }

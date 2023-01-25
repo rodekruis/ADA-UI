@@ -11,6 +11,7 @@
         <app-layer
             [event]="preview ? null : event"
             [loading]="loading"
+            (toggleLayerEventEmitter)="onLayerToggle($event)"
         ></app-layer>
     </ion-menu>
 
@@ -30,25 +31,12 @@
             [leafletOptions]="leafletOptions"
             (leafletMapReady)="onMapReady($event)"
         ></div>
-        <ion-segment
+        <app-admin-level
             *ngIf="eventView"
-            value="admin-1"
-            mode="ios"
-            color="ibf-primary"
-            scrollable="true"
-            (ionChange)="onAdminChange($event)"
-        >
-            <ion-segment-button
-                *ngFor="
-                    let adminLevelLabel of event.adminLevelLabels.split(',');
-                    let i = index
-                "
-                [value]="'admin-' + (i + 1)"
-                class="ion-padding-horizontal"
-                [disabled]="adminDisabled['admin-' + (i + 1)]"
-            >
-                <ion-label>{{ adminLevelLabel }}</ion-label>
-            </ion-segment-button>
-        </ion-segment>
+            [adminLevelLabels]="event.adminLevelLabels.split(',')"
+            [loading]="loading"
+            (adminChangeEvent)="onAdminChange($event)"
+            (adminFillChangeEvent)="onAdminFillChange($event)"
+        ></app-admin-level>
     </ion-content>
 </ion-split-pane>

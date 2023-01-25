@@ -7,14 +7,24 @@ import {
     NgZone,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ToastController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
-import { geoJSON, Map, MarkerClusterGroup, FeatureGroup } from 'leaflet';
-import { createMarker, iconCreateFunction } from './map.utils';
-import { adminLayerStyle, leafletOptions } from './map.config';
+import { geoJSON, MarkerClusterGroup } from 'leaflet';
+import {
+    createAdminPopup,
+    createMarker,
+    getAdminLayerMaximum,
+    iconCreateFunction,
+    LeafletPane,
+} from './map.utils';
+import { leafletOptions, layerErrorMessageDelimiter } from './map.config';
+import { LegendService } from './legend.service';
 import { ApiService } from '../api.service';
 import { Event } from '../event/event.type';
-import { Layer, LayerName } from '../layer/layers.type';
+import { Layer, LayerName } from '../layer/layer.type';
+import { adminLayerStyle, getLayerStyle } from './layer.style';
+import { TOAST_OPTIONS, TOAST_DELAY } from '../app.config';
+import { AdminLevelFill } from '../admin-level/admin-level.type';
 
 @Component({
     selector: 'app-map',
@@ -27,20 +37,24 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     @Input() preview = false;
     @Input() loading = true;
 
-    public leafletMap: Map;
+    public leafletMap: L.Map;
 
     public leafletOptions = leafletOptions;
     public eventView = false;
     public adminDisabled = {};
 
     private markerClusterGroup: MarkerClusterGroup;
-    private adminLayer: FeatureGroup;
+    private adminLayer: L.GeoJSON;
+    private layers: Layer[] = [];
+    private adminLevelFill: AdminLevelFill;
 
     constructor(
         private menuCtrl: MenuController,
+        private toastController: ToastController,
         private router: Router,
         private ngZone: NgZone,
         private apiService: ApiService,
+        private legendService: LegendService,
     ) {}
 
     ngAfterViewChecked() {
@@ -62,8 +76,11 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         }
     }
 
-    onMapReady = (leafletMapReady: Map) => {
+    onMapReady = (leafletMapReady: L.Map) => {
         this.leafletMap = leafletMapReady;
+        this.legendService.setLeafletMap(this.leafletMap);
+        this.leafletMap.createPane(LeafletPane.adminArea);
+        this.leafletMap.createPane(LeafletPane.assessmentArea);
     };
 
     onEventChange = () => {
@@ -83,7 +100,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         this.menuCtrl.close();
 
         if (this.eventView) {
-            this.onAdminChange({ detail: { value: LayerName.admin1 } });
+            this.onAdminChange(LayerName.admin1);
         } else if (this.adminLayer) {
             this.leafletMap.removeLayer(this.adminLayer);
             delete this.adminLayer;
@@ -139,14 +156,14 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         }
     };
 
-    onAdminChange = (adminChangeEvent: any) => {
+    onAdminChange = (adminLayerName: LayerName) => {
         this.loading = true;
         this.apiService
-            .getLayer(this.event.id, adminChangeEvent.detail.value)
+            .getLayer(this.event.id, adminLayerName)
             .pipe(finalize(() => (this.loading = false)))
             .subscribe(
                 (adminLayer) => this.onGetAdminLayer(adminLayer),
-                () => this.onGetAdminLayerError(adminChangeEvent.detail.value),
+                (error) => this.onGetLayerError(adminLayerName, error),
             );
     };
 
@@ -155,12 +172,20 @@ export class MapComponent implements AfterViewChecked, OnChanges {
 
         if (this.adminLayer) {
             this.leafletMap.removeLayer(this.adminLayer);
+            this.adminLayer = null;
             isInitialLoad = false;
         }
 
         this.adminLayer = geoJSON(adminLayer.geojson, {
-            style: adminLayerStyle,
+            pane: LeafletPane.adminArea,
+            onEachFeature: (feature, element) => {
+                element.bindPopup(createAdminPopup(feature.properties));
+                element.on('click', (leafletMouseEvent: L.LeafletMouseEvent) =>
+                    element.openPopup(leafletMouseEvent.latlng),
+                );
+            },
         });
+        this.onAdminFillChange(this.adminLevelFill);
         this.leafletMap.addLayer(this.adminLayer);
 
         if (isInitialLoad && adminLayer.name === LayerName.admin1) {
@@ -168,6 +193,65 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         }
     };
 
-    onGetAdminLayerError = (layerName: LayerName) =>
-        (this.adminDisabled[layerName] = true);
+    onLayerToggle = (layerName: LayerName) => {
+        this.loading = true;
+        this.apiService
+            .getLayer(this.event.id, layerName)
+            .pipe(finalize(() => (this.loading = false)))
+            .subscribe(
+                (layer) => this.onGetLayer(layer),
+                (error) => this.onGetLayerError(layerName, error),
+            );
+    };
+
+    onGetLayer = (layer: Layer) => {
+        if (this.layers[layer.name]) {
+            this.leafletMap.removeLayer(this.layers[layer.name]);
+            this.layers[layer.name] = null;
+            this.legendService.hideLegend(layer.name);
+        } else {
+            this.layers[layer.name] = geoJSON(layer.geojson, {
+                style: getLayerStyle(layer.name),
+                pane:
+                    layer.name === LayerName.assessmentArea
+                        ? LeafletPane.assessmentArea
+                        : LeafletPane.overlay,
+            });
+            this.leafletMap.addLayer(this.layers[layer.name]);
+            this.legendService.showLegend(layer.name);
+        }
+    };
+
+    onGetLayerError = async (layerName: LayerName, error: any) => {
+        this.adminDisabled[layerName] = true;
+
+        const message = `${error.error.message.join(
+            layerErrorMessageDelimiter,
+        )}: ${layerName}`;
+
+        const toast = await this.toastController.create({
+            ...TOAST_OPTIONS,
+            message,
+        });
+
+        await new Promise((resolve) => {
+            setTimeout(() => resolve(toast.present()), TOAST_DELAY);
+        });
+    };
+
+    onAdminFillChange = (adminLevelFill: AdminLevelFill) => {
+        this.adminLevelFill = adminLevelFill;
+
+        const maximum = getAdminLayerMaximum(
+            this.adminLayer.toGeoJSON() as GeoJSON.FeatureCollection,
+            this.adminLevelFill,
+        );
+        this.adminLayer.setStyle(adminLayerStyle(this.adminLevelFill, maximum));
+
+        if (adminLevelFill) {
+            this.legendService.showAdminLegend(this.adminLevelFill, maximum);
+        } else {
+            this.legendService.hideAdminLegend();
+        }
+    };
 }

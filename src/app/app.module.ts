@@ -19,6 +19,7 @@ import { PopupComponent } from './popup/popup.component';
 import { HeaderComponent } from './header/header.component';
 import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 import { LoadingComponent } from './loading/loading.component';
+import { AdminLevelComponent } from './admin-level/admin-level.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { LoadingComponent } from './loading/loading.component';
         HeaderComponent,
         MarkerPopupComponent,
         LoadingComponent,
+        AdminLevelComponent,
     ],
     imports: [
         BrowserModule,
