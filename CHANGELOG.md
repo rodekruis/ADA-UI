@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/rodekruis/ADA-UI/compare/v0.2.0...v0.2.1) (2023-01-31)
+
+
+### Bug Fixes
+
+* remove layers in world view ([2f1ef35](https://github.com/rodekruis/ADA-UI/commit/2f1ef35f6adbcf92d036717d7fa29b21ecfa74e9))
+
+
+
 # [0.2.0](https://github.com/rodekruis/ADA-UI/compare/v0.1.4...v0.2.0) (2023-01-25)
 
 
