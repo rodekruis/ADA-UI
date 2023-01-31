@@ -45,7 +45,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
 
     private markerClusterGroup: MarkerClusterGroup;
     private adminLayer: L.GeoJSON;
-    private layers: Layer[] = [];
+    private layers: { [layerName: string]: L.Layer } = {};
     private adminLevelFill: AdminLevelFill;
 
     constructor(
@@ -102,6 +102,8 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         if (this.eventView) {
             this.onAdminChange(LayerName.admin1);
         } else if (this.adminLayer) {
+            Object.keys(this.layers).forEach(this.removeLayer);
+            this.onAdminFillChange(null);
             this.leafletMap.removeLayer(this.adminLayer);
             delete this.adminLayer;
         }
@@ -206,9 +208,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
 
     onGetLayer = (layer: Layer) => {
         if (this.layers[layer.name]) {
-            this.leafletMap.removeLayer(this.layers[layer.name]);
-            this.layers[layer.name] = null;
-            this.legendService.hideLegend(layer.name);
+            this.removeLayer(layer.name);
         } else {
             this.layers[layer.name] = geoJSON(layer.geojson, {
                 style: getLayerStyle(layer.name),
@@ -252,6 +252,14 @@ export class MapComponent implements AfterViewChecked, OnChanges {
             this.legendService.showAdminLegend(this.adminLevelFill, maximum);
         } else {
             this.legendService.hideAdminLegend();
+        }
+    };
+
+    removeLayer = (layerName: LayerName) => {
+        if (this.layers[layerName]) {
+            this.leafletMap.removeLayer(this.layers[layerName]);
+            this.layers[layerName] = null;
+            this.legendService.hideLegend(layerName);
         }
     };
 }
