@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/rodekruis/ADA-UI/compare/v0.2.1...v0.2.2) (2023-01-31)
+
+
+### Bug Fixes
+
+* remove assessment area text from summary component ([7315146](https://github.com/rodekruis/ADA-UI/commit/73151466f4d15614a931d19dabbf1a0398ebe75a))
+
+
+
 ## [0.2.1](https://github.com/rodekruis/ADA-UI/compare/v0.2.0...v0.2.1) (2023-01-31)
 
 
