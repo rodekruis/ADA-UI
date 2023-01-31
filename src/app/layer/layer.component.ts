@@ -47,6 +47,7 @@ export class LayerComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if ('event' in changes) {
             if (!(this.event && this.event.id)) {
+                this.layers = [];
                 return;
             }
 
