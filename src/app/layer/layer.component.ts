@@ -18,8 +18,10 @@ import {
     layerIcon,
     layerLabel,
     adminLayerNames,
+    defaultLayers,
 } from './layer.type';
 import { LOADING_DEBOUNCE_WAIT } from '../app.config';
+import { hasEventChanged } from '../event/event.utils';
 
 @Component({
     selector: 'app-layer',
@@ -51,7 +53,9 @@ export class LayerComponent implements OnChanges {
                 return;
             }
 
-            this.getLayers();
+            if (hasEventChanged(changes)) {
+                this.getLayers();
+            }
         }
 
         if ('loading' in changes) {
@@ -82,7 +86,13 @@ export class LayerComponent implements OnChanges {
         this.layers = layers
             .filter((layer) => adminLayerNames.indexOf(layer.name) < 0)
             .map((layer) => this.fillLayer(layer));
+        this.toggleDefaultLayers();
     };
+
+    toggleDefaultLayers = () =>
+        this.layers
+            .filter((layer) => defaultLayers.includes(layer.name))
+            .forEach(this.toggleLayer);
 
     toggleLayer = (layer: Layer) => {
         layer.active = !layer.active;
