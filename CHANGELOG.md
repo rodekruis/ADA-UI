@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/rodekruis/ADA-UI/compare/v0.2.2...v0.3.0) (2023-02-01)
+
+
+### Features
+
+* switch on default layers in event view ([84e4fd5](https://github.com/rodekruis/ADA-UI/commit/84e4fd5771ff82b89f542aca16c85e49dbb2998f))
+
+
+
 ## [0.2.2](https://github.com/rodekruis/ADA-UI/compare/v0.2.1...v0.2.2) (2023-01-31)
 
 
