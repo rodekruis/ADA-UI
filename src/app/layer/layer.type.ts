@@ -60,6 +60,8 @@ export const buildingsLayerNames = [
     LayerName.buildingsDamageNone,
 ];
 
+export const defaultLayers = [LayerName.assessmentArea];
+
 export class Layer {
     icon: string;
     label: string;

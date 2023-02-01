@@ -1,3 +1,5 @@
+import { SimpleChanges } from '@angular/core';
+
 const RECENT_WINDOW = 60;
 
 export const isRecent = (date: string | number | Date) => {
@@ -11,4 +13,12 @@ export const isRecent = (date: string | number | Date) => {
     return daysSince < RECENT_WINDOW;
 };
 
-export default { isRecent };
+export const hasEventChanged = (changes: SimpleChanges) => {
+    const currentEventId = changes.event.currentValue.id;
+    const previousEventId = changes.event.previousValue
+        ? changes.event.previousValue.id
+        : null;
+    return currentEventId !== previousEventId;
+};
+
+export default { isRecent, hasEventChanged };
