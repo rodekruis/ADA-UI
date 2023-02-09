@@ -96,19 +96,39 @@ A disaster manager can interpret information from the data visualized on the map
 
 <details>
   <summary>How to change the popup information text for the <b>Map Layers</b>?</summary>
-  <ul><li>This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides</li></ul>
+  <ul>
+  <li>This data is from <code>information</code> of <code><a href="https://ada.510.global/api/swagger/#/event-layer/EventController_readLayer">GET /api/events/{id}/layer/{name}</a></code>.</li>
+  <li>The value for <code>information</code> can be plain string or <a href="https://www.markdownguide.org/cheat-sheet/">Markdown</a>.</li>
+  <li>To change this data update <code>information</code> using <code><a href="https://ada.510.global/api/swagger/#/event-layer/EventController_createLayer">POST /api/events/{id}/layer/{name}</a></code>.</li>
+  <li>NOTE: <code>information</code> for administrative boundary map layers are not used in ADA-UI.</li>
+  </ul>
 </details>
 
 <details>
   <summary>How do I change the legend for the visualized <b>Map Layers</b>?</summary>
-  <ul><li>This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides</li></ul>
+  <ul>
+  <li>A legend is shown for each <b>Map Layer</b> visualized on the <b>Event View</b> map.</li>
+  <li>Map Layers assessment area, wealth index, and population density have pre-defined static legends.</li>
+  <li>Map Layers with buildings are also static but are grouped together for better readability.</li>
+  <li>Map Layers that show admin level properties are calculated using <code>properties</code> in their <code>geojson</code> values.</li>
+  <li>The following assumptions are taken to generate legible legends,</li>
+  <ul>
+  <li>Minimum value is 0.</li>
+  <li>Maximum value is the largest property value found in <code>geojson</code>. The lowest possible maximum value is programmatically restricted to 1.</li>
+  <li>5 linearly divided categories are generated using the maximum value. For example, a maximum value of <b>2</b> will generate the categories, <code>[ 0 - 0.4, 0.4 - 0.8, 0.8 - 1.2, 1.2 - 1.6, 1.6+ ]</code>.</li>
+  </ul>
+  </ul>
 </details>
 
 ### Miscellaneous
 
 <details>
   <summary>How to change the popup information text for the <b>About ADA</b>, <b>User Guide</b>, and <b>Disclaimer</b> buttons?</summary>
-  <ul><li>This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides</li></ul>
+  <ul>
+  <li>The information shown in these popups are from markdown assets within this repository.</li>
+  <li>They are stored in <code><a href="https://github.com/rodekruis/ADA-UI/tree/main/src/assets/markdown">src/assets/markdown</a></code> directory.</li>
+  <li>Change the content of these assets and rebuild the ADA-UI to effect any changes. A merge into <a href=https://github.com/rodekruis/ADA-UI/tree/main">main</a> branch with commit prefix <code>feat</code> or <code>fix</code> will trigger a rebuild via continuous deployment.</li>
+  </ul>
 </details>
 
 ## Installation
