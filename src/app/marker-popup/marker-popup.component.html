@@ -1,8 +1,8 @@
 <div class="marker-popup-wrapper">
     <ion-header class="ion-no-border">
         <ion-toolbar class="font-montserrat">
-            <div class="title text-bold">{{ event.type }} {{ event.name }}</div>
-            <div class="subtitle">{{ startDate }}</div>
+            <div class="title text-bold">{{ event.name }}</div>
+            <div class="subtitle">{{ event.type }} on {{ startDate }}</div>
             <ion-buttons slot="end">
                 <ion-button (click)="closePopup(['/events'])">
                     <ion-icon slot="icon-only" name="close"></ion-icon>

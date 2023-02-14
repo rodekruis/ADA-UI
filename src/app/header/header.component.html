@@ -5,15 +5,15 @@
         </ion-buttons>
         <ion-title class="font-montserrat">
             <ion-text class="text-bold">{{ title }}</ion-text>
-            <ion-text class="ion-margin-start" *ngIf="event">
-                {{ event.type }} {{ event.name }}
-            </ion-text>
+            <ion-text class="ion-margin-start" *ngIf="eventName">{{
+                eventName
+            }}</ion-text>
         </ion-title>
         <ion-buttons slot="end">
             <ion-button
                 fill="solid"
                 shape="round"
-                *ngIf="showWorldView"
+                *ngIf="this.eventName && this.eventName.length"
                 [routerLink]="['/']"
             >
                 <ion-icon slot="start" name="earth"></ion-icon>

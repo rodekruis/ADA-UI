@@ -1,5 +1,7 @@
 <ion-app class="no-alert">
-    <app-header [event]="preview ? null : event"></app-header>
+    <app-header
+        [eventName]="preview ? null : event ? event.name : null"
+    ></app-header>
     <ion-content>
         <ion-split-pane
             class="ion-content-scroll-host"

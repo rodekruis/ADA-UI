@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import indefinite from 'indefinite';
 import { PopupComponent } from '../popup/popup.component';
 import { Event } from '../event/event.type';
 import { formatNumber, formatPercentage } from '../app.utils';
@@ -19,6 +20,7 @@ export class SummaryComponent implements OnChanges {
 
     public formatNumber = formatNumber;
     public formatPercentage = formatPercentage;
+    public indefinite = indefinite;
 
     constructor(
         private modalCtrl: ModalController,
