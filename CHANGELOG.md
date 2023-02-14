@@ -1,3 +1,17 @@
+# [0.4.0](https://github.com/rodekruis/ADA-UI/compare/v0.3.0...v0.4.0) (2023-02-14)
+
+
+### Bug Fixes
+
+* use key population density instead of DN ([7fede0d](https://github.com/rodekruis/ADA-UI/commit/7fede0d59d34d49a9df3b2b217a6e5ea2106d1ed))
+
+
+### Features
+
+* remove event type prefix from name ([9ebbb8e](https://github.com/rodekruis/ADA-UI/commit/9ebbb8ee67297741556fa19950ca171020c570fa))
+
+
+
 # [0.3.0](https://github.com/rodekruis/ADA-UI/compare/v0.2.2...v0.3.0) (2023-02-01)
 
 
