@@ -70,9 +70,15 @@
     <article class="chat chat-event-details" *ngIf="hideEvents">
         <ion-text>
             You are viewing
-            <ion-text class="text-bold"
-                >{{ event.type }} {{ event.name }}</ion-text
-            >
+            <ion-text class="text-bold">{{ event.name }}</ion-text
+            >,
+            {{
+                indefinite(event.type, {
+                    articleOnly: true,
+                    caseInsensitive: true
+                })
+            }}
+            <ion-text class="text-bold">{{ event.type }}</ion-text>
             that occurred on
             <ion-text class="text-bold">{{
                 event.startDate | date : "mediumDate"
