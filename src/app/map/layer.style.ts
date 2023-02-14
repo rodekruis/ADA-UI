@@ -87,7 +87,7 @@ const getPopulationDensityColor = (value: number) => {
 };
 
 const populationDensityLayerStyle = (geojson: GeoJSON.Feature) => ({
-    color: getPopulationDensityColor(geojson.properties.DN),
+    color: getPopulationDensityColor(geojson.properties.population_density),
     weight: 0,
     fillOpacity: 0.5,
 });

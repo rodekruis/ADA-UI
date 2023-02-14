@@ -42,19 +42,19 @@ A disaster manager can interpret information from the data visualized on the map
   </ul>
 </details>
 
-### Map Layer
+### Event Layer
 
 <details>
-  <summary>What is a <b>Map Layer</b>?</summary>
+  <summary>What is an <b>Event Layer</b>?</summary>
   <ul>
-  <li>A <b>Map Layer</b> is <a href="https://geojson.org/">GeoJSON</a> information of an <b>Event</b> which can be visualized on the <b>Event View</b> map.</li>
-  <li>Examples of map layers are administrative boundaries, wealth index, population density, assessment area, building and building damage.</li>
-  <li>A map layer can contain extra support information to be shown in information popups.</li>
+  <li>An <b>Event Layer</b> is <a href="https://geojson.org/">GeoJSON</a> information of an <b>Event</b> which can be visualized on the <b>Event View</b> map.</li>
+  <li>Examples of event layers are administrative boundaries, wealth index, population density, assessment area, building and building damage.</li>
+  <li>An event layer can contain extra support information to be shown in information popups.</li>
   </ul>
 </details>
 
 <details>
-  <summary>How to change the GeoJSON data visualized for a <b>Map Layer</b>?</summary>
+  <summary>How to change the GeoJSON data visualized for an <b>Event Layer</b>?</summary>
   <ul>
   <li>This data is from <code>geojson</code> of <code><a href="https://ada.510.global/api/swagger/#/event-layer/EventController_readLayer">GET /api/events/{id}/layer/{name}</a></code>.</li>
   <li>An example of a valid GeoJSON for administrative boundaries is,
@@ -95,22 +95,22 @@ A disaster manager can interpret information from the data visualized on the map
 </details>
 
 <details>
-  <summary>How to change the popup information text for the <b>Map Layers</b>?</summary>
+  <summary>How to change the popup information text for the <b>Event Layers</b>?</summary>
   <ul>
   <li>This data is from <code>information</code> of <code><a href="https://ada.510.global/api/swagger/#/event-layer/EventController_readLayer">GET /api/events/{id}/layer/{name}</a></code>.</li>
   <li>The value for <code>information</code> can be plain string or <a href="https://www.markdownguide.org/cheat-sheet/">Markdown</a>.</li>
   <li>To change this data update <code>information</code> using <code><a href="https://ada.510.global/api/swagger/#/event-layer/EventController_createLayer">POST /api/events/{id}/layer/{name}</a></code>.</li>
-  <li>NOTE: <code>information</code> for administrative boundary map layers are not used in ADA-UI.</li>
+  <li>NOTE: <code>information</code> for administrative boundary event layers are not used in ADA-UI.</li>
   </ul>
 </details>
 
 <details>
-  <summary>How do I change the legend for the visualized <b>Map Layers</b>?</summary>
+  <summary>How do I change the legend for the visualized <b>Event Layers</b>?</summary>
   <ul>
-  <li>A legend is shown for each <b>Map Layer</b> visualized on the <b>Event View</b> map.</li>
-  <li>Map Layers assessment area, wealth index, and population density have pre-defined static legends.</li>
-  <li>Map Layers with buildings are also static but are grouped together for better readability.</li>
-  <li>Map Layers that show admin level properties are calculated using <code>properties</code> in their <code>geojson</code> values.</li>
+  <li>A legend is shown for each <b>Event Layer</b> visualized on the <b>Event View</b> map.</li>
+  <li>Event Layers assessment area, wealth index, and population density have pre-defined static legends.</li>
+  <li>Event Layers with buildings are also static but are grouped together for better readability.</li>
+  <li>Event Layers that show admin level properties are calculated using <code>properties</code> in their <code>geojson</code> values.</li>
   <li>The following assumptions are taken to generate legible legends,</li>
   <ul>
   <li>Minimum value is 0.</li>
@@ -118,6 +118,21 @@ A disaster manager can interpret information from the data visualized on the map
   <li>5 linearly divided categories are generated using the maximum value. For example, a maximum value of <b>2</b> will generate the categories, <code>[ 0 - 0.4, 0.4 - 0.8, 0.8 - 1.2, 1.2 - 1.6, 1.6+ ]</code>.</li>
   </ul>
   </ul>
+</details>
+
+<details>
+  <summary>Why do I not see any data on the map for an <b>Event Layer</b>?</summary>
+  <ol>
+  <li>Check if the geojson uploaded for the <b>Event Layer</b> is a valid geojson.</li>
+  <li>Check if the geojson features is a not empty array.</li>
+  <li>Check if the geojson features contain the property names used by the UI,</li>
+  <ul>
+  <li>Event Layers <code>admin-{n}</code> use <code>building_damage</code>, <code>building_damage_percentage</code>, and <code>people_affected</code></li>
+  <li>Event Layer <code>wealth-index</code> uses <code>rwi</code></li>
+  <li>Event Layer <code>population-density</code> uses <code>population_density</code></li>
+  </ul>
+  <li>Check if the geojson features contain valid values for the property names.</li>
+  </ol>
 </details>
 
 ### Miscellaneous
