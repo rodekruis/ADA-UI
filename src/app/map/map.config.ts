@@ -1,12 +1,4 @@
-import {
-    tileLayer,
-    latLng,
-    latLngBounds,
-    Point,
-    point,
-    icon,
-    Marker,
-} from 'leaflet';
+import { tileLayer, latLng, latLngBounds, point, icon, Marker } from 'leaflet';
 
 const LEAFLET_MAP_URL_TEMPLATE =
     'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
@@ -33,7 +25,7 @@ export const leafletOptions = {
 };
 
 export const markerPopupOptions = {
-    autoPanPadding: new Point(64, 256),
+    autoPanPadding: point(64, 256),
     closeButton: false,
 };
 
@@ -45,3 +37,7 @@ Marker.prototype.options.icon = icon({
 });
 
 export const layerErrorMessageDelimiter = '<br />';
+
+export const assessmentAreaFitBoundsOptions = { padding: point(16, 16) };
+
+export const FIT_BOUNDS_DELAY = 200;
