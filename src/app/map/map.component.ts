@@ -9,7 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
-import { geoJSON, MarkerClusterGroup } from 'leaflet';
+import { geoJSON, LatLngBounds, MarkerClusterGroup } from 'leaflet';
 import {
     createAdminPopup,
     createMarker,
@@ -17,7 +17,12 @@ import {
     iconCreateFunction,
     LeafletPane,
 } from './map.utils';
-import { leafletOptions, layerErrorMessageDelimiter } from './map.config';
+import {
+    leafletOptions,
+    layerErrorMessageDelimiter,
+    assessmentAreaFitBoundsOptions,
+    FIT_BOUNDS_DELAY,
+} from './map.config';
 import { LegendService } from './legend.service';
 import { ApiService } from '../api.service';
 import { Event } from '../event/event.type';
@@ -45,7 +50,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
 
     private markerClusterGroup: MarkerClusterGroup;
     private adminLayer: L.GeoJSON;
-    private layers: { [layerName: string]: L.Layer } = {};
+    private layers: { [layerName: string]: L.GeoJSON } = {};
     private adminLevelFill: AdminLevelFill;
 
     constructor(
@@ -170,12 +175,9 @@ export class MapComponent implements AfterViewChecked, OnChanges {
     };
 
     onGetAdminLayer = (adminLayer: Layer) => {
-        let isInitialLoad = true;
-
         if (this.adminLayer) {
             this.leafletMap.removeLayer(this.adminLayer);
             this.adminLayer = null;
-            isInitialLoad = false;
         }
 
         this.adminLayer = geoJSON(adminLayer.geojson, {
@@ -189,10 +191,6 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         });
         this.onAdminFillChange(this.adminLevelFill);
         this.leafletMap.addLayer(this.adminLayer);
-
-        if (isInitialLoad && adminLayer.name === LayerName.admin1) {
-            this.leafletMap.fitBounds(this.adminLayer.getBounds());
-        }
     };
 
     onLayerToggle = (layerName: LayerName) => {
@@ -219,7 +217,22 @@ export class MapComponent implements AfterViewChecked, OnChanges {
             });
             this.leafletMap.addLayer(this.layers[layer.name]);
             this.legendService.showLegend(layer.name);
+
+            if (layer.name === LayerName.assessmentArea) {
+                const latLngBounds = this.layers[layer.name].getBounds();
+                this.zoomToLayer(latLngBounds);
+            }
         }
+    };
+
+    zoomToLayer = (latLngBounds: LatLngBounds) => {
+        this.leafletMap.invalidateSize();
+        setTimeout(() => {
+            this.leafletMap.fitBounds(
+                latLngBounds,
+                assessmentAreaFitBoundsOptions,
+            );
+        }, FIT_BOUNDS_DELAY);
     };
 
     onGetLayerError = async (layerName: LayerName, error: any) => {
