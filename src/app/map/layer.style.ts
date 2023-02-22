@@ -62,6 +62,12 @@ const buildingLayerStyle =
             case LayerName.buildingsDamageHeavy:
                 color = '#f5333f';
                 break;
+            case LayerName.buildingsDamageNoneAndLight:
+                color = '#faff03';
+                break;
+            case LayerName.buildingsDamageModerateAndHeavy:
+                color = '#f5333f';
+                break;
         }
 
         return { color, weight: 1, fillOpacity: 0.4 };

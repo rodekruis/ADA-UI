@@ -146,6 +146,14 @@ const buildingsLegendProperties = {
     'buildings-damage-light': { color: '#faff03', label: 'Light Damage' },
     'buildings-damage-moderate': { color: '#ffb30f', label: 'Moderate Damage' },
     'buildings-damage-heavy': { color: '#f5333f', label: 'Heavy Damage' },
+    'buildings-damage-none-and-light': {
+        color: '#faff03',
+        label: 'No / Light Damage',
+    },
+    'buildings-damage-moderate-and-heavy': {
+        color: '#f5333f',
+        label: 'Moderate / Heavy Damage',
+    },
 };
 
 const getBuildingsLegend = (showBuildingControl: ShowBuildingControl) =>
