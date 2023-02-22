@@ -99,7 +99,7 @@
                 </ion-label>
             </ion-item>
             <ion-item
-                id="damaged-buildings"
+                id="people-affected-percentage"
                 class="key-estimate-item text-bold"
             >
                 <ion-icon
@@ -109,12 +109,24 @@
                     size="small"
                 ></ion-icon>
                 <ion-label>
-                    Damaged Buildings:
+                    People Affected (%):
+                    {{ formatPercentage(event.peopleAffectedPercentage) }}
+                </ion-label>
+            </ion-item>
+            <ion-item id="building-damage" class="key-estimate-item text-bold">
+                <ion-icon
+                    slot="start"
+                    name="information-circle-outline"
+                    color="ibf-primary"
+                    size="small"
+                ></ion-icon>
+                <ion-label>
+                    Building Damage:
                     {{ formatNumber(event.buildingsDamaged) }}
                 </ion-label>
             </ion-item>
             <ion-item
-                id="damaged-buildings-percentage"
+                id="building-damage-percentage"
                 class="key-estimate-item text-bold"
             >
                 <ion-icon
@@ -124,7 +136,7 @@
                     size="small"
                 ></ion-icon>
                 <ion-label>
-                    Damaged Buildings (%):
+                    Building Damage (%):
                     {{ formatPercentage(event.buildingsDamagedPercentage) }}
                 </ion-label>
             </ion-item>
@@ -141,28 +153,12 @@
                 <ion-content class="ion-padding popover-content" i18n>
                     <ion-text class="text-bold">People Affected</ion-text> is
                     the product of the total number of people living in the
-                    assessment area and the fraction of damaged buildings.
+                    assessment area and the fraction of building damage.
                 </ion-content>
             </ng-template>
         </ion-popover>
         <ion-popover
-            trigger="damaged-buildings"
-            triggerAction="hover"
-            showBackdrop="false"
-            mode="ios"
-            size="cover"
-            dismissOnSelect="true"
-        >
-            <ng-template>
-                <ion-content class="ion-padding popover-content" i18n>
-                    <ion-text class="text-bold">Damaged Buildings</ion-text> is
-                    the total number of buildings with light, moderate and heavy
-                    damage in the assessment area.
-                </ion-content>
-            </ng-template>
-        </ion-popover>
-        <ion-popover
-            trigger="damaged-buildings-percentage"
+            trigger="people-affected-percentage"
             triggerAction="hover"
             showBackdrop="false"
             mode="ios"
@@ -172,9 +168,43 @@
             <ng-template>
                 <ion-content class="ion-padding popover-content" i18n>
                     <ion-text class="text-bold"
-                        >Damaged Buildings in Percentage</ion-text
+                        >People Affected in Percentage</ion-text
                     >
-                    is the fraction of damaged buildings out of all buildings in
+                    is the fraction of people affected out of the population in
+                    the assessment area.
+                </ion-content>
+            </ng-template>
+        </ion-popover>
+        <ion-popover
+            trigger="building-damage"
+            triggerAction="hover"
+            showBackdrop="false"
+            mode="ios"
+            size="cover"
+            dismissOnSelect="true"
+        >
+            <ng-template>
+                <ion-content class="ion-padding popover-content" i18n>
+                    <ion-text class="text-bold">Building Damage</ion-text> is
+                    the total number of buildings with light, moderate and heavy
+                    damage in the assessment area.
+                </ion-content>
+            </ng-template>
+        </ion-popover>
+        <ion-popover
+            trigger="building-damage-percentage"
+            triggerAction="hover"
+            showBackdrop="false"
+            mode="ios"
+            size="cover"
+            dismissOnSelect="true"
+        >
+            <ng-template>
+                <ion-content class="ion-padding popover-content" i18n>
+                    <ion-text class="text-bold"
+                        >Building Damage in Percentage</ion-text
+                    >
+                    is the fraction of building damage out of all buildings in
                     the assessment area.
                 </ion-content>
             </ng-template>

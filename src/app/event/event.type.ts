@@ -30,6 +30,7 @@ export class Event {
     endDate: string | null;
     access: EventAccess;
     peopleAffected?: number;
+    peopleAffectedPercentage?: number;
     buildingsDamaged?: number;
     buildingsDamagedPercentage?: number;
     adminLevelLabels?: string;

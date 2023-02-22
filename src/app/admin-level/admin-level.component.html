@@ -58,6 +58,30 @@
                             <ion-radio
                                 mode="md"
                                 slot="start"
+                                [value]="
+                                    adminLevelFill.peopleAffectedPercentage
+                                "
+                            ></ion-radio>
+                            <ion-label class="ion-text-wrap">
+                                <h3>
+                                    Shade
+                                    <ion-text class="text-bold">{{
+                                        adminLevelLabel
+                                    }}</ion-text>
+                                    based on
+                                    <ion-text class="text-bold">{{
+                                        adminLevelFillLabel[
+                                            adminLevelFill
+                                                .peopleAffectedPercentage
+                                        ]
+                                    }}</ion-text>
+                                </h3>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-radio
+                                mode="md"
+                                slot="start"
                                 [value]="adminLevelFill.buildingDamage"
                             ></ion-radio>
                             <ion-label class="ion-text-wrap">
@@ -70,6 +94,30 @@
                                     <ion-text class="text-bold">{{
                                         adminLevelFillLabel[
                                             adminLevelFill.buildingDamage
+                                        ]
+                                    }}</ion-text>
+                                </h3>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-radio
+                                mode="md"
+                                slot="start"
+                                [value]="
+                                    adminLevelFill.buildingDamagePercentage
+                                "
+                            ></ion-radio>
+                            <ion-label class="ion-text-wrap">
+                                <h3>
+                                    Shade
+                                    <ion-text class="text-bold">{{
+                                        adminLevelLabel
+                                    }}</ion-text>
+                                    based on
+                                    <ion-text class="text-bold">{{
+                                        adminLevelFillLabel[
+                                            adminLevelFill
+                                                .buildingDamagePercentage
                                         ]
                                     }}</ion-text>
                                 </h3>

@@ -14,7 +14,7 @@ import {
     markerPopupOptions,
     MARKER_CLUSTER_SIZE_WEIGHT,
 } from './map.config';
-import { formatNumber } from '../app.utils';
+import { formatNumber, formatPercentage } from '../app.utils';
 import { AdminLevelFill } from '../admin-level/admin-level.type';
 import { Event } from '../event/event.type';
 import { MarkerPopupComponent } from '../marker-popup/marker-popup.component';
@@ -76,8 +76,14 @@ export const createAdminPopup = (
     <ion-label>People Affected: ${formatNumber(
         properties[AdminLevelFill.peopleAffected],
     )}</ion-label><br />
+    <ion-label>People Affected (%): ${formatPercentage(
+        properties[AdminLevelFill.peopleAffectedPercentage],
+    )}</ion-label><br />
     <ion-label>Building Damage: ${formatNumber(
         properties[AdminLevelFill.buildingDamage],
+    )}</ion-label><br />
+    <ion-label>Building Damage (%): ${formatPercentage(
+        properties[AdminLevelFill.buildingDamagePercentage],
     )}</ion-label>
     </div>`;
 
