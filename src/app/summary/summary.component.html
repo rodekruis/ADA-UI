@@ -95,7 +95,8 @@
                     size="small"
                 ></ion-icon>
                 <ion-label>
-                    People Affected: {{ formatNumber(event.peopleAffected) }}
+                    {{ adminLevelFillLabel[adminLevelFill.peopleAffected] }}:
+                    {{ formatNumber(event.peopleAffected) }}
                 </ion-label>
             </ion-item>
             <ion-item
@@ -109,7 +110,11 @@
                     size="small"
                 ></ion-icon>
                 <ion-label>
-                    People Affected (%):
+                    {{
+                        adminLevelFillLabel[
+                            adminLevelFill.peopleAffectedPercentage
+                        ]
+                    }}:
                     {{ formatPercentage(event.peopleAffectedPercentage) }}
                 </ion-label>
             </ion-item>
@@ -121,7 +126,7 @@
                     size="small"
                 ></ion-icon>
                 <ion-label>
-                    Building Damage:
+                    {{ adminLevelFillLabel[adminLevelFill.buildingDamage] }}:
                     {{ formatNumber(event.buildingsDamaged) }}
                 </ion-label>
             </ion-item>
@@ -136,7 +141,11 @@
                     size="small"
                 ></ion-icon>
                 <ion-label>
-                    Building Damage (%):
+                    {{
+                        adminLevelFillLabel[
+                            adminLevelFill.buildingDamagePercentage
+                        ]
+                    }}:
                     {{ formatPercentage(event.buildingsDamagedPercentage) }}
                 </ion-label>
             </ion-item>
@@ -151,8 +160,10 @@
         >
             <ng-template>
                 <ion-content class="ion-padding popover-content" i18n>
-                    <ion-text class="text-bold">People Affected</ion-text> is
-                    the product of the total number of people living in the
+                    <ion-text class="text-bold">{{
+                        adminLevelFillLabel[adminLevelFill.peopleAffected]
+                    }}</ion-text>
+                    is the product of the total number of people living in the
                     assessment area and the fraction of building damage.
                 </ion-content>
             </ng-template>
@@ -167,9 +178,11 @@
         >
             <ng-template>
                 <ion-content class="ion-padding popover-content" i18n>
-                    <ion-text class="text-bold"
-                        >People Affected in Percentage</ion-text
-                    >
+                    <ion-text class="text-bold">{{
+                        adminLevelFillLabel[
+                            adminLevelFill.peopleAffectedPercentage
+                        ]
+                    }}</ion-text>
                     is the fraction of people affected out of the population in
                     the assessment area.
                 </ion-content>
@@ -185,9 +198,11 @@
         >
             <ng-template>
                 <ion-content class="ion-padding popover-content" i18n>
-                    <ion-text class="text-bold">Building Damage</ion-text> is
-                    the total number of buildings with light, moderate and heavy
-                    damage in the assessment area.
+                    <ion-text class="text-bold">{{
+                        adminLevelFillLabel[adminLevelFill.buildingDamage]
+                    }}</ion-text>
+                    is the total number of buildings with light, moderate and
+                    heavy damage in the assessment area.
                 </ion-content>
             </ng-template>
         </ion-popover>
@@ -201,9 +216,11 @@
         >
             <ng-template>
                 <ion-content class="ion-padding popover-content" i18n>
-                    <ion-text class="text-bold"
-                        >Building Damage in Percentage</ion-text
-                    >
+                    <ion-text class="text-bold">{{
+                        adminLevelFillLabel[
+                            adminLevelFill.buildingDamagePercentage
+                        ]
+                    }}</ion-text>
                     is the fraction of building damage out of all buildings in
                     the assessment area.
                 </ion-content>

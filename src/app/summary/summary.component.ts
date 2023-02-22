@@ -5,6 +5,10 @@ import indefinite from 'indefinite';
 import { PopupComponent } from '../popup/popup.component';
 import { Event } from '../event/event.type';
 import { formatNumber, formatPercentage } from '../app.utils';
+import {
+    AdminLevelFill,
+    adminLevelFillLabel,
+} from '../admin-level/admin-level.type';
 
 @Component({
     selector: 'app-summary',
@@ -21,6 +25,9 @@ export class SummaryComponent implements OnChanges {
     public formatNumber = formatNumber;
     public formatPercentage = formatPercentage;
     public indefinite = indefinite;
+
+    public adminLevelFill = AdminLevelFill;
+    public adminLevelFillLabel = adminLevelFillLabel;
 
     constructor(
         private modalCtrl: ModalController,
