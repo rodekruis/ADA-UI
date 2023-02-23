@@ -59,10 +59,10 @@
                 routerLinkActive="active"
             >
                 <ion-text>
-                    {{ event.type }} {{ event.name }} -
-                    {{ event.startDate | date : "mediumDate" }}<br />{{
-                        event.country
-                    }}
+                    {{ event.name }}<br />
+                    {{ event.type }} on
+                    {{ event.startDate | date : "mediumDate" }}<br />
+                    {{ event.country }}
                 </ion-text>
             </li>
         </ul>
