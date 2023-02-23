@@ -1,3 +1,12 @@
+## [0.6.1](https://github.com/rodekruis/ADA-UI/compare/v0.6.0...v0.6.1) (2023-02-23)
+
+
+### Bug Fixes
+
+* assessment area layer should not be interactive ([a95829b](https://github.com/rodekruis/ADA-UI/commit/a95829b47d68f6e2d0bd143c65202eacf1ee2a25))
+
+
+
 # [0.6.0](https://github.com/rodekruis/ADA-UI/compare/v0.5.0...v0.6.0) (2023-02-23)
 
 
@@ -100,15 +109,6 @@
 ### Bug Fixes
 
 * replace ionChange with ngModelChange for ion-segment ([66a826f](https://github.com/rodekruis/ADA-UI/commit/66a826f6b3c602c1b97db9681681e09bb784bb12))
-
-
-
-## [0.1.2](https://github.com/rodekruis/ADA-UI/compare/v0.1.1...v0.1.2) (2023-01-05)
-
-
-### Bug Fixes
-
-* add production flag to build ([782e608](https://github.com/rodekruis/ADA-UI/commit/782e608b218cae03682811b4716c215efb57fc12))
 
 
 
