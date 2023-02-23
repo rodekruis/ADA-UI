@@ -209,6 +209,7 @@ export class MapComponent implements AfterViewChecked, OnChanges {
             this.removeLayer(layer.name);
         } else {
             this.layers[layer.name] = geoJSON(layer.geojson, {
+                interactive: layer.name !== LayerName.assessmentArea,
                 style: getLayerStyle(layer.name),
                 pane:
                     layer.name === LayerName.assessmentArea
