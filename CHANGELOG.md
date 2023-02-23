@@ -1,3 +1,22 @@
+# [0.6.0](https://github.com/rodekruis/ADA-UI/compare/v0.5.0...v0.6.0) (2023-02-23)
+
+
+### Bug Fixes
+
+* use variables instead of text for admin level fill labels ([26a8338](https://github.com/rodekruis/ADA-UI/commit/26a833800d4f224c4b4e1011cf8301e2cf61106a))
+* use variables instead of text for admin level fill labels ([6f99741](https://github.com/rodekruis/ADA-UI/commit/6f99741cb443c0757cf5edac3f2d43a8efecf0c2))
+
+
+### Features
+
+* add event layers for 2 level building damage ([a37d58c](https://github.com/rodekruis/ADA-UI/commit/a37d58cb7b0abf1192fa85441d1baa3cefe9b049))
+* add people affected percentage to event object ([848f416](https://github.com/rodekruis/ADA-UI/commit/848f4161529246d6a00789d0615e8669a5933ebd))
+* improve visibility of population density layer ([d21620b](https://github.com/rodekruis/ADA-UI/commit/d21620b39fc1eaf87db658e673e63514b78af5d6))
+* remove event type prefix from event name ([fed9f16](https://github.com/rodekruis/ADA-UI/commit/fed9f16a594dd7e81fa96cfe2db2b912543fcfab))
+* use menu overlay for map menu ([dfd0054](https://github.com/rodekruis/ADA-UI/commit/dfd0054d05be2e7eb15d28387715ca214e52d0e9))
+
+
+
 # [0.5.0](https://github.com/rodekruis/ADA-UI/compare/v0.4.0...v0.5.0) (2023-02-16)
 
 
@@ -90,15 +109,6 @@
 ### Bug Fixes
 
 * add production flag to build ([782e608](https://github.com/rodekruis/ADA-UI/commit/782e608b218cae03682811b4716c215efb57fc12))
-
-
-
-## [0.1.1](https://github.com/rodekruis/ADA-UI/compare/v0.1.0...v0.1.1) (2023-01-05)
-
-
-### Bug Fixes
-
-* remove image name from local image ([adb231c](https://github.com/rodekruis/ADA-UI/commit/adb231c6ff736e9e136f226e8cfd7d5315e80198))
 
 
 
