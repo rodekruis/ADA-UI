@@ -9,6 +9,10 @@ export const layerIcon = {
         'https://ionicframework.com/docs/img/demos/thumbnail.svg',
     'buildings-damage-heavy':
         'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+    'buildings-damage-none-and-light':
+        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+    'buildings-damage-moderate-and-heavy':
+        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
     buildings: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
     'assessment-area':
         'https://ionicframework.com/docs/img/demos/thumbnail.svg',
@@ -22,6 +26,8 @@ export const layerLabel = {
     'buildings-damage-light': 'Light Building Damage',
     'buildings-damage-moderate': 'Moderate Building Damage',
     'buildings-damage-heavy': 'Heavy Building Damage',
+    'buildings-damage-none-and-light': 'No / Light Building Damage',
+    'buildings-damage-moderate-and-heavy': 'Moderate / Heavy Building Damage',
     buildings: 'Buildings',
     'assessment-area': 'Assessment Area',
     'population-density': 'Population Density',
@@ -38,6 +44,8 @@ export enum LayerName {
     buildingsDamageLight = 'buildings-damage-light',
     buildingsDamageModerate = 'buildings-damage-moderate',
     buildingsDamageHeavy = 'buildings-damage-heavy',
+    buildingsDamageNoneAndLight = 'buildings-damage-none-and-light',
+    buildingsDamageModerateAndHeavy = 'buildings-damage-moderate-and-heavy',
     buildings = 'buildings',
     assessmentArea = 'assessment-area',
     populationDensity = 'population-density',
@@ -58,6 +66,8 @@ export const buildingsLayerNames = [
     LayerName.buildingsDamageModerate,
     LayerName.buildingsDamageLight,
     LayerName.buildingsDamageNone,
+    LayerName.buildingsDamageNoneAndLight,
+    LayerName.buildingsDamageModerateAndHeavy,
 ];
 
 export const defaultLayers = [LayerName.assessmentArea];

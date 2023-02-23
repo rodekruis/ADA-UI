@@ -62,6 +62,12 @@ const buildingLayerStyle =
             case LayerName.buildingsDamageHeavy:
                 color = '#f5333f';
                 break;
+            case LayerName.buildingsDamageNoneAndLight:
+                color = '#faff03';
+                break;
+            case LayerName.buildingsDamageModerateAndHeavy:
+                color = '#f5333f';
+                break;
         }
 
         return { color, weight: 1, fillOpacity: 0.4 };
@@ -87,9 +93,9 @@ const getPopulationDensityColor = (value: number) => {
 };
 
 const populationDensityLayerStyle = (geojson: GeoJSON.Feature) => ({
-    color: getPopulationDensityColor(geojson.properties.population_density),
-    weight: 0,
-    fillOpacity: 0.5,
+    color: getPopulationDensityColor(geojson.properties.DN),
+    weight: 1,
+    opacity: 0.5,
 });
 
 export const assessmentAreaLayerStyle = {

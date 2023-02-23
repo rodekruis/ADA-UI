@@ -27,7 +27,7 @@ A disaster manager can interpret information from the data visualized on the map
 </details>
 
 <details>
-  <summary>How do I change the numbers of <b>People Affected</b>, <b>Damaged Buildings</b>, and <b>Damaged Buildings in Percentage</b> for an <b>Event</b>?</summary>
+  <summary>How do I change the numbers of <b>People Affected</b>, <b>People Affected in Percentage</b>, <b>Building Damage</b>, and <b>Building Damage in Percentage</b> for an <b>Event</b>?</summary>
   <ul>
   <li>If you refer to the <b>Total Statistics</b> on the left side of the application which are shown under the <b>About ADA</b>, <b>User Guide</b>, and <b>Disclaimer</b> buttons,</li>
   <ul>
@@ -66,9 +66,10 @@ A disaster manager can interpret information from the data visualized on the map
         {
             "type": "Feature",
             "properties": {
+                "people_affected": 6789,
+                "people_affected_percentage": 0.23,
                 "building_damage": 123,
-                "building_damage_percentage": 0.45,
-                "people_affected": 6789
+                "building_damage_percentage": 0.45
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -89,7 +90,7 @@ A disaster manager can interpret information from the data visualized on the map
 ```
 
   </li>
-  <li>Note that <code>properties</code> contain the keys <code>building_damage</code>, <code>building_damage_percentage</code>, and <code>people_affected</code>. These numbers are shown in the admin area popup and are used to shade the admin areas.</li>
+  <li>Note that <code>properties</code> contain the keys <code>people_affected</code>, <code>people_affected_percentage</code>, <code>building_damage</code>, and <code>building_damage_percentage</code>. These numbers are shown in the admin area popup and are used to shade the admin areas.</li>
   <li>To change this data update <code>geojson</code> using <code><a href="https://ada.510.global/api/swagger/#/event-layer/EventController_createLayer">POST /api/events/{id}/layer/{name}</a></code>.</li>
   </ul>
 </details>
@@ -127,7 +128,7 @@ A disaster manager can interpret information from the data visualized on the map
   <li>Check if the geojson features is a not empty array.</li>
   <li>Check if the geojson features contain the property names used by the UI,</li>
   <ul>
-  <li>Event Layers <code>admin-{n}</code> use <code>building_damage</code>, <code>building_damage_percentage</code>, and <code>people_affected</code></li>
+  <li>Event Layers <code>admin-{n}</code> use <code>people_affected</code>, <code>people_affected_percentage</code>, <code>building_damage</code>, and <code>building_damage_percentage</code></li>
   <li>Event Layer <code>wealth-index</code> uses <code>rwi</code></li>
   <li>Event Layer <code>population-density</code> uses <code>population_density</code></li>
   </ul>

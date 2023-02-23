@@ -14,8 +14,11 @@ import {
     markerPopupOptions,
     MARKER_CLUSTER_SIZE_WEIGHT,
 } from './map.config';
-import { formatNumber } from '../app.utils';
-import { AdminLevelFill } from '../admin-level/admin-level.type';
+import { formatNumber, formatPercentage } from '../app.utils';
+import {
+    AdminLevelFill,
+    adminLevelFillLabel,
+} from '../admin-level/admin-level.type';
 import { Event } from '../event/event.type';
 import { MarkerPopupComponent } from '../marker-popup/marker-popup.component';
 
@@ -73,12 +76,26 @@ export const createAdminPopup = (
     properties: GeoJSON.GeoJsonProperties,
 ) => `<div class="ion-padding line-height-1-8">
     <ion-label class="text-bold">${properties.name}</ion-label><br />
-    <ion-label>People Affected: ${formatNumber(
-        properties[AdminLevelFill.peopleAffected],
-    )}</ion-label><br />
-    <ion-label>Building Damage: ${formatNumber(
-        properties[AdminLevelFill.buildingDamage],
-    )}</ion-label>
+    <ion-label>${
+        adminLevelFillLabel[AdminLevelFill.peopleAffected]
+    }: ${formatNumber(
+    properties[AdminLevelFill.peopleAffected],
+)}</ion-label><br />
+    <ion-label>${
+        adminLevelFillLabel[AdminLevelFill.peopleAffectedPercentage]
+    }: ${formatPercentage(
+    properties[AdminLevelFill.peopleAffectedPercentage],
+)}</ion-label><br />
+    <ion-label>${
+        adminLevelFillLabel[AdminLevelFill.buildingDamage]
+    }: ${formatNumber(
+    properties[AdminLevelFill.buildingDamage],
+)}</ion-label><br />
+    <ion-label>${
+        adminLevelFillLabel[AdminLevelFill.buildingDamagePercentage]
+    }: ${formatPercentage(
+    properties[AdminLevelFill.buildingDamagePercentage],
+)}</ion-label>
     </div>`;
 
 export const getAdminLayerMaximum = (
