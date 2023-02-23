@@ -1,3 +1,12 @@
+## [0.6.2](https://github.com/rodekruis/ADA-UI/compare/v0.6.1...v0.6.2) (2023-02-23)
+
+
+### Bug Fixes
+
+* use correct population density property key ([7ddd623](https://github.com/rodekruis/ADA-UI/commit/7ddd62307f4c58f20e73381e76f9fc8f1e46eb88))
+
+
+
 ## [0.6.1](https://github.com/rodekruis/ADA-UI/compare/v0.6.0...v0.6.1) (2023-02-23)
 
 
@@ -100,15 +109,6 @@
 ### Reverts
 
 * Revert "fix: replace ionChange with ngModelChange for ion-segment" ([c3bf9d7](https://github.com/rodekruis/ADA-UI/commit/c3bf9d7334a6f4cdf7c6d70dd338f53be348f299))
-
-
-
-## [0.1.3](https://github.com/rodekruis/ADA-UI/compare/v0.1.2...v0.1.3) (2023-01-06)
-
-
-### Bug Fixes
-
-* replace ionChange with ngModelChange for ion-segment ([66a826f](https://github.com/rodekruis/ADA-UI/commit/66a826f6b3c602c1b97db9681681e09bb784bb12))
 
 
 
