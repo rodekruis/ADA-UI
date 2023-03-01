@@ -1,3 +1,14 @@
+# [0.7.0](https://github.com/rodekruis/ADA-UI/compare/v0.6.2...v0.7.0) (2023-03-01)
+
+
+### Features
+
+* add ada logo ([50d4875](https://github.com/rodekruis/ADA-UI/commit/50d4875c26d19b14de41c7abc4b5d25126d1facd))
+* remove minimum for legend maximum limit ([5b144fe](https://github.com/rodekruis/ADA-UI/commit/5b144fe4f6cd4bf8bc7660d43be5fd41bfafd7c3))
+* show whole numbers for legend percentage fills ([0fc3abe](https://github.com/rodekruis/ADA-UI/commit/0fc3abea3020df80450582a24ae14530c941a799))
+
+
+
 ## [0.6.2](https://github.com/rodekruis/ADA-UI/compare/v0.6.1...v0.6.2) (2023-02-23)
 
 
@@ -95,20 +106,6 @@
 * layer styles for map layers ([e7a7ec5](https://github.com/rodekruis/ADA-UI/commit/e7a7ec5b68958c56bd092781160cc03bc62e838d))
 * legend for admin level fills should be dynamic based on maximum value ([e927890](https://github.com/rodekruis/ADA-UI/commit/e9278900d36e20569dce47affd981967f88d3fa7))
 * load layer geojson in map component ([b034b96](https://github.com/rodekruis/ADA-UI/commit/b034b9604fce0148cffe6b202579832715af2ed5))
-
-
-
-## [0.1.4](https://github.com/rodekruis/ADA-UI/compare/v0.1.3...v0.1.4) (2023-01-09)
-
-
-### Bug Fixes
-
-* set optimization of scripts to false to get around liquid cache interpolation error ([facc52c](https://github.com/rodekruis/ADA-UI/commit/facc52c7a60f35b97f320052ace5c9935ef68838))
-
-
-### Reverts
-
-* Revert "fix: replace ionChange with ngModelChange for ion-segment" ([c3bf9d7](https://github.com/rodekruis/ADA-UI/commit/c3bf9d7334a6f4cdf7c6d70dd338f53be348f299))
 
 
 
