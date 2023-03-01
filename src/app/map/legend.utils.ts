@@ -5,7 +5,7 @@ import {
     AdminLevelFill,
     adminLevelFillLabel,
 } from '../admin-level/admin-level.type';
-import { formatNumber } from '../app.utils';
+import { formatNumber, formatPercentage } from '../app.utils';
 import {
     buildingsLayerNames,
     layerLabel,
@@ -40,7 +40,15 @@ const getLayerLegend = (
     maximum: number,
 ) => {
     if (layerName === LayerName.admin1) {
-        return getGradedLegend(maximum, adminLevelFillLabel[adminLevelFill]);
+        const isPercentageAdminLevelFill = [
+            AdminLevelFill.buildingDamagePercentage,
+            AdminLevelFill.peopleAffectedPercentage,
+        ].includes(adminLevelFill);
+        return getGradedLegend(
+            maximum,
+            adminLevelFillLabel[adminLevelFill],
+            isPercentageAdminLevelFill,
+        );
     }
     if (layerName === LayerName.wealthIndex) {
         return wealthIndexLegend;
@@ -68,17 +76,20 @@ const hexCodeAlphaSuffixes = ['1a', '4d', '80', 'b3', 'e6'];
 
 const getGradedLegendEntryLabel = (
     maximum: number,
+    percentage: boolean,
     index: number,
     lastIndex: boolean,
 ) => {
-    const start = formatNumber((maximum * index) / 5);
-    const end = formatNumber((maximum * (index + 1)) / 5);
+    const formatFunction = percentage ? formatPercentage : formatNumber;
+    const start = formatFunction((maximum * index) / 5);
+    const end = formatFunction((maximum * (index + 1)) / 5);
     return lastIndex ? `${start}+` : `${start} - ${end}`;
 };
 
 const getGradedLegend = (
     maximum: number = 0,
     title: string = 'Legend',
+    percentage: boolean = false,
     color: string = '#969696',
 ) =>
     [
@@ -88,6 +99,7 @@ const getGradedLegend = (
                   const colorWithAlpha = `${color}${hexCodeAlphaSuffix}`;
                   const label = getGradedLegendEntryLabel(
                       maximum,
+                      percentage,
                       index,
                       hexCodeAlphaSuffixes.length - 1 === index,
                   );
