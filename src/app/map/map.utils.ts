@@ -103,7 +103,6 @@ export const getAdminLayerMaximum = (
     property: string,
 ) =>
     Math.max(
-        1,
         ...geojson.features.map(
             (feature) => feature.properties[property] as number,
         ),
