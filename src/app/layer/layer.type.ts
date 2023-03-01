@@ -1,24 +1,16 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
 export const layerIcon = {
-    'buildings-damage-none':
-        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    'buildings-damage-light':
-        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    'buildings-damage-moderate':
-        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    'buildings-damage-heavy':
-        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    'buildings-damage-none-and-light':
-        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    'buildings-damage-moderate-and-heavy':
-        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    buildings: 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    'assessment-area':
-        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    'population-density':
-        'https://ionicframework.com/docs/img/demos/thumbnail.svg',
-    'wealth-index': 'https://ionicframework.com/docs/img/demos/thumbnail.svg',
+    'buildings-damage-none': '/assets/icon/favicon.svg',
+    'buildings-damage-light': '/assets/icon/favicon.svg',
+    'buildings-damage-moderate': '/assets/icon/favicon.svg',
+    'buildings-damage-heavy': '/assets/icon/favicon.svg',
+    'buildings-damage-none-and-light': '/assets/icon/favicon.svg',
+    'buildings-damage-moderate-and-heavy': '/assets/icon/favicon.svg',
+    buildings: '/assets/icon/favicon.svg',
+    'assessment-area': '/assets/icon/favicon.svg',
+    'population-density': '/assets/icon/favicon.svg',
+    'wealth-index': '/assets/icon/favicon.svg',
 };
 
 export const layerLabel = {
