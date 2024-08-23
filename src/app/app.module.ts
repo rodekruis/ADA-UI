@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { EventComponent } from './event/event.component';
 import { MapComponent } from './map/map.component';
 import { LayerComponent } from './layer/layer.component';
-import { CalendarComponent } from './calendar/calendar.component';
 import { SummaryComponent } from './summary/summary.component';
 import { PopupComponent } from './popup/popup.component';
 import { HeaderComponent } from './header/header.component';
@@ -27,7 +26,6 @@ import { AdminLevelComponent } from './admin-level/admin-level.component';
         EventComponent,
         MapComponent,
         LayerComponent,
-        CalendarComponent,
         SummaryComponent,
         PopupComponent,
         HeaderComponent,
