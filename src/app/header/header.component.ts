@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class HeaderComponent {
     @Input() eventName: string;
 
-    public title = $localize`ADA PORTAL`;
+    public title = $localize`AUTOMATED DAMAGE ASSESSMENT`;
 
     constructor() {}
 }
