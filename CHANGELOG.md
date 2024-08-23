@@ -1,3 +1,12 @@
+# [0.8.0](https://github.com/rodekruis/ADA-UI/compare/v0.7.0...v0.8.0) (2024-08-23)
+
+
+### Features
+
+* remove calendar and expand ADA in header and title ([1aafa25](https://github.com/rodekruis/ADA-UI/commit/1aafa25a612888896a5f224e8cff342e8a2c15a4))
+
+
+
 # [0.7.0](https://github.com/rodekruis/ADA-UI/compare/v0.6.2...v0.7.0) (2023-03-01)
 
 
@@ -93,19 +102,6 @@
 ### Bug Fixes
 
 * remove layers in world view ([2f1ef35](https://github.com/rodekruis/ADA-UI/commit/2f1ef35f6adbcf92d036717d7fa29b21ecfa74e9))
-
-
-
-# [0.2.0](https://github.com/rodekruis/ADA-UI/compare/v0.1.4...v0.2.0) (2023-01-25)
-
-
-### Features
-
-* add legend service ([044cb6b](https://github.com/rodekruis/ADA-UI/commit/044cb6b66d8a787927e1bf3f8c96440606bb4268))
-* admin levels should show population affected and building damage info ([f4ebace](https://github.com/rodekruis/ADA-UI/commit/f4ebace913e7e589d7ee0e74b63150e9c24868ba))
-* layer styles for map layers ([e7a7ec5](https://github.com/rodekruis/ADA-UI/commit/e7a7ec5b68958c56bd092781160cc03bc62e838d))
-* legend for admin level fills should be dynamic based on maximum value ([e927890](https://github.com/rodekruis/ADA-UI/commit/e9278900d36e20569dce47affd981967f88d3fa7))
-* load layer geojson in map component ([b034b96](https://github.com/rodekruis/ADA-UI/commit/b034b9604fce0148cffe6b202579832715af2ed5))
 
 
 
