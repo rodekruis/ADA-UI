@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 import { MarkdownModule } from 'ngx-markdown';
-import { NgxLiquidCacheModule } from 'ngx-liquid-cache';
 import { AppRouter } from './app.router';
 import { AppComponent } from './app.component';
 import { EventComponent } from './event/event.component';
@@ -43,7 +42,6 @@ import { AdminLevelComponent } from './admin-level/admin-level.component';
         AppRouter,
         FormsModule,
         ReactiveFormsModule,
-        NgxLiquidCacheModule.forRoot(),
     ],
     bootstrap: [AppComponent],
 })
