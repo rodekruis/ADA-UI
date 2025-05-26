@@ -6,6 +6,4 @@ export const formatNumber = (n: number) =>
     } as any).format(n || 0);
 
 export const formatPercentage = (n: number) =>
-    new Intl.NumberFormat('en', {
-        style: 'percent',
-    } as any).format(n || 0);
+    new Intl.NumberFormat('en', { style: 'percent' } as any).format(n || 0);

@@ -18,8 +18,8 @@ ieiunia, aera illis postquam validosque faciem fores levat. Tecumque mutat, sede
 cumque toto, quas, esse, morte, fratres. Enim auras et se [in habuit
 ait](http://tergum.org/haud) valvas quoque aequorei ter sub ait.
 
--   Putat ferae enixa
--   Fetum Sol inter exierint
--   Pallada terrae spem rotatis pluvialis galeam omnia
--   Illuc corpora in ardescunt deque
--   Mollire funera depositura utilis descenderat Libys
+- Putat ferae enixa
+- Fetum Sol inter exierint
+- Pallada terrae spem rotatis pluvialis galeam omnia
+- Illuc corpora in ardescunt deque
+- Mollire funera depositura utilis descenderat Libys

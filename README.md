@@ -65,12 +65,7 @@ A disaster manager can interpret information from the data visualized on the map
     "features": [
         {
             "type": "Feature",
-            "properties": {
-                "people_affected": 6789,
-                "people_affected_percentage": 0.23,
-                "building_damage": 123,
-                "building_damage_percentage": 0.45
-            },
+            "properties": { "people_affected": 6789, "people_affected_percentage": 0.23, "building_damage": 123, "building_damage_percentage": 0.45 },
             "geometry": {
                 "type": "MultiPolygon",
                 "coordinates": [

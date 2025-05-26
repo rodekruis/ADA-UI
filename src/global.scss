@@ -69,8 +69,9 @@
     }
 }
 
-$event-types: "conflict", "earthquake", "eruption", "fire", "flood",
-    "heavy-rain", "landslide", "tropical-cyclone", "tsunami";
+$event-types:
+    "conflict", "earthquake", "eruption", "fire", "flood", "heavy-rain",
+    "landslide", "tropical-cyclone", "tsunami";
 
 @each $event-type in $event-types {
     .marker-#{$event-type} {

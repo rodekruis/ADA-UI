@@ -60,8 +60,8 @@
             >
                 <ion-text>
                     {{ event.name }}<br />
-                    {{ event.type }} on
-                    {{ event.startDate | date : "mediumDate" }}<br />
+                    {{ event.type }} on {{ event.startDate | date: "mediumDate"
+                    }}<br />
                     {{ event.country }}
                 </ion-text>
             </li>
@@ -75,13 +75,13 @@
             {{
                 indefinite(event.type, {
                     articleOnly: true,
-                    caseInsensitive: true
+                    caseInsensitive: true,
                 })
             }}
             <ion-text class="text-bold">{{ event.type }}</ion-text>
             that occurred on
             <ion-text class="text-bold">{{
-                event.startDate | date : "mediumDate"
+                event.startDate | date: "mediumDate"
             }}</ion-text>
             in <ion-text class="text-bold">{{ event.country }}</ion-text
             >.

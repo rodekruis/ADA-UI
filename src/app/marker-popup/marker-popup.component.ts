@@ -27,7 +27,10 @@ export class MarkerPopupComponent implements OnInit {
         password: new FormControl({ value: '', disabled: this.loading }),
     });
 
-    constructor(private apiService: ApiService, private route: Router) {}
+    constructor(
+        private apiService: ApiService,
+        private route: Router,
+    ) {}
 
     ngOnInit() {
         this.recent = this.event.recent;

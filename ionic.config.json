@@ -1,5 +1,1 @@
-{
-  "name": "ada-ui",
-  "integrations": {},
-  "type": "angular"
-}
+{ "name": "ada-ui", "integrations": {}, "type": "angular" }

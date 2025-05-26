@@ -14,8 +14,8 @@ Explevit toto [movit](http://desieranturbes.org/), inani, [non felicior
 membra](http://www.lapides.net/nec) sum caede protecta, te? Longius populo. Idem
 eandem, sed solent, nisi virgo, non hunc manebat quod negant.
 
--   Pennas dixit inde terretur petens vacuas patresque
--   Spernit unus sint caeli arcet Iuppiter retorsit
--   Rectoque tamen abdidit turba hoc tradidit operique
--   Lacus nectar erat
--   Traxere pudore leves micantes
+- Pennas dixit inde terretur petens vacuas patresque
+- Spernit unus sint caeli arcet Iuppiter retorsit
+- Rectoque tamen abdidit turba hoc tradidit operique
+- Lacus nectar erat
+- Traxere pudore leves micantes

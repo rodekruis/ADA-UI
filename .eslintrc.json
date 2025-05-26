@@ -17,25 +17,15 @@
       "rules": {
         "@angular-eslint/component-class-suffix": [
           "error",
-          {
-            "suffixes": ["Page", "Component"]
-          }
+          { "suffixes": ["Page", "Component"] }
         ],
         "@angular-eslint/component-selector": [
           "error",
-          {
-            "type": "element",
-            "prefix": "app",
-            "style": "kebab-case"
-          }
+          { "type": "element", "prefix": "app", "style": "kebab-case" }
         ],
         "@angular-eslint/directive-selector": [
           "error",
-          {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
-          }
+          { "type": "attribute", "prefix": "app", "style": "camelCase" }
         ],
         "@typescript-eslint/no-empty-function": "warn",
         "@typescript-eslint/no-inferrable-types": "warn",

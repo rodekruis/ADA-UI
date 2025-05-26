@@ -79,23 +79,23 @@ export const createAdminPopup = (
     <ion-label>${
         adminLevelFillLabel[AdminLevelFill.peopleAffected]
     }: ${formatNumber(
-    properties[AdminLevelFill.peopleAffected],
-)}</ion-label><br />
+        properties[AdminLevelFill.peopleAffected],
+    )}</ion-label><br />
     <ion-label>${
         adminLevelFillLabel[AdminLevelFill.peopleAffectedPercentage]
     }: ${formatPercentage(
-    properties[AdminLevelFill.peopleAffectedPercentage],
-)}</ion-label><br />
+        properties[AdminLevelFill.peopleAffectedPercentage],
+    )}</ion-label><br />
     <ion-label>${
         adminLevelFillLabel[AdminLevelFill.buildingDamage]
     }: ${formatNumber(
-    properties[AdminLevelFill.buildingDamage],
-)}</ion-label><br />
+        properties[AdminLevelFill.buildingDamage],
+    )}</ion-label><br />
     <ion-label>${
         adminLevelFillLabel[AdminLevelFill.buildingDamagePercentage]
     }: ${formatPercentage(
-    properties[AdminLevelFill.buildingDamagePercentage],
-)}</ion-label>
+        properties[AdminLevelFill.buildingDamagePercentage],
+    )}</ion-label>
     </div>`;
 
 export const getAdminLayerMaximum = (
