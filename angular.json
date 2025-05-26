@@ -36,10 +36,10 @@
               }
             ],
             "styles": [
-              "src/theme/variables.scss",
               "./node_modules/leaflet/dist/leaflet.css",
               "./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css",
-              "src/global.scss"
+              "src/global.scss",
+              "src/theme/variables.scss"
             ],
             "scripts": ["./node_modules/marked/marked.min.js"],
             "aot": false,
