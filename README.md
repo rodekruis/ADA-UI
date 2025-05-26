@@ -159,9 +159,6 @@ $ npm run start
 ```bash
 # unit tests
 $ npm run test
-
-# e2e tests
-$ npm run e2e
 ```
 
 ## License
