@@ -1,10 +1,11 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { of } from 'rxjs';
-import { EventComponent } from './event.component';
+
 import { ApiService } from '../api.service';
+import { EventComponent } from './event.component';
 import { Event } from './event.type';
 
 describe('EventComponent', () => {

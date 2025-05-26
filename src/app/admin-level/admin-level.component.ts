@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { LayerName } from '../layer/layer.type';
 import { AdminLevelFill, adminLevelFillLabel } from './admin-level.type';
 
@@ -6,6 +7,7 @@ import { AdminLevelFill, adminLevelFillLabel } from './admin-level.type';
     selector: 'app-admin-level',
     templateUrl: './admin-level.component.html',
     styleUrls: ['./admin-level.component.scss'],
+    standalone: false,
 })
 export class AdminLevelComponent {
     @Input() adminLevelLabels = [];

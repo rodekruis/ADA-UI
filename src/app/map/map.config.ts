@@ -1,4 +1,4 @@
-import { tileLayer, latLng, latLngBounds, point, icon, Marker } from 'leaflet';
+import { icon, latLng, latLngBounds, Marker, point, tileLayer } from 'leaflet';
 
 const LEAFLET_MAP_URL_TEMPLATE =
     'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';

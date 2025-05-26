@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LiquidCache } from 'ngx-liquid-cache';
-import { SESSION_STORAGE_TOKEN_KEY, API_ROOT_URL } from './app.config';
+
+import { API_ROOT_URL, SESSION_STORAGE_TOKEN_KEY } from './app.config';
 import { Event } from './event/event.type';
 import { Layer, LayerName } from './layer/layer.type';
 
@@ -10,7 +10,6 @@ import { Layer, LayerName } from './layer/layer.type';
 export class ApiService {
     constructor(private http: HttpClient) {}
 
-    @LiquidCache('{eventId}-{layerName}')
     getLayer(eventId: string, layerName: LayerName): Observable<Layer> {
         return this.http.get<Layer>(
             this.rootUrl(`/events/${eventId}/layers/${layerName}`),

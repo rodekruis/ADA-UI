@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, finalize } from 'rxjs/operators';
+
+import { ApiService } from '../api.service';
 import { Event } from './event.type';
 import { isRecent } from './event.utils';
-import { ApiService } from '../api.service';
 
 @Component({
     selector: 'app-event',
     templateUrl: './event.component.html',
     styleUrls: ['./event.component.scss'],
+    standalone: false,
 })
 export class EventComponent implements OnInit {
     public events: Event[] = [];

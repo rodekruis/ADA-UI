@@ -1,16 +1,18 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
-import { Router } from '@angular/router';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
-import { SESSION_STORAGE_TOKEN_KEY } from '../app.config';
+
 import { ApiService } from '../api.service';
+import { SESSION_STORAGE_TOKEN_KEY } from '../app.config';
 import { Event, EventAccess } from '../event/event.type';
 
 @Component({
     selector: 'app-marker-popup',
     templateUrl: './marker-popup.component.html',
     styleUrls: ['./marker-popup.component.scss'],
+    standalone: false,
 })
 export class MarkerPopupComponent implements OnInit {
     @Input() event: Event;
@@ -26,7 +28,10 @@ export class MarkerPopupComponent implements OnInit {
         password: new FormControl({ value: '', disabled: this.loading }),
     });
 
-    constructor(private apiService: ApiService, private route: Router) {}
+    constructor(
+        private apiService: ApiService,
+        private route: Router,
+    ) {}
 
     ngOnInit() {
         this.recent = this.event.recent;

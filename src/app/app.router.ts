@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
 import { EventComponent } from './event/event.component';
 
 const routes: Routes = [
@@ -8,8 +9,5 @@ const routes: Routes = [
     { path: 'events/:eventId', component: EventComponent },
 ];
 
-@NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
-})
+@NgModule({ imports: [RouterModule.forRoot(routes)], exports: [RouterModule] })
 export class AppRouter {}

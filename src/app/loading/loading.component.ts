@@ -1,11 +1,13 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import debounce from 'lodash.debounce';
+
 import { LOADING_DEBOUNCE_WAIT } from '../app.config';
 
 @Component({
     selector: 'app-loading',
     templateUrl: './loading.component.html',
     styleUrls: ['./loading.component.scss'],
+    standalone: false,
 })
 export class LoadingComponent implements OnChanges {
     @Input() loading = true;

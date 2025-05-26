@@ -1,15 +1,29 @@
 import {
-    Component,
     AfterViewChecked,
+    Component,
     Input,
+    NgZone,
     OnChanges,
     SimpleChanges,
-    NgZone,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
-import { finalize } from 'rxjs/operators';
 import { geoJSON, LatLngBounds, MarkerClusterGroup } from 'leaflet';
+import { finalize } from 'rxjs/operators';
+
+import { AdminLevelFill } from '../admin-level/admin-level.type';
+import { ApiService } from '../api.service';
+import { TOAST_DELAY, TOAST_OPTIONS } from '../app.config';
+import { Event } from '../event/event.type';
+import { Layer, LayerName } from '../layer/layer.type';
+import { adminLayerStyle, getLayerStyle } from './layer.style';
+import { LegendService } from './legend.service';
+import {
+    assessmentAreaFitBoundsOptions,
+    FIT_BOUNDS_DELAY,
+    layerErrorMessageDelimiter,
+    leafletOptions,
+} from './map.config';
 import {
     createAdminPopup,
     createMarker,
@@ -17,24 +31,12 @@ import {
     iconCreateFunction,
     LeafletPane,
 } from './map.utils';
-import {
-    leafletOptions,
-    layerErrorMessageDelimiter,
-    assessmentAreaFitBoundsOptions,
-    FIT_BOUNDS_DELAY,
-} from './map.config';
-import { LegendService } from './legend.service';
-import { ApiService } from '../api.service';
-import { Event } from '../event/event.type';
-import { Layer, LayerName } from '../layer/layer.type';
-import { adminLayerStyle, getLayerStyle } from './layer.style';
-import { TOAST_OPTIONS, TOAST_DELAY } from '../app.config';
-import { AdminLevelFill } from '../admin-level/admin-level.type';
 
 @Component({
     selector: 'app-map',
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.scss'],
+    standalone: false,
 })
 export class MapComponent implements AfterViewChecked, OnChanges {
     @Input() events = [];

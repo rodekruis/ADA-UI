@@ -2,9 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { of } from 'rxjs';
-import { MarkerPopupComponent } from './marker-popup.component';
+
 import { ApiService } from '../api.service';
 import { Event } from '../event/event.type';
+import { MarkerPopupComponent } from './marker-popup.component';
 
 describe('MarkerPopupComponent', () => {
     let component: MarkerPopupComponent;

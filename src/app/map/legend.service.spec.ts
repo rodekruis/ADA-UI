@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+
 import { LegendService } from './legend.service';
 
 describe('LegendService', () => {

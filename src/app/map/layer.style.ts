@@ -1,6 +1,7 @@
 import ColorScale from 'color-scales';
+
 import { AdminLevelFill } from '../admin-level/admin-level.type';
-import { LayerName, buildingsLayerNames } from '../layer/layer.type';
+import { buildingsLayerNames, LayerName } from '../layer/layer.type';
 
 /*
     HDX Dataset Deep Dive: Data for Good at Meta’s Relative Wealth Index
@@ -28,7 +29,7 @@ const getAdminLevelFillOpacity = (value: number, stops: number[]) => {
 };
 
 export const adminLayerStyle =
-    (adminLevelFill: AdminLevelFill = null, maximum: number = 0) =>
+    (adminLevelFill: AdminLevelFill = null, maximum = 0) =>
     (geojson: GeoJSON.Feature) => {
         const fillOpacity = adminLevelFill
             ? getAdminLevelFillOpacity(geojson.properties[adminLevelFill], [
