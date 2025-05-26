@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { LayerName } from '../layer/layer.type';
 import { AdminLevelFill, adminLevelFillLabel } from './admin-level.type';
 

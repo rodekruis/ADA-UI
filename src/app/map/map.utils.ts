@@ -3,24 +3,25 @@ import {
     divIcon,
     latLng,
     Layer,
-    marker,
     Marker,
+    marker,
     MarkerCluster,
     point,
 } from 'leaflet';
 import kebabCase from 'lodash.kebabcase';
-import {
-    markerIconSize,
-    markerPopupOptions,
-    MARKER_CLUSTER_SIZE_WEIGHT,
-} from './map.config';
-import { formatNumber, formatPercentage } from '../app.utils';
+
 import {
     AdminLevelFill,
     adminLevelFillLabel,
 } from '../admin-level/admin-level.type';
+import { formatNumber, formatPercentage } from '../app.utils';
 import { Event } from '../event/event.type';
 import { MarkerPopupComponent } from '../marker-popup/marker-popup.component';
+import {
+    MARKER_CLUSTER_SIZE_WEIGHT,
+    markerIconSize,
+    markerPopupOptions,
+} from './map.config';
 
 export const enum LeafletPane {
     overlay = 'overlayPane',

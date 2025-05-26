@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Map, Control } from 'leaflet';
+import { Control, Map } from 'leaflet';
+
 import { AdminLevelFill } from '../admin-level/admin-level.type';
-import { LayerName, buildingsLayerNames } from '../layer/layer.type';
+import { buildingsLayerNames, LayerName } from '../layer/layer.type';
 import { controlOptions, onAddControl } from './legend.utils';
 
 @Injectable({ providedIn: 'root' })

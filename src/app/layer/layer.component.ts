@@ -7,21 +7,22 @@ import {
     SimpleChanges,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { finalize } from 'rxjs/operators';
 import debounce from 'lodash.debounce';
+import { finalize } from 'rxjs/operators';
+
 import { ApiService } from '../api.service';
-import { PopupComponent } from '../popup/popup.component';
+import { LOADING_DEBOUNCE_WAIT } from '../app.config';
 import { Event } from '../event/event.type';
+import { hasEventChanged } from '../event/event.utils';
+import { PopupComponent } from '../popup/popup.component';
 import {
-    Layer,
-    LayerName,
-    layerIcon,
-    layerLabel,
     adminLayerNames,
     defaultLayers,
+    Layer,
+    layerIcon,
+    layerLabel,
+    LayerName,
 } from './layer.type';
-import { LOADING_DEBOUNCE_WAIT } from '../app.config';
-import { hasEventChanged } from '../event/event.utils';
 
 @Component({
     selector: 'app-layer',

@@ -1,12 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { SummaryComponent } from './summary.component';
 import {
     provideHttpClient,
     withInterceptorsFromDi,
 } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
+
+import { SummaryComponent } from './summary.component';
 
 describe('SummaryComponent', () => {
     let component: SummaryComponent;

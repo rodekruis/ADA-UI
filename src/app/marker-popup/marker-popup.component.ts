@@ -1,10 +1,11 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
-import { Router } from '@angular/router';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
-import { SESSION_STORAGE_TOKEN_KEY } from '../app.config';
+
 import { ApiService } from '../api.service';
+import { SESSION_STORAGE_TOKEN_KEY } from '../app.config';
 import { Event, EventAccess } from '../event/event.type';
 
 @Component({

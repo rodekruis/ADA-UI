@@ -1,13 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { of } from 'rxjs';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { LeafletMarkerClusterModule } from '@bluehalo/ngx-leaflet-markercluster';
-import { MapComponent } from './map.component';
-import { LegendService } from './legend.service';
+import { IonicModule } from '@ionic/angular';
+import { of } from 'rxjs';
+
 import { ApiService } from '../api.service';
 import { Layer } from '../layer/layer.type';
+import { LegendService } from './legend.service';
+import { MapComponent } from './map.component';
 
 describe('MapComponent', () => {
     let component: MapComponent;

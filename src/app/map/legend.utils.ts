@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
 import { ControlOptions, DomUtil } from 'leaflet';
+
 import {
     AdminLevelFill,
     adminLevelFillLabel,
@@ -20,7 +21,7 @@ export const onAddControl =
         layerName: LayerName,
         showBuildingControl: ShowBuildingControl = {},
         adminLevelFill: AdminLevelFill = null,
-        maximum: number = 0,
+        maximum = 0,
     ) =>
     () => {
         const div = DomUtil.create('div', 'legend');
@@ -87,10 +88,10 @@ const getGradedLegendEntryLabel = (
 };
 
 const getGradedLegend = (
-    maximum: number = 0,
-    title: string = 'Legend',
-    percentage: boolean = false,
-    color: string = '#969696',
+    maximum = 0,
+    title = 'Legend',
+    percentage = false,
+    color = '#969696',
 ) =>
     [
         title,

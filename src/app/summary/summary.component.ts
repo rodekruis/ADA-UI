@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import indefinite from 'indefinite';
-import { PopupComponent } from '../popup/popup.component';
-import { Event } from '../event/event.type';
-import { formatNumber, formatPercentage } from '../app.utils';
+
 import {
     AdminLevelFill,
     adminLevelFillLabel,
 } from '../admin-level/admin-level.type';
+import { formatNumber, formatPercentage } from '../app.utils';
+import { Event } from '../event/event.type';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
     selector: 'app-summary',
