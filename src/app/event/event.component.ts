@@ -9,6 +9,7 @@ import { ApiService } from '../api.service';
     selector: 'app-event',
     templateUrl: './event.component.html',
     styleUrls: ['./event.component.scss'],
+    standalone: false,
 })
 export class EventComponent implements OnInit {
     public events: Event[] = [];

@@ -11,6 +11,7 @@ import { Event, EventAccess } from '../event/event.type';
     selector: 'app-marker-popup',
     templateUrl: './marker-popup.component.html',
     styleUrls: ['./marker-popup.component.scss'],
+    standalone: false,
 })
 export class MarkerPopupComponent implements OnInit {
     @Input() event: Event;

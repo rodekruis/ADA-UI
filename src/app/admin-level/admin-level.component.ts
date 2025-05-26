@@ -6,6 +6,7 @@ import { AdminLevelFill, adminLevelFillLabel } from './admin-level.type';
     selector: 'app-admin-level',
     templateUrl: './admin-level.component.html',
     styleUrls: ['./admin-level.component.scss'],
+    standalone: false,
 })
 export class AdminLevelComponent {
     @Input() adminLevelLabels = [];

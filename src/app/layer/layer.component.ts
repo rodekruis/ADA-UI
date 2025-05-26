@@ -27,6 +27,7 @@ import { hasEventChanged } from '../event/event.utils';
     selector: 'app-layer',
     templateUrl: './layer.component.html',
     styleUrls: ['./layer.component.scss'],
+    standalone: false,
 })
 export class LayerComponent implements OnChanges {
     @Input() event: Event;

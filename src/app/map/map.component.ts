@@ -35,6 +35,7 @@ import { AdminLevelFill } from '../admin-level/admin-level.type';
     selector: 'app-map',
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.scss'],
+    standalone: false,
 })
 export class MapComponent implements AfterViewChecked, OnChanges {
     @Input() events = [];
