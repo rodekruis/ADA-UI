@@ -10,6 +10,7 @@
         <ion-button
             shape="round"
             fill="solid"
+            color="dark"
             (click)="openPopup('About ADA', 'assets/markdown/about.md')"
             i18n
             >About ADA</ion-button
@@ -17,6 +18,7 @@
         <ion-button
             shape="round"
             fill="solid"
+            color="dark"
             (click)="openPopup('User Guide', 'assets/markdown/guide.md')"
             i18n
             >User Guide</ion-button
@@ -24,6 +26,7 @@
         <ion-button
             shape="round"
             fill="solid"
+            color="dark"
             (click)="openPopup('Disclaimer', 'assets/markdown/disclaimer.md')"
             i18n
             >Disclaimer</ion-button
@@ -69,7 +72,7 @@
     </article>
     <article class="chat chat-event-details" *ngIf="hideEvents">
         <ion-buttons>
-            <ion-button [routerLink]="['/']">
+            <ion-button [routerLink]="['/']" color="dark">
                 <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
                 Back to World View
             </ion-button>

@@ -4,7 +4,7 @@
             <div class="title text-bold">{{ event.name }}</div>
             <div class="subtitle">{{ event.type }} on {{ startDate }}</div>
             <ion-buttons slot="end">
-                <ion-button (click)="closePopup(['/events'])">
+                <ion-button (click)="closePopup(['/events'])" color="light">
                     <ion-icon slot="icon-only" name="close"></ion-icon>
                 </ion-button>
             </ion-buttons>
@@ -23,7 +23,6 @@
                         required="true"
                     ></ion-input>
                     <ion-note
-                        slot="error"
                         *ngIf="
                             !form.pristine &&
                             !loading &&
