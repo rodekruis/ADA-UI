@@ -68,6 +68,13 @@
         </ul>
     </article>
     <article class="chat chat-event-details" *ngIf="hideEvents">
+        <ion-buttons>
+            <ion-button [routerLink]="['/']">
+                <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+                Back to World View
+            </ion-button>
+        </ion-buttons>
+        <br />
         <ion-text>
             You are viewing
             <ion-text class="text-bold">{{ event.name }}</ion-text
