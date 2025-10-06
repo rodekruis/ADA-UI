@@ -46,6 +46,12 @@ export enum LayerName {
     wealthIndex = 'wealth-index',
 }
 
+export const nonInteractiveLayerNames = [
+    LayerName.assessmentArea,
+    LayerName.populationDensity,
+    LayerName.wealthIndex,
+];
+
 export const adminLayerNames = [
     LayerName.admin1,
     LayerName.admin2,
