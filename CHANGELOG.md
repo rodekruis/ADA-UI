@@ -1,3 +1,21 @@
+# [0.9.0](https://github.com/rodekruis/ADA-UI/compare/v0.8.0...v0.9.0) (2025-10-06)
+
+
+### Bug Fixes
+
+* interactive layers ([2fedb95](https://github.com/rodekruis/ADA-UI/commit/2fedb955f5bc9455913473a9d8fde99d2aa03a66))
+* update markdown assets ([4dab6fc](https://github.com/rodekruis/ADA-UI/commit/4dab6fc6320d99d48017621d73fece0ac366ec0f))
+
+
+### Features
+
+* add back button in event summary ([19bcb49](https://github.com/rodekruis/ADA-UI/commit/19bcb4941fae977fd9e48bbc37cff6370c8a25dc))
+* layer icons ([547efae](https://github.com/rodekruis/ADA-UI/commit/547efaec5a545c7607c7822df11853828ea0bc32))
+* population density layer icon ([dd7a52b](https://github.com/rodekruis/ADA-UI/commit/dd7a52b8ce21eb2c1e2bad99181a69c67df78f71))
+* remove popovers in event summary ([8be08bc](https://github.com/rodekruis/ADA-UI/commit/8be08bcda95dcfd4db66dd03d93d1052b43de4a1))
+
+
+
 # [0.8.0](https://github.com/rodekruis/ADA-UI/compare/v0.7.0...v0.8.0) (2024-08-23)
 
 
@@ -93,15 +111,6 @@
 ### Bug Fixes
 
 * remove assessment area text from summary component ([7315146](https://github.com/rodekruis/ADA-UI/commit/73151466f4d15614a931d19dabbf1a0398ebe75a))
-
-
-
-## [0.2.1](https://github.com/rodekruis/ADA-UI/compare/v0.2.0...v0.2.1) (2023-01-31)
-
-
-### Bug Fixes
-
-* remove layers in world view ([2f1ef35](https://github.com/rodekruis/ADA-UI/commit/2f1ef35f6adbcf92d036717d7fa29b21ecfa74e9))
 
 
 
