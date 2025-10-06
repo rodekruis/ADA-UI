@@ -1,3 +1,12 @@
+## [0.9.3](https://github.com/rodekruis/ADA-UI/compare/v0.9.2...v0.9.3) (2025-10-06)
+
+
+### Bug Fixes
+
+* adjust colours for ios ([ddf401e](https://github.com/rodekruis/ADA-UI/commit/ddf401ea3bb593e30821470f0faca76526f232d7))
+
+
+
 ## [0.9.2](https://github.com/rodekruis/ADA-UI/compare/v0.9.1...v0.9.2) (2025-10-06)
 
 
@@ -97,20 +106,6 @@
 ### Features
 
 * zoom to assessment area instead of admin area ([c72fdb5](https://github.com/rodekruis/ADA-UI/commit/c72fdb5210694708e182685a64bb509a8c90c088))
-
-
-
-# [0.4.0](https://github.com/rodekruis/ADA-UI/compare/v0.3.0...v0.4.0) (2023-02-14)
-
-
-### Bug Fixes
-
-* use key population density instead of DN ([7fede0d](https://github.com/rodekruis/ADA-UI/commit/7fede0d59d34d49a9df3b2b217a6e5ea2106d1ed))
-
-
-### Features
-
-* remove event type prefix from name ([9ebbb8e](https://github.com/rodekruis/ADA-UI/commit/9ebbb8ee67297741556fa19950ca171020c570fa))
 
 
 
