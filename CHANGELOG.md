@@ -1,3 +1,12 @@
+## [0.9.1](https://github.com/rodekruis/ADA-UI/compare/v0.9.0...v0.9.1) (2025-10-06)
+
+
+### Bug Fixes
+
+* upgrade to node 22 ([fc72119](https://github.com/rodekruis/ADA-UI/commit/fc72119550de8234d39592ec23b0a5f6ffc47a3c))
+
+
+
 # [0.9.0](https://github.com/rodekruis/ADA-UI/compare/v0.8.0...v0.9.0) (2025-10-06)
 
 
@@ -102,15 +111,6 @@
 ### Features
 
 * switch on default layers in event view ([84e4fd5](https://github.com/rodekruis/ADA-UI/commit/84e4fd5771ff82b89f542aca16c85e49dbb2998f))
-
-
-
-## [0.2.2](https://github.com/rodekruis/ADA-UI/compare/v0.2.1...v0.2.2) (2023-01-31)
-
-
-### Bug Fixes
-
-* remove assessment area text from summary component ([7315146](https://github.com/rodekruis/ADA-UI/commit/73151466f4d15614a931d19dabbf1a0398ebe75a))
 
 
 
