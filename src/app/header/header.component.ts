@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { addIcons } from 'ionicons';
+import { earth } from 'ionicons/icons';
 
 @Component({
     selector: 'app-header',
@@ -11,5 +13,7 @@ export class HeaderComponent {
 
     public title = $localize`AUTOMATED DAMAGE ASSESSMENT`;
 
-    constructor() {}
+    constructor() {
+        addIcons({ earth });
+    }
 }

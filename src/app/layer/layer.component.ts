@@ -7,6 +7,8 @@ import {
     SimpleChanges,
 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { informationCircle } from 'ionicons/icons';
 import debounce from 'lodash.debounce';
 import { finalize } from 'rxjs/operators';
 
@@ -46,7 +48,9 @@ export class LayerComponent implements OnChanges {
     constructor(
         private modalCtrl: ModalController,
         private apiService: ApiService,
-    ) {}
+    ) {
+        addIcons({ 'information-circle': informationCircle });
+    }
 
     ngOnChanges(changes: SimpleChanges) {
         if ('event' in changes) {

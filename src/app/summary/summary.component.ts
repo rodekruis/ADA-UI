@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { chevronBackOutline } from 'ionicons/icons';
 import indefinite from 'indefinite';
 
 import {
@@ -34,7 +36,9 @@ export class SummaryComponent implements OnChanges {
     constructor(
         private modalCtrl: ModalController,
         private httpClient: HttpClient,
-    ) {}
+    ) {
+        addIcons({ 'chevron-back-outline': chevronBackOutline });
+    }
 
     ngOnChanges() {
         this.hideEvents = this.event && Object.keys(this.event).length > 0;

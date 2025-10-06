@@ -3,6 +3,8 @@ import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
+import { addIcons } from 'ionicons';
+import { close, eye, eyeOff, warningOutline } from 'ionicons/icons';
 
 import { ApiService } from '../api.service';
 import { SESSION_STORAGE_TOKEN_KEY } from '../app.config';
@@ -31,7 +33,14 @@ export class MarkerPopupComponent implements OnInit {
     constructor(
         private apiService: ApiService,
         private route: Router,
-    ) {}
+    ) {
+        addIcons({
+            close,
+            'warning-outline': warningOutline,
+            'eye-off': eyeOff,
+            eye,
+        });
+    }
 
     ngOnInit() {
         this.recent = this.event.recent;
