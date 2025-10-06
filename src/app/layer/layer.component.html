@@ -6,6 +6,7 @@
         *ngFor="let layer of layers"
         [ngClass]="{ active: layer.active }"
         (click)="toggleLayer(layer)"
+        detail="false"
     >
         <ion-thumbnail slot="start">
             <img [alt]="layer.label" [src]="layer.icon" />
