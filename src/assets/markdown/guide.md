@@ -1,25 +1,15 @@
-Lorem _markdownum_ moenia? Risit [victorem](http://ne.net/), in telo silentia
-popularis Laconide ceram [quam](http://salute.net/ministros.aspx) eheu: inplicat
-fronte, quod oris Rhenum! Prodit turba gemit, ab [fides](http://www.acuta.org/)
-debilitaturum ilia. Dixit verbaque sume sint est lumen et vestri tumidaque
-ambiguum!
+ADA’s primary purpose is to **visualize building damage data on an interactive map**. It includes the following components:
 
-1. Suis iamque natalis habuere est
-2. Verba Mater qui te Nox
-3. Nile miratur quae ab vertitur probat crescendo
-4. Sumit concrevit solusque gratia
-5. Eburnea propter ut lymphis
-6. Modico custodia nostra
+1. **World View**: Displays all events on a world map, allowing you to select an event for more details.
 
-## Mirer vivunt aevo
+2. **Event List**: Presents all events in a list format, enabling you to select an event for more details.
 
-Lenimen ciconia arvaque Mavortia intravit virga ieiunia, ilia forte! Dum
-ieiunia, aera illis postquam validosque faciem fores levat. Tecumque mutat, sede
-cumque toto, quas, esse, morte, fratres. Enim auras et se [in habuit
-ait](http://tergum.org/haud) valvas quoque aequorei ter sub ait.
+3. **Event Map**: Shows geographical information for a selected event with the following map layers:
 
-- Putat ferae enixa
-- Fetum Sol inter exierint
-- Pallada terrae spem rotatis pluvialis galeam omnia
-- Illuc corpora in ardescunt deque
-- Mollire funera depositura utilis descenderat Libys
+    1. Assessment area
+    2. Total buildings
+    3. Damaged buildings categorized as none, light, moderate, or heavy
+    4. Population density
+    5. Wealth index
+
+4. **Event Report**: Highlights key indicators of the selected event, including building damage and the number of people affected—shown in both absolute figures and percentages.

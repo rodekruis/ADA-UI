@@ -15,7 +15,11 @@ import { AdminLevelFill } from '../admin-level/admin-level.type';
 import { ApiService } from '../api.service';
 import { TOAST_DELAY, TOAST_OPTIONS } from '../app.config';
 import { Event } from '../event/event.type';
-import { Layer, LayerName } from '../layer/layer.type';
+import {
+    Layer,
+    LayerName,
+    nonInteractiveLayerNames,
+} from '../layer/layer.type';
 import { adminLayerStyle, getLayerStyle } from './layer.style';
 import { LegendService } from './legend.service';
 import {
@@ -210,8 +214,9 @@ export class MapComponent implements AfterViewChecked, OnChanges {
         if (this.layers[layer.name]) {
             this.removeLayer(layer.name);
         } else {
+            const interactive = !nonInteractiveLayerNames.includes(layer.name);
             this.layers[layer.name] = geoJSON(layer.geojson, {
-                interactive: layer.name !== LayerName.assessmentArea,
+                interactive,
                 style: getLayerStyle(layer.name),
                 pane:
                     layer.name === LayerName.assessmentArea

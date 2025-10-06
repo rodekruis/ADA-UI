@@ -68,6 +68,13 @@
         </ul>
     </article>
     <article class="chat chat-event-details" *ngIf="hideEvents">
+        <ion-buttons>
+            <ion-button [routerLink]="['/']">
+                <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+                Back to World View
+            </ion-button>
+        </ion-buttons>
+        <br />
         <ion-text>
             You are viewing
             <ion-text class="text-bold">{{ event.name }}</ion-text
@@ -87,145 +94,55 @@
             >.
         </ion-text>
         <ion-list lines="none" class="ion-margin-vertical key-estimate-list">
-            <ion-item id="people-affected" class="key-estimate-item text-bold">
-                <ion-icon
-                    slot="start"
-                    name="information-circle-outline"
-                    color="ibf-primary"
-                    size="small"
-                ></ion-icon>
+            <ion-item class="key-estimate-item">
                 <ion-label>
-                    {{ adminLevelFillLabel[adminLevelFill.peopleAffected] }}:
-                    {{ formatNumber(event.peopleAffected) }}
+                    <ion-text class="text-bold">
+                        {{ formatNumber(event.peopleAffected) }}
+                        {{ adminLevelFillLabel[adminLevelFill.peopleAffected] }}
+                    </ion-text>
+                    The product of the total number of people living in the
+                    assessment area and the fraction of building damage.
                 </ion-label>
             </ion-item>
-            <ion-item
-                id="people-affected-percentage"
-                class="key-estimate-item text-bold"
-            >
-                <ion-icon
-                    slot="start"
-                    name="information-circle-outline"
-                    color="ibf-primary"
-                    size="small"
-                ></ion-icon>
+            <ion-item class="key-estimate-item">
                 <ion-label>
-                    {{
-                        adminLevelFillLabel[
-                            adminLevelFill.peopleAffectedPercentage
-                        ]
-                    }}:
-                    {{ formatPercentage(event.peopleAffectedPercentage) }}
+                    <ion-text class="text-bold">
+                        {{ formatPercentage(event.peopleAffectedPercentage) }}
+                        {{
+                            adminLevelFillLabel[
+                                adminLevelFill.peopleAffectedPercentage
+                            ]
+                        }}
+                    </ion-text>
+                    The fraction of people affected out of the population in the
+                    assessment area.
                 </ion-label>
             </ion-item>
-            <ion-item id="building-damage" class="key-estimate-item text-bold">
-                <ion-icon
-                    slot="start"
-                    name="information-circle-outline"
-                    color="ibf-primary"
-                    size="small"
-                ></ion-icon>
+            <ion-item class="key-estimate-item">
                 <ion-label>
-                    {{ adminLevelFillLabel[adminLevelFill.buildingDamage] }}:
-                    {{ formatNumber(event.buildingsDamaged) }}
+                    <ion-text class="text-bold">
+                        {{ formatNumber(event.buildingsDamaged) }}
+                        {{ adminLevelFillLabel[adminLevelFill.buildingDamage] }}
+                    </ion-text>
+                    The total number of buildings with light, moderate and heavy
+                    damage in the assessment area.
                 </ion-label>
             </ion-item>
-            <ion-item
-                id="building-damage-percentage"
-                class="key-estimate-item text-bold"
-            >
-                <ion-icon
-                    slot="start"
-                    name="information-circle-outline"
-                    color="ibf-primary"
-                    size="small"
-                ></ion-icon>
+            <ion-item class="key-estimate-item">
                 <ion-label>
-                    {{
-                        adminLevelFillLabel[
-                            adminLevelFill.buildingDamagePercentage
-                        ]
-                    }}:
-                    {{ formatPercentage(event.buildingsDamagedPercentage) }}
+                    <ion-text class="text-bold">
+                        {{ formatPercentage(event.buildingsDamagedPercentage) }}
+                        {{
+                            adminLevelFillLabel[
+                                adminLevelFill.buildingDamagePercentage
+                            ]
+                        }}
+                    </ion-text>
+                    The fraction of building damage out of all buildings in the
+                    assessment area.
                 </ion-label>
             </ion-item>
         </ion-list>
-        <ion-popover
-            trigger="people-affected"
-            triggerAction="hover"
-            showBackdrop="false"
-            mode="ios"
-            size="cover"
-            dismissOnSelect="true"
-        >
-            <ng-template>
-                <ion-content class="ion-padding popover-content" i18n>
-                    <ion-text class="text-bold">{{
-                        adminLevelFillLabel[adminLevelFill.peopleAffected]
-                    }}</ion-text>
-                    is the product of the total number of people living in the
-                    assessment area and the fraction of building damage.
-                </ion-content>
-            </ng-template>
-        </ion-popover>
-        <ion-popover
-            trigger="people-affected-percentage"
-            triggerAction="hover"
-            showBackdrop="false"
-            mode="ios"
-            size="cover"
-            dismissOnSelect="true"
-        >
-            <ng-template>
-                <ion-content class="ion-padding popover-content" i18n>
-                    <ion-text class="text-bold">{{
-                        adminLevelFillLabel[
-                            adminLevelFill.peopleAffectedPercentage
-                        ]
-                    }}</ion-text>
-                    is the fraction of people affected out of the population in
-                    the assessment area.
-                </ion-content>
-            </ng-template>
-        </ion-popover>
-        <ion-popover
-            trigger="building-damage"
-            triggerAction="hover"
-            showBackdrop="false"
-            mode="ios"
-            size="cover"
-            dismissOnSelect="true"
-        >
-            <ng-template>
-                <ion-content class="ion-padding popover-content" i18n>
-                    <ion-text class="text-bold">{{
-                        adminLevelFillLabel[adminLevelFill.buildingDamage]
-                    }}</ion-text>
-                    is the total number of buildings with light, moderate and
-                    heavy damage in the assessment area.
-                </ion-content>
-            </ng-template>
-        </ion-popover>
-        <ion-popover
-            trigger="building-damage-percentage"
-            triggerAction="hover"
-            showBackdrop="false"
-            mode="ios"
-            size="cover"
-            dismissOnSelect="true"
-        >
-            <ng-template>
-                <ion-content class="ion-padding popover-content" i18n>
-                    <ion-text class="text-bold">{{
-                        adminLevelFillLabel[
-                            adminLevelFill.buildingDamagePercentage
-                        ]
-                    }}</ion-text>
-                    is the fraction of building damage out of all buildings in
-                    the assessment area.
-                </ion-content>
-            </ng-template>
-        </ion-popover>
         <ion-text class="text-bold" i18n>
             You are viewing sensitive information ensure you exit once finished
             with the dashboard.

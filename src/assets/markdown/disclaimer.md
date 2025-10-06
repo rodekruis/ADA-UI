@@ -1,21 +1,9 @@
-## Pertulit moram neptis
+**Use this website and its contents entirely at your own risk.**
 
-Lorem markdownum super? Et esse. Teneat ista motibus, mea ardor est!
+The information provided on this website is offered on a **best-effort basis**. While we strive to present reliable and up-to-date data, we strongly advise users to **independently verify all information** to ensure it meets their specific needs.
 
-Qua quaerenti florem digna enim sanguisque ferrea, et fameque Charybdis Bacchum.
-Animo adstitit! Inmeriti adfuit commissa, nec ferae [usum gavisa
-cultus](http://inmissanec.org/densi.html) quaecumque lumina. Inplerunt dixit
-caeno hoc, tergo tellure [et](http://arduaet.io/in) petis intempestiva data
-denique.
+Given the inherent uncertainty of forecasting, **we make no warranties or guarantees regarding the accuracy, completeness, or validity of any information presented**.
 
-## Et videbor progenuit et
+[The Netherlands Red Cross](https://redcross.nl) accepts **no liability for any loss, damage, or consequences—whether direct, indirect, incidental, or consequential—arising from the use of or reliance on the information provided**.
 
-Explevit toto [movit](http://desieranturbes.org/), inani, [non felicior
-membra](http://www.lapides.net/nec) sum caede protecta, te? Longius populo. Idem
-eandem, sed solent, nisi virgo, non hunc manebat quod negant.
-
-- Pennas dixit inde terretur petens vacuas patresque
-- Spernit unus sint caeli arcet Iuppiter retorsit
-- Rectoque tamen abdidit turba hoc tradidit operique
-- Lacus nectar erat
-- Traxere pudore leves micantes
+ADA published under the open-source [MIT license](https://github.com/rodekruis/ADA-API/blob/main/LICENSE).

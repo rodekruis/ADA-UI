@@ -1,18 +1,18 @@
-## Annus sola tectas dat nurusque
+**Automated Damage Assessment (ADA)** provides **geographic hazard and building damage information** to support disaster response and recovery efforts. Its primary purpose is to **visualize building damage data on an interactive map**, alongside **population information** for impact awareness.
 
-Lorem markdownum illis, Coae capillos, sucis perstat, haec primo, numina per
-forma intrat parens. Ille opes tecta quae recanduit et quem Iunonem omnique
-maiore.
+Data in ADA is grouped by **events** and further sub-grouped by **administrative boundaries** to help users quickly understand the geographic impact.
+ADA currently supports damage assessments for the following hazards:
 
-- Potius istis natarum moriens simul atque corpore
-- Praeacutae plurimus ultima gemit messes cognoscere rustica
-- Robore miserabile patitur haec linguam aquas plurima
-- Talia sculpsit Acheronte meditata
-- Sed mei arte adsiluit Ausonia longis
-- Sed linguae videri ad reperta dum equique
+1. Tropical Cyclone
+2. Conflict
+3. Volcanic Eruption
+4. Earthquake
+5. Fire
+6. Flood
+7. Heavy Rain
+8. Landslide
+9. Tsunami
 
-Haec etiam excussit velant sententia rubentem, et inopem redunco, dea [non
-fortissimus](http://quam.io/litus-est) dum colubrasque amat nimium. His
-patruelibus marmore animo non furta, servitura dum. Iniustum nec Actaeo
-summasque oviumque! Ait nuper, moveant qui exhortantur monitis alligat penitus:
-Hectoris.
+All presented data is **derived from remote sensing, automated survey techniques, and forecasting models**.
+
+ADA is developed and maintained by [The Netherlands Red Cross](https://redcross.nl) under the open-source [MIT license](https://github.com/rodekruis/ADA-API/blob/main/LICENSE). For questions or technical support, contact us at [dev@510.global](mailto:dev@510.global).

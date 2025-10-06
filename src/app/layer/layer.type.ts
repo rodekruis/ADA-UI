@@ -1,16 +1,18 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
 export const layerIcon = {
-    'buildings-damage-none': '/assets/icon/favicon.svg',
-    'buildings-damage-light': '/assets/icon/favicon.svg',
-    'buildings-damage-moderate': '/assets/icon/favicon.svg',
-    'buildings-damage-heavy': '/assets/icon/favicon.svg',
-    'buildings-damage-none-and-light': '/assets/icon/favicon.svg',
-    'buildings-damage-moderate-and-heavy': '/assets/icon/favicon.svg',
-    buildings: '/assets/icon/favicon.svg',
-    'assessment-area': '/assets/icon/favicon.svg',
-    'population-density': '/assets/icon/favicon.svg',
-    'wealth-index': '/assets/icon/favicon.svg',
+    'buildings-damage-none': '/assets/layer/buildings-damage-none.svg',
+    'buildings-damage-light': '/assets/layer/buildings-damage-light.svg',
+    'buildings-damage-moderate': '/assets/layer/buildings-damage-moderate.svg',
+    'buildings-damage-heavy': '/assets/layer/buildings-damage-heavy.svg',
+    'buildings-damage-none-and-light':
+        '/assets/layer/buildings-damage-light.svg',
+    'buildings-damage-moderate-and-heavy':
+        '/assets/layer/buildings-damage-heavy.svg',
+    buildings: '/assets/layer/buildings.svg',
+    'assessment-area': '/assets/layer/assessment-area.svg',
+    'population-density': '/assets/layer/population-density.svg',
+    'wealth-index': '/assets/layer/wealth-index.svg',
 };
 
 export const layerLabel = {
@@ -43,6 +45,12 @@ export enum LayerName {
     populationDensity = 'population-density',
     wealthIndex = 'wealth-index',
 }
+
+export const nonInteractiveLayerNames = [
+    LayerName.assessmentArea,
+    LayerName.populationDensity,
+    LayerName.wealthIndex,
+];
 
 export const adminLayerNames = [
     LayerName.admin1,
