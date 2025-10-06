@@ -1,3 +1,12 @@
+## [0.9.2](https://github.com/rodekruis/ADA-UI/compare/v0.9.1...v0.9.2) (2025-10-06)
+
+
+### Bug Fixes
+
+* add ionic icons ([e86c1c2](https://github.com/rodekruis/ADA-UI/commit/e86c1c2aa98b3dc3b3f75f9ad8c7f6333113163b))
+
+
+
 ## [0.9.1](https://github.com/rodekruis/ADA-UI/compare/v0.9.0...v0.9.1) (2025-10-06)
 
 
@@ -102,15 +111,6 @@
 ### Features
 
 * remove event type prefix from name ([9ebbb8e](https://github.com/rodekruis/ADA-UI/commit/9ebbb8ee67297741556fa19950ca171020c570fa))
-
-
-
-# [0.3.0](https://github.com/rodekruis/ADA-UI/compare/v0.2.2...v0.3.0) (2023-02-01)
-
-
-### Features
-
-* switch on default layers in event view ([84e4fd5](https://github.com/rodekruis/ADA-UI/commit/84e4fd5771ff82b89f542aca16c85e49dbb2998f))
 
 
 
