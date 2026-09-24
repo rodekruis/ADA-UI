@@ -1,3 +1,12 @@
+## [0.9.4](https://github.com/rodekruis/ADA-UI/compare/v0.9.3...v0.9.4) (2026-09-24)
+
+
+### Bug Fixes
+
+* add carto api key ([ec2a139](https://github.com/rodekruis/ADA-UI/commit/ec2a13985db6460bfb92ced3e32435b8b403d3c4))
+
+
+
 ## [0.9.3](https://github.com/rodekruis/ADA-UI/compare/v0.9.2...v0.9.3) (2025-10-06)
 
 
@@ -97,15 +106,6 @@
 * improve visibility of population density layer ([d21620b](https://github.com/rodekruis/ADA-UI/commit/d21620b39fc1eaf87db658e673e63514b78af5d6))
 * remove event type prefix from event name ([fed9f16](https://github.com/rodekruis/ADA-UI/commit/fed9f16a594dd7e81fa96cfe2db2b912543fcfab))
 * use menu overlay for map menu ([dfd0054](https://github.com/rodekruis/ADA-UI/commit/dfd0054d05be2e7eb15d28387715ca214e52d0e9))
-
-
-
-# [0.5.0](https://github.com/rodekruis/ADA-UI/compare/v0.4.0...v0.5.0) (2023-02-16)
-
-
-### Features
-
-* zoom to assessment area instead of admin area ([c72fdb5](https://github.com/rodekruis/ADA-UI/commit/c72fdb5210694708e182685a64bb509a8c90c088))
 
 
 
