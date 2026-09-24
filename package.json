@@ -8,7 +8,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build -c production",
+    "build": "ng build -c production --define \"CARTO_API_KEY='$CARTO_API_KEY'\"",
     "test:dev": "ng test",
     "test": "npm run test:dev -- --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",

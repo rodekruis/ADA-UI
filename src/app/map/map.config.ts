@@ -1,7 +1,7 @@
 import { icon, latLng, latLngBounds, Marker, point, tileLayer } from 'leaflet';
+import { environment } from 'src/environments/environment';
 
-const LEAFLET_MAP_URL_TEMPLATE =
-    'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png';
+const LEAFLET_MAP_URL_TEMPLATE = `https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png?key=${environment.cartoApiKey}`;
 const LEAFLET_MAP_ATTRIBUTION =
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">Carto</a>';
 

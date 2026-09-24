@@ -34,6 +34,7 @@
               "src/theme/variables.scss"
             ],
             "scripts": ["./node_modules/marked/marked.min.js"],
+            "define": { "CARTO_API_KEY": "''" },
             "aot": false,
             "extractLicenses": false,
             "sourceMap": true,
